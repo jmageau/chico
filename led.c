@@ -39,4 +39,4 @@ void setColor(bool red, bool green, bool blue) {
 	}
 }
 
-#endif /* LEDLIB_C_ */
+#endif
