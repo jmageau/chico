@@ -27,4 +27,3 @@ void readTemperatureValues() {
 int getAverageTemp() {
 	return averageTemp;
 }
-
