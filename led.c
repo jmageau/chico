@@ -14,7 +14,7 @@
 #ifndef LED
 #define LED
 
-static void init() {
+void initLED() {
 	DDRH |= _BV(DDH3); // red
 	DDRE |= _BV(DDE3); // green
 	DDRE |= _BV(DDE5); // blue
