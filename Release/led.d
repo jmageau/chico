@@ -1,4 +1,4 @@
-main.o main.o: ../main.c \
+led.o led.o: ../led.c \
   C:\Users\Nick\workspace\FreeRTOS801\include/FreeRTOS.h \
   C:\Users\Nick\workspace\FreeRTOS801\include/projdefs.h \
   C:\Users\Nick\workspace\FreeRTOS801\include/FreeRTOSConfig.h \
@@ -11,11 +11,7 @@ main.o main.o: ../main.c \
   C:\Users\Nick\workspace\FreeRTOS801\include/queue.h \
   C:\Users\Nick\workspace\FreeRTOS801\include/semphr.h \
   C:\Users\Nick\workspace\FreeRTOS801\include/queue.h \
-  C:\Users\Nick\workspace\CEG4166_RTS_Lib\include/usartserial.h \
-  C:\Users\Nick\workspace\FreeRTOS801\include/portable.h \
-  C:\Users\Nick\workspace\FreeRTOS801\include/ringBuffer.h \
-  C:\Users\Nick\workspace\FreeRTOS801\include/FreeRTOS.h ../led.h \
-  ../tempsensor.h
+  C:\Users\Nick\workspace\CEG4166_RTS_Lib\include/BitDefinitions.h
 
 C:\Users\Nick\workspace\FreeRTOS801\include/FreeRTOS.h:
 
@@ -41,14 +37,4 @@ C:\Users\Nick\workspace\FreeRTOS801\include/semphr.h:
 
 C:\Users\Nick\workspace\FreeRTOS801\include/queue.h:
 
-C:\Users\Nick\workspace\CEG4166_RTS_Lib\include/usartserial.h:
-
-C:\Users\Nick\workspace\FreeRTOS801\include/portable.h:
-
-C:\Users\Nick\workspace\FreeRTOS801\include/ringBuffer.h:
-
-C:\Users\Nick\workspace\FreeRTOS801\include/FreeRTOS.h:
-
-../led.h:
-
-../tempsensor.h:
+C:\Users\Nick\workspace\CEG4166_RTS_Lib\include/BitDefinitions.h:

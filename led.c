@@ -11,31 +11,33 @@
 #include "queue.h"
 #include "semphr.h"
 
+#include "BitDefinitions.h"
+
 #ifndef LED
 #define LED
 
 void initLED() {
-	DDRH |= _BV(DDH3); // red
-	DDRE |= _BV(DDE3); // green
-	DDRE |= _BV(DDE5); // blue
+	DDRH |= BIT3; // red
+	DDRE |= BIT3; // green
+	DDRE |= BIT5; // blue
 }
 
 void setColor(bool red, bool green, bool blue) {
 
 	if (red) {
-		PORTH &= ~_BV(PORTH3);
+		PORTH &= ~BIT3;
 	} else {
-		PORTH |= _BV(PORTH3);
+		PORTH |= BIT3;
 	}
 	if (green) {
-		PORTE &= ~_BV(PORTE3);
+		PORTE &= ~BIT3;
 	} else {
-		PORTE |= _BV(PORTE3);
+		PORTE |= BIT3;
 	}
 	if (blue) {
-		PORTE &= ~_BV(PORTE5);
+		PORTE &= ~BIT5;
 	} else {
-		PORTE |=  _BV(PORTE5);
+		PORTE |= BIT5;
 	}
 }
 

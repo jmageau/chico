@@ -4,13 +4,19 @@
 
 # Add inputs and outputs from these tool invocations to the build variables 
 C_SRCS += \
-../main.c 
+../led.c \
+../main.c \
+../tempsensor.c 
 
 OBJS += \
-./main.o 
+./led.o \
+./main.o \
+./tempsensor.o 
 
 C_DEPS += \
-./main.d 
+./led.d \
+./main.d \
+./tempsensor.d 
 
 
 # Each subdirectory must supply rules for building sources it contributes
