@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['usartfd',['usartfd',['../main_8c.html#ac77728f253c55ea9156a03df49e2186c',1,'main.c']]]
+  ['averagetemp',['averageTemp',['../tempsensor_8c.html#ae32a6c3b8ef1252be291427d1e83beae',1,'tempsensor.c']]]
 ];

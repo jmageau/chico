@@ -1,4 +1,6 @@
 var searchData=
 [
-  ['setcolor',['setColor',['../led_8c.html#a1148e4aff32a9f2755277aa471d8f78c',1,'setColor(bool red, bool green, bool blue):&#160;led.c'],['../led_8h.html#a1148e4aff32a9f2755277aa471d8f78c',1,'setColor(bool red, bool green, bool blue):&#160;led.c']]]
+  ['led',['LED',['../led_8c.html#aeb7a7ba1ab7e0406f1b5ab36d579f585',1,'led.c']]],
+  ['led_2ec',['led.c',['../led_8c.html',1,'']]],
+  ['led_2eh',['led.h',['../led_8h.html',1,'']]]
 ];

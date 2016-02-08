@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['usartfd',['usartfd',['../main_8c.html#ac77728f253c55ea9156a03df49e2186c',1,'main.c']]]
+  ['readtemperaturevalues',['readTemperatureValues',['../tempsensor_8c.html#aa05601e735fc64f483a09cf318ae887e',1,'readTemperatureValues():&#160;tempsensor.c'],['../tempsensor_8h.html#aa05601e735fc64f483a09cf318ae887e',1,'readTemperatureValues():&#160;tempsensor.c']]]
 ];

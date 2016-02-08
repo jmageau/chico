@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['initled',['initLED',['../led_8c.html#a586efe898f67cacd16a9870785d921eb',1,'initLED():&#160;led.c'],['../led_8h.html#a586efe898f67cacd16a9870785d921eb',1,'initLED():&#160;led.c']]]
+  ['averagetemp',['averageTemp',['../tempsensor_8c.html#ae32a6c3b8ef1252be291427d1e83beae',1,'tempsensor.c']]]
 ];

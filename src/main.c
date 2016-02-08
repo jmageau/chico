@@ -1,9 +1,14 @@
-////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////
-////    main.c
-////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////
+/*! \file main.c
+ *  \authors
+ *  	C. Maathuis,
+ *  	N. Horton,
+ *  	J. Mageau,
+ *  	N. Seguin
+ *	\brief
+ *		Main file for Chico the robot. This file will contain all the tasks created for Chico.
+ */
 
+/* Includes */
 #include <stdlib.h>
 #include <stdbool.h>
 #include <string.h>
@@ -17,25 +22,29 @@
 #include "queue.h"
 #include "semphr.h"
 
-/* serial interface include file. */
+/* Serial interface include file. */
 #include "usartserial.h"
 
-/* our drivers */
+/* Our drivers */
 
 #include "led.h"
 #include "tempsensor.h"
 
-/*-----------------------------------------------------------*/
-/* Create a handle for the serial port. */
-//extern xComPortHandle xSerialPort;
-static void TaskShowTemperatureLED(void *pvParameters); // Main Arduino Mega 2560, Freetronics EtherMega (Red) LED Blink
+/* Prototypes */
 
-/*-----------------------------------------------------------*/
+/* 	\brief
+ * 		Show the ambient temperature on the Wifi card LED
+ */
+static void TaskShowTemperatureLED(void *pvParameters);
 
-/* Main program loop */
-//int main(void) __attribute__((OS_main));
+/*! \brief Usart for terminal and wifi card.
+ */
 int usartfd;
 
+/*! \brief Main method.
+ *
+ *  This method will turn on all serial ports, call initialize methods and schedule tasks.
+ */
 int main(void) {
 
 	// turn on the serial port for debugging or for other USART reasons.
@@ -56,8 +65,12 @@ int main(void) {
 	usart_print_P(PSTR("\r\n\n\nGoodbye... no space for idle task!\r\n")); // Doh, so we're dead...
 }
 
-/*-----------------------------------------------------------*/
-
+/*! \brief Task used to show the ambient temperature on the Wifi card LED.
+ *
+ *  The average temperature is gathered and then displayed on the LED. The color of the LED depends on the temperature.
+ *
+ *  \param *pvParameters
+ */
 static void TaskShowTemperatureLED(void *pvParameters) {
 	(void) pvParameters;
 	;
@@ -85,12 +98,11 @@ static void TaskShowTemperatureLED(void *pvParameters) {
 	}
 }
 
-/*-----------------------------------------------------------*/
-
+/*! \brief Task used to show the ambient temperature on the Wifi card LED.
+ *
+ *  \param xTask
+ */
 void vApplicationStackOverflowHook(TaskHandle_t xTask,
 portCHAR *pcTaskName) {
 	while (1);
 }
-
-/*-----------------------------------------------------------*/
-

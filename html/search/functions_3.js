@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['taskblinkredled',['TaskBlinkRedLED',['../main_8c.html#a702e502c6a076974d0c1d79320955c57',1,'main.c']]]
+  ['readtemperaturevalues',['readTemperatureValues',['../tempsensor_8c.html#aa05601e735fc64f483a09cf318ae887e',1,'readTemperatureValues():&#160;tempsensor.c'],['../tempsensor_8h.html#aa05601e735fc64f483a09cf318ae887e',1,'readTemperatureValues():&#160;tempsensor.c']]]
 ];
