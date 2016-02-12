@@ -21,6 +21,8 @@ void readTemperatureValues();
 
 /*! \brief Returns the average temperature of the 8 sensors.
  */
-int getAverageTemp();
+int getAmbient();
+int getAverageLeft();
+int getAverageRight();
 
 #endif
