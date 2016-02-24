@@ -29,6 +29,8 @@
 
 #include "led.h"
 #include "tempsensor.h"
+#include "motion.h"
+#include "lcd.h"
 
 /* Prototypes */
 
@@ -49,12 +51,14 @@ int main(void) {
 
 	// turn on the serial port for debugging or for other USART reasons.
 	usartfd = usartOpen(USART0_ID, 115200, portSERIAL_BUFFER_TX,
-			portSERIAL_BUFFER_RX); //  serial port: WantedBaud, TxQueueLength, RxQueueLength (8n1)
+	portSERIAL_BUFFER_RX); //  serial port: WantedBaud, TxQueueLength, RxQueueLength (8n1)
 
 	usart_print_P(PSTR("\r\n\n\nHello World!\r\n")); // Ok, so we're alive...
 
-	initLED();
+	//initLED();
 	initTPA81();
+	LCDInit();
+	motion_init();
 
 	xTaskCreate(TaskShowTemperatureLED, (const portCHAR *)"RedLED" // Main Arduino Mega 2560, Freetronics EtherMega (Red) LED Blink
 			,256// Tested 9 free @ 208
@@ -79,21 +83,31 @@ static void TaskShowTemperatureLED(void *pvParameters) {
 
 	int taskTime = (250 / portTICK_PERIOD_MS);
 
+	int timer = 0;
 	while (1) {
 		readTemperatureValues();
 		vTaskDelayUntil(&xLastWakeTime, taskTime);
 
-		int temp = getAverageTemp();
+		//TEMP
+		char display_top[16] = "";
+		char display_bottom[16] = "";
 
-		if (temp >= 40) { // Red
-			setColor(true, false, false);
-		} else if (temp < 40 && temp >= 30) { // Green
-			setColor(false, true, false);
+		sprintf(display_bottom, "A:%d L:%d R:%d", getAmbient(), getAverageLeft(),
+				getAverageRight());
+
+		sprintf(display_top, "A:%d R:%d L:%d", getAmbient(), getAverageLeft(),
+						getAverageRight());
+		LCDPrint(display_top, display_bottom);
+
+		if (timer == 0){
+			motion_servo_set_pulse_width(MOTION_WHEEL_LEFT, MIN_PULSE_WIDTH_TICKS);
+		    motion_servo_start(MOTION_WHEEL_LEFT);
 		}
-		else { // Blue
-			setColor(false, false, true);
+		else if (timer == 4){
+			motion_servo_stop(MOTION_WHEEL_LEFT);
 		}
 
+		timer = timer + 1;
 		vTaskDelayUntil(&xLastWakeTime, taskTime);
 	}
 }
@@ -104,5 +118,6 @@ static void TaskShowTemperatureLED(void *pvParameters) {
  */
 void vApplicationStackOverflowHook(TaskHandle_t xTask,
 portCHAR *pcTaskName) {
-	while (1);
+	while (1)
+		;
 }

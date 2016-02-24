@@ -7,6 +7,8 @@
 #include "FreeRTOS.h"
 #include "usartSerial.h"
 
+#include "BitDefinitions.h"
+
 #ifndef LCD
 #define LCD
 
@@ -16,6 +18,8 @@
 #define LCD_COMMAND_TOP 0x80
 #define LCD_COMMAND_BOTTOM 0xC0
 
+void sendLCDCommand(int command);
+
 void LCDInit() {
   usartOpen(LCD_ADDRESS, 9600, portSERIAL_BUFFER_TX, portSERIAL_BUFFER_RX);
   DDRD |= BIT3;
@@ -24,7 +28,7 @@ void LCDInit() {
   sendLCDCommand(LCD_COMMAND_CLEAR);
 }
 
-void LCDPrint(char *top, char *bottom) {
+void LCDPrint(char* top, char* bottom) {
   sendLCDCommand(LCD_COMMAND_CLEAR);
   sendLCDCommand(LCD_COMMAND_TOP);
   usart_fprint(LCD_ADDRESS, (uint8_t*) top);

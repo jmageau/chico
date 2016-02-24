@@ -1,5 +1,4 @@
-tempsensor.o tempsensor.o: ../tempsensor.c \
-  C:\Users\Nick\workspace\FreeRTOS801\include/i2cMultiMaster.h \
+src/led.o src/led.o: ../src/led.c \
   C:\Users\Nick\workspace\FreeRTOS801\include/FreeRTOS.h \
   C:\Users\Nick\workspace\FreeRTOS801\include/projdefs.h \
   C:\Users\Nick\workspace\FreeRTOS801\include/FreeRTOSConfig.h \
@@ -10,9 +9,9 @@ tempsensor.o tempsensor.o: ../tempsensor.c \
   C:\Users\Nick\workspace\FreeRTOS801\include/task.h \
   C:\Users\Nick\workspace\FreeRTOS801\include/list.h \
   C:\Users\Nick\workspace\FreeRTOS801\include/queue.h \
-  C:\Users\Nick\workspace\FreeRTOS801\include/semphr.h ../tempsensor.h
-
-C:\Users\Nick\workspace\FreeRTOS801\include/i2cMultiMaster.h:
+  C:\Users\Nick\workspace\FreeRTOS801\include/semphr.h \
+  C:\Users\Nick\workspace\FreeRTOS801\include/queue.h \
+  C:\Users\Nick\workspace\CEG4166_RTS_Lib\include/BitDefinitions.h
 
 C:\Users\Nick\workspace\FreeRTOS801\include/FreeRTOS.h:
 
@@ -36,4 +35,6 @@ C:\Users\Nick\workspace\FreeRTOS801\include/queue.h:
 
 C:\Users\Nick\workspace\FreeRTOS801\include/semphr.h:
 
-../tempsensor.h:
+C:\Users\Nick\workspace\FreeRTOS801\include/queue.h:
+
+C:\Users\Nick\workspace\CEG4166_RTS_Lib\include/BitDefinitions.h:
