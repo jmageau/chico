@@ -10,6 +10,7 @@ C_SRCS += \
 ../src/main.c \
 ../src/motion.c \
 ../src/runtTimeStatsTimer.c \
+../src/servo.c \
 ../src/tempsensor.c 
 
 OBJS += \
@@ -19,6 +20,7 @@ OBJS += \
 ./src/main.o \
 ./src/motion.o \
 ./src/runtTimeStatsTimer.o \
+./src/servo.o \
 ./src/tempsensor.o 
 
 C_DEPS += \
@@ -28,6 +30,7 @@ C_DEPS += \
 ./src/main.d \
 ./src/motion.d \
 ./src/runtTimeStatsTimer.d \
+./src/servo.d \
 ./src/tempsensor.d 
 
 

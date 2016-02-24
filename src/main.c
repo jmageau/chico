@@ -31,6 +31,7 @@
 #include "tempsensor.h"
 #include "motion.h"
 #include "lcd.h"
+#include "servo.h"
 
 /* Prototypes */
 
@@ -58,7 +59,7 @@ int main(void) {
 	//initLED();
 	initTPA81();
 	LCDInit();
-	motion_init();
+	servoInit();
 
 	xTaskCreate(TaskShowTemperatureLED, (const portCHAR *)"RedLED" // Main Arduino Mega 2560, Freetronics EtherMega (Red) LED Blink
 			,256// Tested 9 free @ 208
@@ -100,11 +101,12 @@ static void TaskShowTemperatureLED(void *pvParameters) {
 		LCDPrint(display_top, display_bottom);
 
 		if (timer == 0){
-			motion_servo_set_pulse_width(MOTION_WHEEL_LEFT, MIN_PULSE_WIDTH_TICKS);
-		    motion_servo_start(MOTION_WHEEL_LEFT);
+			moveCenterServo(CLOCKWISE);
 		}
 		else if (timer == 4){
-			motion_servo_stop(MOTION_WHEEL_LEFT);
+			moveCenterServo(COUNTERCLOCKWISE);
+		} else if (timer == 8){
+			moveCenterServo(MIDDLE);
 		}
 
 		timer = timer + 1;
