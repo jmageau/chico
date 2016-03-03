@@ -27,12 +27,16 @@
 #ifndef LED
 #define LED
 
+void setColor(bool red, bool green, bool blue);
+
 /*! \brief Initialization method that turns on the ports to be used.
  */
 void initLED() {
 	DDRH |= BIT3; // red
 	DDRE |= BIT3; // green
 	DDRE |= BIT5; // blue
+
+	setColor(false, false, false);
 }
 
 /*! \brief Sets the color of the LED. Takes three booleans that correspond to RGB.

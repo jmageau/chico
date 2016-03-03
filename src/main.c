@@ -27,18 +27,7 @@
 
 /* Our drivers */
 
-#include "led.h"
-#include "tempsensor.h"
-#include "motion.h"
-#include "lcd.h"
-#include "servo.h"
-
-/* Prototypes */
-
-/* 	\brief
- * 		Show the ambient temperature on the Wifi card LED
- */
-static void TaskShowTemperatureLED(void *pvParameters);
+#include "behaviour.h"
 
 /*! \brief Usart for terminal and wifi card.
  */
@@ -56,12 +45,8 @@ int main(void) {
 
 	usart_print_P(PSTR("\r\n\n\nHello World!\r\n")); // Ok, so we're alive...
 
-	//initLED();
-	initTPA81();
-	LCDInit();
-	servoInit();
-
-	xTaskCreate(TaskShowTemperatureLED, (const portCHAR *)"RedLED" // Main Arduino Mega 2560, Freetronics EtherMega (Red) LED Blink
+	initBehaviour();
+	xTaskCreate(TaskMoveAndScan, (const portCHAR *)"RedLED" // Main Arduino Mega 2560, Freetronics EtherMega (Red) LED Blink
 			,256// Tested 9 free @ 208
 			,NULL, 3, NULL); // */
 
@@ -70,49 +55,6 @@ int main(void) {
 	usart_print_P(PSTR("\r\n\n\nGoodbye... no space for idle task!\r\n")); // Doh, so we're dead...
 }
 
-/*! \brief Task used to show the ambient temperature on the Wifi card LED.
- *
- *  The average temperature is gathered and then displayed on the LED. The color of the LED depends on the temperature.
- *
- *  \param *pvParameters
- */
-static void TaskShowTemperatureLED(void *pvParameters) {
-	(void) pvParameters;
-	;
-	TickType_t xLastWakeTime;
-	xLastWakeTime = xTaskGetTickCount();
-
-	int taskTime = (250 / portTICK_PERIOD_MS);
-
-	int timer = 0;
-	while (1) {
-		readTemperatureValues();
-		vTaskDelayUntil(&xLastWakeTime, taskTime);
-
-		//TEMP
-		char display_top[16] = "";
-		char display_bottom[16] = "";
-
-		sprintf(display_bottom, "A:%d L:%d R:%d", getAmbient(), getAverageLeft(),
-				getAverageRight());
-
-		sprintf(display_top, "A:%d R:%d L:%d", getAmbient(), getAverageLeft(),
-						getAverageRight());
-		LCDPrint(display_top, display_bottom);
-
-		if (timer == 0){
-			moveCenterServo(CLOCKWISE);
-		}
-		else if (timer == 4){
-			moveCenterServo(COUNTERCLOCKWISE);
-		} else if (timer == 8){
-			moveCenterServo(MIDDLE);
-		}
-
-		timer = timer + 1;
-		vTaskDelayUntil(&xLastWakeTime, taskTime);
-	}
-}
 
 /*! \brief Task used to show the ambient temperature on the Wifi card LED.
  *

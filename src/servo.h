@@ -34,5 +34,8 @@
 void servoInit();
 void moveWheels(int direction);
 void moveCenterServo(int direction);
+double getSpeed(int deviceID);
+double getAverageSpeed();
+double getTotalDistance();
 
 #endif /* SRC_SERVO_H_ */

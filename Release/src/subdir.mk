@@ -4,6 +4,7 @@
 
 # Add inputs and outputs from these tool invocations to the build variables 
 C_SRCS += \
+../src/behaviour.c \
 ../src/lcd.c \
 ../src/lcdDisplay.c \
 ../src/led.c \
@@ -11,9 +12,11 @@ C_SRCS += \
 ../src/motion.c \
 ../src/runtTimeStatsTimer.c \
 ../src/servo.c \
-../src/tempsensor.c 
+../src/tempsensor.c \
+../src/timer.c 
 
 OBJS += \
+./src/behaviour.o \
 ./src/lcd.o \
 ./src/lcdDisplay.o \
 ./src/led.o \
@@ -21,9 +24,11 @@ OBJS += \
 ./src/motion.o \
 ./src/runtTimeStatsTimer.o \
 ./src/servo.o \
-./src/tempsensor.o 
+./src/tempsensor.o \
+./src/timer.o 
 
 C_DEPS += \
+./src/behaviour.d \
 ./src/lcd.d \
 ./src/lcdDisplay.d \
 ./src/led.d \
@@ -31,7 +36,8 @@ C_DEPS += \
 ./src/motion.d \
 ./src/runtTimeStatsTimer.d \
 ./src/servo.d \
-./src/tempsensor.d 
+./src/tempsensor.d \
+./src/timer.d 
 
 
 # Each subdirectory must supply rules for building sources it contributes
