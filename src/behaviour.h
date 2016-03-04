@@ -34,6 +34,7 @@
 #define MOVING_CLOCKWISE          2
 #define MOVING_COUNTERCLOCKWISE   3
 #define STOPPED                   4
+#define TASK_TICK_TIME            0.5
 
 void initBehaviour();
 

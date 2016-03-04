@@ -35,12 +35,15 @@
 int state;
 int stateTime;
 int direction;
+bool lastCenterServoDirection;
 
 void updateState();
 void updateWheels();
 void updateCenterServo();
 void updateLCD();
 void updateLED();
+
+void testUpdateLCD();
 
 void initBehaviour() {
 	initLED();
@@ -51,6 +54,8 @@ void initBehaviour() {
 
 	state = MOVING_FORWARDS;
 	stateTime = 4;
+
+	lastCenterServoDirection = false;
 }
 
 /*! \brief Task used to show the ambient temperature on the Wifi card LED.
@@ -64,11 +69,10 @@ void TaskMoveAndScan(void *pvParameters) {
 
 	TickType_t xLastWakeTime;
 	xLastWakeTime = xTaskGetTickCount();
-
-	int taskTime = (250 / portTICK_PERIOD_MS);
+    //Do * 100 to get the time in milliseconds
+	int taskTime = ((TASK_TICK_TIME * 1000) / portTICK_PERIOD_MS);
 
 	while (1) {
-
 		readTemperatureValues();
 		vTaskDelayUntil(&xLastWakeTime, taskTime);
 
@@ -76,11 +80,11 @@ void TaskMoveAndScan(void *pvParameters) {
 
 		updateWheels();
 		updateCenterServo();
-		updateLCD();
+		//updateLCD();
+		testUpdateLCD();
 		updateLED();
 
 		incrementTimer();
-		vTaskDelayUntil(&xLastWakeTime, taskTime);
 	}
 }
 
@@ -106,14 +110,34 @@ void updateWheels(){
 }
 
 void updateCenterServo(){
-
+	if (state != STOPPED){
+		if (lastCenterServoDirection){
+			moveCenterServo(CLOCKWISE);
+		} else {
+			moveCenterServo(COUNTERCLOCKWISE);
+		}
+		lastCenterServoDirection = !lastCenterServoDirection;
+	} else {
+		moveCenterServo(MIDDLE);
+	}
 }
 
 void updateLCD() {
 	char display_top[16] = "";
 	char display_bottom[16] = "";
 
-	sprintf(display_bottom, "SPD:%1.1f DST:%1.1f", getAverageSpeed(), getTotalDistance());
+	sprintf(display_bottom, "S:%2.2f D:%2.2f", getAverageSpeed(), getTotalDistance());
+
+	sprintf(display_top, "A:%d R:%d L:%d", getAmbient(), getAverageLeft(),
+			getAverageRight());
+	LCDPrint(display_top, display_bottom);
+}
+
+void testUpdateLCD() {
+	char display_top[16] = "";
+	char display_bottom[16] = "";
+
+	sprintf(display_bottom, "S:%2.2f D:%2.2f", getAverageSpeed(), getTotalDistance());
 
 	sprintf(display_top, "A:%d R:%d L:%d", getAmbient(), getAverageLeft(),
 			getAverageRight());
@@ -121,9 +145,15 @@ void updateLCD() {
 }
 
 void updateLED(){
-
+	if (state == MOVING_FORWARDS){
+		setColor(false, true, false);
+	} else if (state == MOVING_BACKWARDS){
+		setColor(true, false, false);
+	} else if (state == MOVING_CLOCKWISE || state == MOVING_COUNTERCLOCKWISE){
+		setColor(false, false, true);
+	} else {
+		setColor(true, true, true);
+	}
 }
 
 #endif
-
-//need to move center servo and fix spd + dst

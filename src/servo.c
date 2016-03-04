@@ -23,17 +23,21 @@
 
 #include "motion.h"
 #include "servo.h"
+#include "behaviour.h"
 
 #ifndef SERVO
 #define SERVO
 
+double wheelSpeed;
 double previousSpeed;
-double totalDistance;
+double totalDistance[2];
 
 void servoInit() {
 	motion_init();
+	wheelSpeed = 0;
 	previousSpeed = 0;
-	totalDistance = 0;
+	totalDistance[0] = 0;
+	totalDistance[1] = 0;
 }
 
 void moveWheels(int direction) {
@@ -72,6 +76,8 @@ void moveWheels(int direction) {
 	} else if (direction == STOP) {
 		motion_servo_stop(MOTION_WHEEL_RIGHT);
 		motion_servo_stop(MOTION_WHEEL_LEFT);
+		wheelSpeed = 0;
+		previousSpeed = 0;
 	}
 
 }
@@ -102,11 +108,11 @@ void moveCenterServo(int direction) {
 double getSpeed(int deviceID){
 	uint32_t* wheelTickDelta;
 
-	double wheelSpeed;
 	if (motion_enc_read(deviceID, wheelTickDelta) == 1){
 		//There was a new speed and we need to do something about it
+		//0.0054 = distance of 1 capture event, 500ms = period of servos
 		wheelSpeed =  0.0054 / ((*wheelTickDelta) * 0.0000005); //distance over time
-		totalDistance = totalDistance + 0.0054;
+		totalDistance[deviceID] = totalDistance[deviceID] + wheelSpeed * TASK_TICK_TIME;
 	} else {
 		wheelSpeed = previousSpeed;
 	}
@@ -120,7 +126,7 @@ double getAverageSpeed(){
 }
 
 double getTotalDistance(){
-	return totalDistance;
+	return (totalDistance[0] + totalDistance[1])/2;
 }
 
 #endif
