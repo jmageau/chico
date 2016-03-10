@@ -34,7 +34,6 @@
 
 int timerTickCount;
 int state;
-int stateTime;
 int direction;
 bool lastCenterServoDirection;
 
@@ -46,8 +45,12 @@ void updateLED();
 
 void timerCallback();
 
-void initBehaviour() {
+bool red;
 
+bool lcdRefreshed;
+void initBehaviour() {
+	lcdRefreshed = false;
+	red = true;
 	initLED();
 	initTPA81();
 	LCDInit();
@@ -55,14 +58,12 @@ void initBehaviour() {
 	initTimer(timerCallback);
 
 	state = MOVING_FORWARDS;
-	stateTime = 4;
-
 	timerTickCount = 0;
 
 	lastCenterServoDirection = false;
 }
 
-void timerCallback(){
+void timerCallback() {
 	updateState();
 }
 
@@ -79,43 +80,40 @@ void TaskMoveAndScan(void *pvParameters) {
 	xLastWakeTime = xTaskGetTickCount();
 
 	while (1) {
-		readTemperatureValues();
 		updateWheels();
-	    updateLED();
-
+		updateLCD();
+		updateLED();
 	}
 }
 
-void updateState(){
-	//32 = TIMER_FREQUENCY*stateTime
-	if (timerTickCount % 8  == 0){
-		if (state != STOPPED){
+void updateState() {
+	if (timerTickCount % TIMER_FREQUENCY == 0 && timerTickCount != 0) {
+		if (state != STOPPED) {
 			state++;
 		}
 	}
-	updateCenterServo();
-	updateLCD();
+	lcdRefreshed = false;
+	//updateCenterServo();
 	timerTickCount++;
-
 }
 
-void updateWheels(){
-	if (state == MOVING_FORWARDS){
+void updateWheels() {
+	if (state == MOVING_FORWARDS) {
 		moveWheels(FORWARDS);
-	} else if (state == MOVING_BACKWARDS){
+	} else if (state == MOVING_BACKWARDS) {
 		moveWheels(BACKWARDS);
-	} else if (state == MOVING_CLOCKWISE){
+	} else if (state == MOVING_CLOCKWISE) {
 		moveWheels(CLOCKWISE);
-	} else if (state == MOVING_COUNTERCLOCKWISE){
+	} else if (state == MOVING_COUNTERCLOCKWISE) {
 		moveWheels(COUNTERCLOCKWISE);
 	} else { // state == STOPPED
 		moveWheels(STOP);
 	}
 }
 
-void updateCenterServo(){
-	if (state != STOPPED){
-		if (lastCenterServoDirection){
+void updateCenterServo() {
+	if (state != STOPPED) {
+		if (lastCenterServoDirection) {
 			moveCenterServo(CLOCKWISE);
 		} else {
 			moveCenterServo(COUNTERCLOCKWISE);
@@ -127,22 +125,28 @@ void updateCenterServo(){
 }
 
 void updateLCD() {
-	char display_top[16] = "";
-	char display_bottom[16] = "";
+	if (!lcdRefreshed) {
+		readTemperatureValues();
 
-	sprintf(display_bottom, "S:%d D:%d", state, state);
+		char display_top[16] = "";
+		char display_bottom[16] = "";
 
-	sprintf(display_top, "A:%d R:%d L:%d", getAmbient(), getAverageLeft(),
-			getAverageRight());
-	LCDPrint(display_top, display_bottom);
+		sprintf(display_bottom, "S:%2.2f D:%2.2f", getAverageSpeed(), getTotalDistance());
+
+		sprintf(display_top, "A:%d R:%d L:%d", getAmbient(), getAverageLeft(),
+				getAverageRight());
+		LCDPrint(display_top, display_bottom);
+
+		lcdRefreshed = true;
+	}
 }
 
-void updateLED(){
-	if (state == MOVING_FORWARDS){
+void updateLED() {
+	if (state == MOVING_FORWARDS) {
 		setColor(false, true, false);
-	} else if (state == MOVING_BACKWARDS){
+	} else if (state == MOVING_BACKWARDS) {
 		setColor(true, false, false);
-	} else if (state == MOVING_CLOCKWISE || state == MOVING_COUNTERCLOCKWISE){
+	} else if (state == MOVING_CLOCKWISE || state == MOVING_COUNTERCLOCKWISE) {
 		setColor(false, false, true);
 	} else {
 		setColor(true, true, true);
