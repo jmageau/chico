@@ -112,7 +112,7 @@ double getSpeed(int deviceID){
 		//There was a new speed and we need to do something about it
 		//0.0054 = distance of 1 capture event, 500ms = period of servos
 		wheelSpeed =  0.0054 / ((*wheelTickDelta) * 0.0000005); //distance over time
-		totalDistance[deviceID] = totalDistance[deviceID] + wheelSpeed * TASK_TICK_TIME;
+		totalDistance[deviceID] = totalDistance[deviceID] + wheelSpeed * 1/TIMER_FREQUENCY;
 	} else {
 		wheelSpeed = previousSpeed;
 	}
