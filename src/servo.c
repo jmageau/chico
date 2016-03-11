@@ -46,6 +46,15 @@ void servoInit() {
 	totalDistance[1] = 0;
 }
 
+int getPulseWidth(bool direction, double power){
+	int PULSE_DELTA = MAX_PULSE_WIDTH_TICKS - MIN_PULSE_WIDTH_TICKS;
+
+	if(direction){
+		return (int)(MIN_PULSE_WIDTH_TICKS + (PULSE_DELTA / 2) + (PULSE_DELTA / 2) * power);
+	}
+	return (int)(MIN_PULSE_WIDTH_TICKS + (PULSE_DELTA / 2) * power);
+}
+
 void moveWheels(int direction) {
 	float leftPowerRatio;
 	float rightPowerRatio;
@@ -65,34 +74,34 @@ void moveWheels(int direction) {
 
 	if (direction == FORWARDS) {
 
-		motion_servo_set_pulse_width(MOTION_WHEEL_LEFT, (int)(MAX_PULSE_WIDTH_TICKS * leftPowerRatio);
+		motion_servo_set_pulse_width(MOTION_WHEEL_LEFT, getPulseWidth(1, leftPowerRatio));
 		motion_servo_start(MOTION_WHEEL_LEFT);
 
-		motion_servo_set_pulse_width(MOTION_WHEEL_RIGHT, (int)(MIN_PULSE_WIDTH_TICKS * rightPowerRatio));
+		motion_servo_set_pulse_width(MOTION_WHEEL_RIGHT, getPulseWidth(0, rightPowerRatio));
 		motion_servo_start(MOTION_WHEEL_RIGHT);
 
 	} else if (direction == BACKWARDS) {
 
-		motion_servo_set_pulse_width(MOTION_WHEEL_LEFT, (int)(MIN_PULSE_WIDTH_TICKS * leftPowerRatio));
+		motion_servo_set_pulse_width(MOTION_WHEEL_LEFT, getPulseWidth(0, leftPowerRatio));
 		motion_servo_start(MOTION_WHEEL_LEFT);
 
-		motion_servo_set_pulse_width(MOTION_WHEEL_RIGHT, (int)(MAX_PULSE_WIDTH_TICKS * rightPowerRatio));
+		motion_servo_set_pulse_width(MOTION_WHEEL_RIGHT, getPulseWidth(1, rightPowerRatio)));
 		motion_servo_start(MOTION_WHEEL_RIGHT);
 
 	} else if (direction == CLOCKWISE) {
 
-		motion_servo_set_pulse_width(MOTION_WHEEL_LEFT, (int)(MAX_PULSE_WIDTH_TICKS * leftPowerRatio));
+		motion_servo_set_pulse_width(MOTION_WHEEL_LEFT, getPulseWidth(1, leftPowerRatio));
 		motion_servo_start(MOTION_WHEEL_LEFT);
 
-		motion_servo_set_pulse_width(MOTION_WHEEL_RIGHT, (int)(MAX_PULSE_WIDTH_TICKS * rightPowerRatio));
+		motion_servo_set_pulse_width(MOTION_WHEEL_RIGHT, getPulseWidth(1, rightPowerRatio));
 	    motion_servo_start(MOTION_WHEEL_RIGHT);
 
 	}else if (direction == COUNTERCLOCKWISE) {
 
-		motion_servo_set_pulse_width(MOTION_WHEEL_LEFT, (int)(MIN_PULSE_WIDTH_TICKS * leftPowerRatio));
+		motion_servo_set_pulse_width(MOTION_WHEEL_LEFT, getPulseWidth(0, leftPowerRatio));
 		motion_servo_start(MOTION_WHEEL_LEFT);
 
-		motion_servo_set_pulse_width(MOTION_WHEEL_RIGHT, (int)(MIN_PULSE_WIDTH_TICKS * rightPowerRatio));
+		motion_servo_set_pulse_width(MOTION_WHEEL_RIGHT, getPulseWidth(0, rightPowerRatio));
 	    motion_servo_start(MOTION_WHEEL_RIGHT);
 
 	} else if (direction == STOP) {
