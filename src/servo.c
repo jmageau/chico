@@ -111,6 +111,7 @@ void moveCenterServo(int direction) {
 
 double getSpeedById(int deviceID){
 	uint32_t* wheelTickDelta;
+	double wheelSpeed;
 
 	if (motion_enc_read(deviceID, wheelTickDelta) == 1){
 		//There was a new speed and we need to do something about it

@@ -36,7 +36,7 @@ int timerTickCount;
 int state;
 int direction;
 
-bool wheelSpeedRefreshed;
+bool wheelSpeedUpdated;
 bool lcdUpdated;
 bool centerServoUpdated;
 int centerServoDirection;
@@ -61,7 +61,7 @@ void initBehaviour() {
 	state = MOVING_FORWARDS;
 	timerTickCount = 0;
 
-	wheelSpeedRefreshed = false;
+	wheelSpeedUpdated = false;
 	lcdUpdated = false;
 	centerServoUpdated = false;
 	centerServoUpdateTime = 6;
@@ -100,7 +100,7 @@ void updateState() {
 		}
 	}
 
-	wheelSpeedRefreshed = false;
+	wheelSpeedUpdated = false;
 	lcdUpdated = false;
 
 	if (timerTickCount % 6 == 0 && timerTickCount != 0){
@@ -124,9 +124,9 @@ void updateWheels() {
 }
 
 void updateWheelSpeed(){
-	if (!wheelSpeedRefreshed){
+	if (!wheelSpeedUpdated){
 		getSpeed();
-		wheelSpeedRefreshed = true;
+		wheelSpeedUpdated = true;
 	}
 }
 
