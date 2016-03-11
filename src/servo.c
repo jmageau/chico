@@ -124,16 +124,14 @@ double getSpeedById(int deviceID, double previousSpeed){
 		wheelSpeed = previousSpeed;
 	}
 
-	previousSpeed = wheelSpeed;
 	return wheelSpeed;
 }
 
 void getSpeed(){
-	previousSpeedLeft = wheelSpeedLeft;
-	previousSpeedRight = wheelSpeedRight;
-
 	wheelSpeedLeft  = getSpeedById(MOTION_WHEEL_LEFT, previousSpeedLeft);
 	wheelSpeedRight = getSpeedById(MOTION_WHEEL_RIGHT, previousSpeedRight);
+	previousSpeedLeft = wheelSpeedLeft;
+	previousSpeedRight = wheelSpeedRight;
 }
 
 double getAverageSpeed(){
