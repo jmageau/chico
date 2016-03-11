@@ -17,18 +17,14 @@
 
 #include <avr/io.h>
 
-#include "led.h"
-
 #ifndef TIMER
 #define TIMER
 
-bool red;
 void (*isrCallback)();
 
 bool red;
 void initTimer(void (*isr)()) {
 	isrCallback = isr;
-	red = true;
 
 	TIMSK3 &= ~_BV(TOIE1);
 	TCCR3A = 0;
