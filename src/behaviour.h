@@ -35,7 +35,7 @@
 #define MOVING_COUNTERCLOCKWISE   3
 #define STOPPED                   4
 #define TIMER_FREQUENCY           8 //1/x seconds
-#define STATE_TIME				  1 //in seconds
+#define STATE_TIME                1 //in seconds
 
 void initBehaviour();
 

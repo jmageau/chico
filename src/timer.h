@@ -19,6 +19,8 @@
 #ifndef SRC_TIMER_H_
 #define SRC_TIMER_H_
 
+#define TIMER_PRELOAD 34286
+
 void initTimer();
 int getTime();
 void incrementTimer();
