@@ -11,8 +11,7 @@ src/timer.o src/timer.o: ../src/timer.c \
   C:\Users\Nick\workspace\FreeRTOS801\include/queue.h \
   C:\Users\Nick\workspace\FreeRTOS801\include/semphr.h \
   C:\Users\Nick\workspace\FreeRTOS801\include/queue.h \
-  C:\Users\Nick\workspace\CEG4166_RTS_Lib\include/BitDefinitions.h \
-  ../src/led.h
+  C:\Users\Nick\workspace\CEG4166_RTS_Lib\include/BitDefinitions.h
 
 C:\Users\Nick\workspace\FreeRTOS801\include/FreeRTOS.h:
 
@@ -39,5 +38,3 @@ C:\Users\Nick\workspace\FreeRTOS801\include/semphr.h:
 C:\Users\Nick\workspace\FreeRTOS801\include/queue.h:
 
 C:\Users\Nick\workspace\CEG4166_RTS_Lib\include/BitDefinitions.h:
-
-../src/led.h:

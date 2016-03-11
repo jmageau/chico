@@ -35,7 +35,12 @@
 int timerTickCount;
 int state;
 int direction;
-bool lastCenterServoDirection;
+
+bool wheelSpeedRefreshed;
+bool lcdUpdated;
+bool centerServoUpdated;
+int centerServoDirection;
+int centerServoUpdateTime;
 
 void updateState();
 void updateWheels();
@@ -46,15 +51,7 @@ void updateLED();
 
 void timerCallback();
 
-bool red;
-
-bool wheelSpeedRefreshed;
-bool lcdRefreshed;
-
 void initBehaviour() {
-	wheelSpeedRefreshed = false;
-	lcdRefreshed = false;
-	red = true;
 	initLED();
 	initTPA81();
 	LCDInit();
@@ -64,7 +61,11 @@ void initBehaviour() {
 	state = MOVING_FORWARDS;
 	timerTickCount = 0;
 
-	lastCenterServoDirection = false;
+	wheelSpeedRefreshed = false;
+	lcdUpdated = false;
+	centerServoUpdated = false;
+	centerServoUpdateTime = 6;
+	centerServoDirection = CLOCKWISE;
 }
 
 void timerCallback() {
@@ -86,6 +87,7 @@ void TaskMoveAndScan(void *pvParameters) {
 	while (1) {
 		updateWheelSpeed();
 		updateWheels();
+		updateCenterServo();
 		updateLCD();
 		updateLED();
 	}
@@ -97,9 +99,13 @@ void updateState() {
 			state++;
 		}
 	}
+
 	wheelSpeedRefreshed = false;
-	lcdRefreshed = false;
-	//updateCenterServo();
+	lcdUpdated = false;
+
+	if (timerTickCount % 6 == 0 && timerTickCount != 0){
+		centerServoUpdated = false;
+	}
 	timerTickCount++;
 }
 
@@ -126,19 +132,22 @@ void updateWheelSpeed(){
 
 void updateCenterServo() {
 	if (state != STOPPED) {
-		if (lastCenterServoDirection) {
-			moveCenterServo(CLOCKWISE);
-		} else {
-			moveCenterServo(COUNTERCLOCKWISE);
+		if (!centerServoUpdated) {
+			if (centerServoDirection == CLOCKWISE){
+				centerServoDirection = COUNTERCLOCKWISE;
+			} else {
+				centerServoDirection = CLOCKWISE;
+			}
+			moveCenterServo(centerServoDirection);
+			centerServoUpdated = true;
 		}
-		lastCenterServoDirection = !lastCenterServoDirection;
 	} else {
 		moveCenterServo(MIDDLE);
 	}
 }
 
 void updateLCD() {
-	if (!lcdRefreshed) {
+	if (!lcdUpdated) {
 		readTemperatureValues();
 
 		char display_top[16] = "";
@@ -150,7 +159,7 @@ void updateLCD() {
 				getAverageRight());
 		LCDPrint(display_top, display_bottom);
 
-		lcdRefreshed = true;
+		lcdUpdated = true;
 	}
 }
 
