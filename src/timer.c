@@ -30,13 +30,13 @@ void initTimer(void (*isr)()) {
 	TCCR3A = 0;
 	TCCR3B = 0;
 
-	TCNT3 = 30000;            // preload timer 65536-16MHz/256/8Hz
-	TCCR3B |= (1 << CS12);    // 256 prescaler
+	TCNT3 = 34286;
+	TCCR3B |= (1 << CS12);
 	TIMSK3 |= (1 << TOIE1);   // enable timer overflow interrupt
 }
 
 ISR(TIMER3_OVF_vect) {
-	TCNT3 = 30000;            // preload timer 65536-16MHz/256/2Hz
+	TCNT3 = 34286;
 	isrCallback();
 }
 

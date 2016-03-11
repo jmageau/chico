@@ -6,7 +6,6 @@
 C_SRCS += \
 ../src/behaviour.c \
 ../src/lcd.c \
-../src/lcdDisplay.c \
 ../src/led.c \
 ../src/main.c \
 ../src/motion.c \
@@ -18,7 +17,6 @@ C_SRCS += \
 OBJS += \
 ./src/behaviour.o \
 ./src/lcd.o \
-./src/lcdDisplay.o \
 ./src/led.o \
 ./src/main.o \
 ./src/motion.o \
@@ -30,7 +28,6 @@ OBJS += \
 C_DEPS += \
 ./src/behaviour.d \
 ./src/lcd.d \
-./src/lcdDisplay.d \
 ./src/led.d \
 ./src/main.d \
 ./src/motion.d \

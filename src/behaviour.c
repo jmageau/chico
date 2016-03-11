@@ -94,7 +94,7 @@ void TaskMoveAndScan(void *pvParameters) {
 }
 
 void updateState() {
-	if (timerTickCount % TIMER_FREQUENCY == 0 && timerTickCount != 0) {
+	if (timerTickCount % TIMER_FREQUENCY*STATE_TIME == 0 && timerTickCount != 0) {
 		if (state != STOPPED) {
 			state++;
 		}
@@ -103,7 +103,7 @@ void updateState() {
 	wheelSpeedUpdated = false;
 	lcdUpdated = false;
 
-	if (timerTickCount % 6 == 0 && timerTickCount != 0){
+	if (timerTickCount % centerServoUpdateTime == 0 && timerTickCount != 0){
 		centerServoUpdated = false;
 	}
 	timerTickCount++;
