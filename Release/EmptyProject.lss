@@ -3352,7 +3352,7 @@ Disassembly of section .text:
     1dce:	70 e0       	ldi	r23, 0x00	; 0
     1dd0:	0e 94 46 0c 	call	0x188c	; 0x188c <motion_enc_read>
     1dd4:	01 97       	sbiw	r24, 0x01	; 1
-    1dd6:	89 f0       	breq	.+34     	; 0x1dfa <getSpeedById+0x44>
+    1dd6:	69 f1       	breq	.+90     	; 0x1e32 <getSpeedById+0x7c>
     1dd8:	2f 2d       	mov	r18, r15
     1dda:	3e 2d       	mov	r19, r14
     1ddc:	4d 2d       	mov	r20, r13
@@ -3361,60 +3361,60 @@ Disassembly of section .text:
     1de2:	da 01       	movw	r26, r20
     1de4:	6c 01       	movw	r12, r24
     1de6:	7d 01       	movw	r14, r26
-    1de8:	b6 01       	movw	r22, r12
-    1dea:	c7 01       	movw	r24, r14
-    1dec:	1f 91       	pop	r17
-    1dee:	0f 91       	pop	r16
-    1df0:	ff 90       	pop	r15
-    1df2:	ef 90       	pop	r14
-    1df4:	df 90       	pop	r13
-    1df6:	cf 90       	pop	r12
-    1df8:	08 95       	ret
-    1dfa:	60 91 00 00 	lds	r22, 0x0000
-    1dfe:	70 91 01 00 	lds	r23, 0x0001
-    1e02:	80 91 02 00 	lds	r24, 0x0002
-    1e06:	90 91 03 00 	lds	r25, 0x0003
-    1e0a:	0e 94 f6 36 	call	0x6dec	; 0x6dec <__floatunsisf>
-    1e0e:	2d eb       	ldi	r18, 0xBD	; 189
-    1e10:	37 e3       	ldi	r19, 0x37	; 55
-    1e12:	46 e0       	ldi	r20, 0x06	; 6
-    1e14:	55 e3       	ldi	r21, 0x35	; 53
-    1e16:	0e 94 ac 37 	call	0x6f58	; 0x6f58 <__mulsf3>
-    1e1a:	9b 01       	movw	r18, r22
-    1e1c:	ac 01       	movw	r20, r24
-    1e1e:	6c e7       	ldi	r22, 0x7C	; 124
-    1e20:	72 ef       	ldi	r23, 0xF2	; 242
-    1e22:	80 eb       	ldi	r24, 0xB0	; 176
-    1e24:	9b e3       	ldi	r25, 0x3B	; 59
-    1e26:	0e 94 5d 36 	call	0x6cba	; 0x6cba <__divsf3>
-    1e2a:	6b 01       	movw	r12, r22
-    1e2c:	7c 01       	movw	r14, r24
-    1e2e:	00 0f       	add	r16, r16
-    1e30:	11 1f       	adc	r17, r17
-    1e32:	00 0f       	add	r16, r16
-    1e34:	11 1f       	adc	r17, r17
-    1e36:	0d 56       	subi	r16, 0x6D	; 109
-    1e38:	1a 4e       	sbci	r17, 0xEA	; 234
-    1e3a:	c7 01       	movw	r24, r14
-    1e3c:	b6 01       	movw	r22, r12
-    1e3e:	20 e0       	ldi	r18, 0x00	; 0
-    1e40:	30 e0       	ldi	r19, 0x00	; 0
-    1e42:	48 ec       	ldi	r20, 0xC8	; 200
-    1e44:	52 e4       	ldi	r21, 0x42	; 66
-    1e46:	0e 94 5d 36 	call	0x6cba	; 0x6cba <__divsf3>
-    1e4a:	9b 01       	movw	r18, r22
-    1e4c:	ac 01       	movw	r20, r24
-    1e4e:	f8 01       	movw	r30, r16
-    1e50:	60 81       	ld	r22, Z
-    1e52:	71 81       	ldd	r23, Z+1	; 0x01
-    1e54:	82 81       	ldd	r24, Z+2	; 0x02
-    1e56:	93 81       	ldd	r25, Z+3	; 0x03
-    1e58:	0e 94 f5 35 	call	0x6bea	; 0x6bea <__addsf3>
-    1e5c:	f8 01       	movw	r30, r16
-    1e5e:	60 83       	st	Z, r22
-    1e60:	71 83       	std	Z+1, r23	; 0x01
-    1e62:	82 83       	std	Z+2, r24	; 0x02
-    1e64:	93 83       	std	Z+3, r25	; 0x03
+    1de8:	00 0f       	add	r16, r16
+    1dea:	11 1f       	adc	r17, r17
+    1dec:	00 0f       	add	r16, r16
+    1dee:	11 1f       	adc	r17, r17
+    1df0:	0d 56       	subi	r16, 0x6D	; 109
+    1df2:	1a 4e       	sbci	r17, 0xEA	; 234
+    1df4:	c7 01       	movw	r24, r14
+    1df6:	b6 01       	movw	r22, r12
+    1df8:	20 e0       	ldi	r18, 0x00	; 0
+    1dfa:	30 e0       	ldi	r19, 0x00	; 0
+    1dfc:	48 ec       	ldi	r20, 0xC8	; 200
+    1dfe:	52 e4       	ldi	r21, 0x42	; 66
+    1e00:	0e 94 5d 36 	call	0x6cba	; 0x6cba <__divsf3>
+    1e04:	9b 01       	movw	r18, r22
+    1e06:	ac 01       	movw	r20, r24
+    1e08:	f8 01       	movw	r30, r16
+    1e0a:	60 81       	ld	r22, Z
+    1e0c:	71 81       	ldd	r23, Z+1	; 0x01
+    1e0e:	82 81       	ldd	r24, Z+2	; 0x02
+    1e10:	93 81       	ldd	r25, Z+3	; 0x03
+    1e12:	0e 94 f5 35 	call	0x6bea	; 0x6bea <__addsf3>
+    1e16:	f8 01       	movw	r30, r16
+    1e18:	60 83       	st	Z, r22
+    1e1a:	71 83       	std	Z+1, r23	; 0x01
+    1e1c:	82 83       	std	Z+2, r24	; 0x02
+    1e1e:	93 83       	std	Z+3, r25	; 0x03
+    1e20:	b6 01       	movw	r22, r12
+    1e22:	c7 01       	movw	r24, r14
+    1e24:	1f 91       	pop	r17
+    1e26:	0f 91       	pop	r16
+    1e28:	ff 90       	pop	r15
+    1e2a:	ef 90       	pop	r14
+    1e2c:	df 90       	pop	r13
+    1e2e:	cf 90       	pop	r12
+    1e30:	08 95       	ret
+    1e32:	60 91 00 00 	lds	r22, 0x0000
+    1e36:	70 91 01 00 	lds	r23, 0x0001
+    1e3a:	80 91 02 00 	lds	r24, 0x0002
+    1e3e:	90 91 03 00 	lds	r25, 0x0003
+    1e42:	0e 94 f6 36 	call	0x6dec	; 0x6dec <__floatunsisf>
+    1e46:	2d eb       	ldi	r18, 0xBD	; 189
+    1e48:	37 e3       	ldi	r19, 0x37	; 55
+    1e4a:	46 e0       	ldi	r20, 0x06	; 6
+    1e4c:	55 e3       	ldi	r21, 0x35	; 53
+    1e4e:	0e 94 ac 37 	call	0x6f58	; 0x6f58 <__mulsf3>
+    1e52:	9b 01       	movw	r18, r22
+    1e54:	ac 01       	movw	r20, r24
+    1e56:	6c e7       	ldi	r22, 0x7C	; 124
+    1e58:	72 ef       	ldi	r23, 0xF2	; 242
+    1e5a:	80 eb       	ldi	r24, 0xB0	; 176
+    1e5c:	9b e3       	ldi	r25, 0x3B	; 59
+    1e5e:	0e 94 5d 36 	call	0x6cba	; 0x6cba <__divsf3>
+    1e62:	6b 01       	movw	r12, r22
+    1e64:	7c 01       	movw	r14, r24
     1e66:	c0 cf       	rjmp	.-128    	; 0x1de8 <getSpeedById+0x32>
 
 00001e68 <getSpeed>:
