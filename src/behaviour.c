@@ -39,6 +39,7 @@ bool lastCenterServoDirection;
 
 void updateState();
 void updateWheels();
+void updateWheelSpeed();
 void updateCenterServo();
 void updateLCD();
 void updateLED();
@@ -47,8 +48,11 @@ void timerCallback();
 
 bool red;
 
+bool wheelSpeedRefreshed;
 bool lcdRefreshed;
+
 void initBehaviour() {
+	wheelSpeedRefreshed = false;
 	lcdRefreshed = false;
 	red = true;
 	initLED();
@@ -80,6 +84,7 @@ void TaskMoveAndScan(void *pvParameters) {
 	xLastWakeTime = xTaskGetTickCount();
 
 	while (1) {
+		updateWheelSpeed();
 		updateWheels();
 		updateLCD();
 		updateLED();
@@ -92,6 +97,7 @@ void updateState() {
 			state++;
 		}
 	}
+	wheelSpeedRefreshed = false;
 	lcdRefreshed = false;
 	//updateCenterServo();
 	timerTickCount++;
@@ -108,6 +114,13 @@ void updateWheels() {
 		moveWheels(COUNTERCLOCKWISE);
 	} else { // state == STOPPED
 		moveWheels(STOP);
+	}
+}
+
+void updateWheelSpeed(){
+	if (!wheelSpeedRefreshed){
+		getSpeed();
+		wheelSpeedRefreshed = true;
 	}
 }
 

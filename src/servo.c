@@ -125,7 +125,7 @@ double getSpeedById(int deviceID){
 	return wheelSpeed;
 }
 
-double getSpeed(){
+void getSpeed(){
 	wheelSpeedLeft  = getSpeedById(MOTION_WHEEL_LEFT);
 	wheelSpeedRight = getSpeedById(MOTION_WHEEL_RIGHT);
 }

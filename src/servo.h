@@ -34,7 +34,7 @@
 void servoInit();
 void moveWheels(int direction);
 void moveCenterServo(int direction);
-double getSpeed(int deviceID);
+void getSpeed();
 double getAverageSpeed();
 double getTotalDistance();
 
