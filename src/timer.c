@@ -17,6 +17,8 @@
 
 #include <avr/io.h>
 
+#include "timer.h"
+
 #ifndef TIMER
 #define TIMER
 

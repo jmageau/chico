@@ -37,6 +37,7 @@ int state;
 int direction;
 
 bool wheelSpeedUpdated;
+bool wheelsUpdated;
 bool lcdUpdated;
 bool centerServoUpdated;
 int centerServoDirection;
@@ -64,8 +65,10 @@ void initBehaviour() {
 	wheelSpeedUpdated = false;
 	lcdUpdated = false;
 	centerServoUpdated = false;
-	centerServoUpdateTime = 6;
+	centerServoUpdateTime = 1;
 	centerServoDirection = CLOCKWISE;
+
+	wheelsUpdated = false;
 }
 
 void timerCallback() {
@@ -99,27 +102,37 @@ void updateState() {
 			state++;
 		}
 	}
-
 	wheelSpeedUpdated = false;
-	lcdUpdated = false;
+	if (timerTickCount % 2 == 0){
+		wheelsUpdated = false;
+	}
 
-	if (timerTickCount % centerServoUpdateTime == 0 && timerTickCount != 0){
+	if (timerTickCount % 12 == 0){
+		lcdUpdated = false;
+	}
+
+	if (timerTickCount % TIMER_FREQUENCY*centerServoUpdateTime == 0 && timerTickCount != 0){
 		centerServoUpdated = false;
 	}
+
+
 	timerTickCount++;
 }
 
 void updateWheels() {
-	if (state == MOVING_FORWARDS) {
-		moveWheels(FORWARDS);
-	} else if (state == MOVING_BACKWARDS) {
-		moveWheels(BACKWARDS);
-	} else if (state == MOVING_CLOCKWISE) {
-		moveWheels(CLOCKWISE);
-	} else if (state == MOVING_COUNTERCLOCKWISE) {
-		moveWheels(COUNTERCLOCKWISE);
-	} else { // state == STOPPED
-		moveWheels(STOP);
+	if (!wheelsUpdated){
+		if (state == MOVING_FORWARDS) {
+				moveWheels(FORWARDS);
+			} else if (state == MOVING_BACKWARDS) {
+				moveWheels(BACKWARDS);
+			} else if (state == MOVING_CLOCKWISE) {
+				moveWheels(CLOCKWISE);
+			} else if (state == MOVING_COUNTERCLOCKWISE) {
+				moveWheels(COUNTERCLOCKWISE);
+			} else { // state == STOPPED
+				moveWheels(STOP);
+			}
+		wheelsUpdated = true;
 	}
 }
 

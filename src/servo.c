@@ -52,7 +52,7 @@ int getPulseWidth(bool direction, double power){
 	if(direction){
 		return (int)(MIN_PULSE_WIDTH_TICKS + (PULSE_DELTA / 2) + (PULSE_DELTA / 2) * power);
 	}
-	return (int)(MIN_PULSE_WIDTH_TICKS + (PULSE_DELTA / 2) * power);
+	return (int)(MIN_PULSE_WIDTH_TICKS + (PULSE_DELTA / 2) - (PULSE_DELTA / 2) * power);
 }
 
 void moveWheels(int direction) {
@@ -85,7 +85,7 @@ void moveWheels(int direction) {
 		motion_servo_set_pulse_width(MOTION_WHEEL_LEFT, getPulseWidth(0, leftPowerRatio));
 		motion_servo_start(MOTION_WHEEL_LEFT);
 
-		motion_servo_set_pulse_width(MOTION_WHEEL_RIGHT, getPulseWidth(1, rightPowerRatio)));
+		motion_servo_set_pulse_width(MOTION_WHEEL_RIGHT, getPulseWidth(1, rightPowerRatio));
 		motion_servo_start(MOTION_WHEEL_RIGHT);
 
 	} else if (direction == CLOCKWISE) {
@@ -142,7 +142,7 @@ double getSpeedById(int deviceID, double previousSpeed){
 
 	if (motion_enc_read(deviceID, wheelTickDelta) == 1){
 		//There was a new speed and we need to do something about it
-		//0.0054 = distance of 1 capture event, 500ms = period of servos
+		//0.0054 = distance of 1 capture event, 500ns = period of servos
 		wheelSpeed =  0.0054 / ((*wheelTickDelta) * 0.0000005); //distance over time
 		totalDistance[deviceID] = totalDistance[deviceID] + wheelSpeed * 1/TIMER_FREQUENCY;
 	} else {
