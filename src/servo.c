@@ -31,14 +31,17 @@
 double wheelSpeedRight;
 double wheelSpeedLeft;
 
-double previousSpeed;
+double previousSpeedRight;
+double previousSpeedLeft;
+
 double totalDistance[2];
 
 void servoInit() {
 	motion_init();
 	wheelSpeedRight = 0;
 	wheelSpeedLeft = 0;
-	previousSpeed = 0;
+	previousSpeedRight = 0;
+	previousSpeedLeft = 0;
 	totalDistance[0] = 0;
 	totalDistance[1] = 0;
 }
@@ -79,9 +82,8 @@ void moveWheels(int direction) {
 	} else if (direction == STOP) {
 		motion_servo_stop(MOTION_WHEEL_RIGHT);
 		motion_servo_stop(MOTION_WHEEL_LEFT);
-		wheelSpeedRight = 0;
-		wheelSpeedLeft = 0;
-		previousSpeed = 0;
+		previousSpeedRight = 0;
+		previousSpeedLeft  = 0;
 	}
 
 }
@@ -109,7 +111,7 @@ void moveCenterServo(int direction) {
 //
 //I'm calculating speed by doing v=d/t, while converting the ticks into seconds
 
-double getSpeedById(int deviceID){
+double getSpeedById(int deviceID, double previousSpeed){
 	uint32_t* wheelTickDelta;
 	double wheelSpeed;
 
@@ -127,8 +129,11 @@ double getSpeedById(int deviceID){
 }
 
 void getSpeed(){
-	wheelSpeedLeft  = getSpeedById(MOTION_WHEEL_LEFT);
-	wheelSpeedRight = getSpeedById(MOTION_WHEEL_RIGHT);
+	previousSpeedLeft = wheelSpeedLeft;
+	previousSpeedRight = wheelSpeedRight;
+
+	wheelSpeedLeft  = getSpeedById(MOTION_WHEEL_LEFT, previousSpeedLeft);
+	wheelSpeedRight = getSpeedById(MOTION_WHEEL_RIGHT, previousSpeedRight);
 }
 
 double getAverageSpeed(){
