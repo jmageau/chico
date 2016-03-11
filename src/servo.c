@@ -47,12 +47,10 @@ void servoInit() {
 }
 
 int getPulseWidth(bool direction, double power){
-	int PULSE_DELTA = MAX_PULSE_WIDTH_TICKS - MIN_PULSE_WIDTH_TICKS;
-
 	if(direction){
-		return (int)(MIN_PULSE_WIDTH_TICKS + (PULSE_DELTA / 2) + (PULSE_DELTA / 2) * power);
+		return (int)(INITIAL_PULSE_WIDTH_TICKS + (MAX_PULSE_WIDTH_TICKS - INITIAL_PULSE_WIDTH_TICKS) * power);
 	}
-	return (int)(MIN_PULSE_WIDTH_TICKS + (PULSE_DELTA / 2) - (PULSE_DELTA / 2) * power);
+	return (int)(INITIAL_PULSE_WIDTH_TICKS - (INITIAL_PULSE_WIDTH_TICKS - MIN_PULSE_WIDTH_TICKS) * power);
 }
 
 void moveWheels(int direction) {
