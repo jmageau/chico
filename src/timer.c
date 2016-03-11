@@ -30,13 +30,13 @@ void initTimer(void (*isr)()) {
 	TCCR3A = 0;
 	TCCR3B = 0;
 
-	TCNT3 = 34286;
+	TCNT3 = TIMER_PRELOAD;
 	TCCR3B |= (1 << CS12);
 	TIMSK3 |= (1 << TOIE1);   // enable timer overflow interrupt
 }
 
 ISR(TIMER3_OVF_vect) {
-	TCNT3 = 34286;
+	TCNT3 = TIMER_PRELOAD;
 	isrCallback();
 }
 
