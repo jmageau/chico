@@ -28,13 +28,16 @@
 #ifndef SERVO
 #define SERVO
 
-double wheelSpeed;
+double wheelSpeedRight;
+double wheelSpeedLeft;
+
 double previousSpeed;
 double totalDistance[2];
 
 void servoInit() {
 	motion_init();
-	wheelSpeed = 0;
+	wheelSpeedRight = 0;
+	wheelSpeedLeft = 0;
 	previousSpeed = 0;
 	totalDistance[0] = 0;
 	totalDistance[1] = 0;
@@ -76,7 +79,8 @@ void moveWheels(int direction) {
 	} else if (direction == STOP) {
 		motion_servo_stop(MOTION_WHEEL_RIGHT);
 		motion_servo_stop(MOTION_WHEEL_LEFT);
-		wheelSpeed = 0;
+		wheelSpeedRight = 0;
+		wheelSpeedLeft = 0;
 		previousSpeed = 0;
 	}
 
@@ -105,7 +109,7 @@ void moveCenterServo(int direction) {
 //
 //I'm calculating speed by doing v=d/t, while converting the ticks into seconds
 
-double getSpeed(int deviceID){
+double getSpeedById(int deviceID){
 	uint32_t* wheelTickDelta;
 
 	if (motion_enc_read(deviceID, wheelTickDelta) == 1){
@@ -121,8 +125,13 @@ double getSpeed(int deviceID){
 	return wheelSpeed;
 }
 
+double getSpeed(){
+	wheelSpeedLeft  = getSpeedById(MOTION_WHEEL_LEFT);
+	wheelSpeedRight = getSpeedById(MOTION_WHEEL_RIGHT);
+}
+
 double getAverageSpeed(){
-	return (getSpeed(MOTION_WHEEL_LEFT) + getSpeed(MOTION_WHEEL_RIGHT))/2;
+	return (wheelSpeedLeft + wheelSpeedRight)/2;
 }
 
 double getTotalDistance(){
