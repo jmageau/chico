@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['readtemperaturevalues',['readTemperatureValues',['../tempsensor_8c.html#aa05601e735fc64f483a09cf318ae887e',1,'readTemperatureValues():&#160;tempsensor.c'],['../tempsensor_8h.html#aa05601e735fc64f483a09cf318ae887e',1,'readTemperatureValues():&#160;tempsensor.c']]]
+  ['forwards',['FORWARDS',['../servo_8h.html#af8bd8217f4676f967cd1d9712042baf6',1,'servo.h']]]
 ];

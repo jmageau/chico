@@ -1,6 +1,10 @@
 var searchData=
 [
-  ['i2c_5fmaster_5faddress',['I2C_MASTER_ADDRESS',['../tempsensor_8c.html#a16a453f5d2f9ae75e127b01f54fd9fe2',1,'tempsensor.c']]],
-  ['initled',['initLED',['../led_8c.html#a586efe898f67cacd16a9870785d921eb',1,'initLED():&#160;led.c'],['../led_8h.html#a586efe898f67cacd16a9870785d921eb',1,'initLED():&#160;led.c']]],
-  ['inittpa81',['initTPA81',['../tempsensor_8c.html#a1bac4402886b527825f4d791cc4498f9',1,'initTPA81():&#160;tempsensor.c'],['../tempsensor_8h.html#a1bac4402886b527825f4d791cc4498f9',1,'initTPA81():&#160;tempsensor.c']]]
+  ['capture_5fevent_5fdistance',['CAPTURE_EVENT_DISTANCE',['../servo_8h.html#ac5dbfea578b6aabc5600c8ec0e6f2b4f',1,'servo.h']]],
+  ['center_5fservo_5fupdate_5ftime',['CENTER_SERVO_UPDATE_TIME',['../behaviour_8h.html#aa1f178ac1c0a21189f6e05837ed0af0b',1,'behaviour.h']]],
+  ['centerservodirection',['centerServoDirection',['../behaviour_8c.html#abb787d608ac6a604bf8811ade800cc5e',1,'behaviour.c']]],
+  ['centerservoupdated',['centerServoUpdated',['../behaviour_8c.html#aaca0e68f027b27c356c15c9198a67452',1,'behaviour.c']]],
+  ['channel',['channel',['../structmotor__registers__s.html#a759cd205c48cbbd49b0722c44d7a6717',1,'motor_registers_s']]],
+  ['clockwise',['CLOCKWISE',['../servo_8h.html#ab97a98583824a9ef7d480fe8fdca33cf',1,'servo.h']]],
+  ['counterclockwise',['COUNTERCLOCKWISE',['../servo_8h.html#ac917a800ab287a1361794beea62c0604',1,'servo.h']]]
 ];

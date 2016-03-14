@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['sensor_5fnum_5fpixels',['SENSOR_NUM_PIXELS',['../tempsensor_8c.html#a69cada0c26ad65368c52d187837c93c4',1,'tempsensor.c']]]
+  ['enc_5fnumber_5fof_5fencoders',['ENC_NUMBER_OF_ENCODERS',['../motion_8c.html#a015d98796368c2aee787eb6b8faf17e9',1,'motion.c']]]
 ];

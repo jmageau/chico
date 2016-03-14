@@ -1,4 +1,6 @@
 var searchData=
 [
-  ['temp_5fpixel_5fvalues',['temp_pixel_values',['../tempsensor_8c.html#a5639b3fb21c90cb37f65579db825e3a6',1,'tempsensor.c']]]
+  ['centerservodirection',['centerServoDirection',['../behaviour_8c.html#abb787d608ac6a604bf8811ade800cc5e',1,'behaviour.c']]],
+  ['centerservoupdated',['centerServoUpdated',['../behaviour_8c.html#aaca0e68f027b27c356c15c9198a67452',1,'behaviour.c']]],
+  ['channel',['channel',['../structmotor__registers__s.html#a759cd205c48cbbd49b0722c44d7a6717',1,'motor_registers_s']]]
 ];

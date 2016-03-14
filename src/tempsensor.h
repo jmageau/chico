@@ -22,7 +22,11 @@ void readTemperatureValues();
 /*! \brief Returns the average temperature of the 8 sensors.
  */
 int getAmbient();
+/*! \brief Returns average temperature of the left sensors.
+ */
 int getAverageLeft();
+/*! \brief Returns average temperature of the right sensors.
+ */
 int getAverageRight();
 
 #endif

@@ -5,7 +5,7 @@
  *  	J. Mageau,
  *  	N. Seguin
  *	\brief
- *		Main file for Chico the robot. This file will contain all the tasks created for Chico.
+ *		Main file for Chico the robot. This file will initialize and schedule the tasks for Chico.
  */
 
 /* Includes */
@@ -46,7 +46,7 @@ int main(void) {
 	usart_print_P(PSTR("\r\n\n\nHello World!\r\n")); // Ok, so we're alive...
 
 	initBehaviour();
-	xTaskCreate(TaskMoveAndScan, (const portCHAR *)"RedLED" // Main Arduino Mega 2560, Freetronics EtherMega (Red) LED Blink
+	xTaskCreate(TaskMoveAndScan, (const portCHAR *)"MoveAndScan" // Main Arduino Mega 2560, Freetronics EtherMega (Red) LED Blink
 			,256// Tested 9 free @ 208
 			,NULL, 3, NULL); // */
 
@@ -55,8 +55,7 @@ int main(void) {
 	usart_print_P(PSTR("\r\n\n\nGoodbye... no space for idle task!\r\n")); // Doh, so we're dead...
 }
 
-
-/*! \brief Task used to show the ambient temperature on the Wifi card LED.
+/*! \brief Application Stack Overflow hook
  *
  *  \param xTask
  */

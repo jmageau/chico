@@ -39,6 +39,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div id="navrow1" class="tabs">
     <ul class="tablist">
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
+      <li><a href="annotated.html"><span>Data&#160;Structures</span></a></li>
       <li class="current"><a href="files.html"><span>Files</span></a></li>
       <li>
         <div id="MSearchBox" class="MSearchBoxInactive">
@@ -92,7 +93,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div><!--header-->
 <div class="contents">
 
-<p>Main file for Chico the robot. This file will contain all the tasks created for Chico.  
+<p>Main file for Chico the robot. This file will initialize and schedule the tasks for Chico.  
 <a href="#details">More...</a></p>
 <div class="textblock"><code>#include &lt;stdlib.h&gt;</code><br />
 <code>#include &lt;stdbool.h&gt;</code><br />
@@ -104,19 +105,15 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <code>#include &quot;queue.h&quot;</code><br />
 <code>#include &quot;semphr.h&quot;</code><br />
 <code>#include &quot;usartserial.h&quot;</code><br />
-<code>#include &quot;<a class="el" href="led_8h_source.html">led.h</a>&quot;</code><br />
-<code>#include &quot;<a class="el" href="tempsensor_8h_source.html">tempsensor.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="behaviour_8h_source.html">behaviour.h</a>&quot;</code><br />
 </div><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:a92fd1e65ee0c5149a64bf4b5d22f8824"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8c.html#a92fd1e65ee0c5149a64bf4b5d22f8824">TaskShowTemperatureLED</a> (void *pvParameters)</td></tr>
-<tr class="memdesc:a92fd1e65ee0c5149a64bf4b5d22f8824"><td class="mdescLeft">&#160;</td><td class="mdescRight">Task used to show the ambient temperature on the Wifi card LED.  <a href="#a92fd1e65ee0c5149a64bf4b5d22f8824">More...</a><br /></td></tr>
-<tr class="separator:a92fd1e65ee0c5149a64bf4b5d22f8824"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a840291bc02cba5474a4cb46a9b9566fe"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8c.html#a840291bc02cba5474a4cb46a9b9566fe">main</a> (void)</td></tr>
 <tr class="memdesc:a840291bc02cba5474a4cb46a9b9566fe"><td class="mdescLeft">&#160;</td><td class="mdescRight">Main method.  <a href="#a840291bc02cba5474a4cb46a9b9566fe">More...</a><br /></td></tr>
 <tr class="separator:a840291bc02cba5474a4cb46a9b9566fe"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2e0defe473604c1bd4c5a11aed724078"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8c.html#a2e0defe473604c1bd4c5a11aed724078">vApplicationStackOverflowHook</a> (TaskHandle_t xTask, portCHAR *pcTaskName)</td></tr>
-<tr class="memdesc:a2e0defe473604c1bd4c5a11aed724078"><td class="mdescLeft">&#160;</td><td class="mdescRight">Task used to show the ambient temperature on the Wifi card LED.  <a href="#a2e0defe473604c1bd4c5a11aed724078">More...</a><br /></td></tr>
+<tr class="memdesc:a2e0defe473604c1bd4c5a11aed724078"><td class="mdescLeft">&#160;</td><td class="mdescRight">Application Stack Overflow hook.  <a href="#a2e0defe473604c1bd4c5a11aed724078">More...</a><br /></td></tr>
 <tr class="separator:a2e0defe473604c1bd4c5a11aed724078"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="var-members"></a>
@@ -126,7 +123,7 @@ Variables</h2></td></tr>
 <tr class="separator:ac77728f253c55ea9156a03df49e2186c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>Main file for Chico the robot. This file will contain all the tasks created for Chico. </p>
+<div class="textblock"><p>Main file for Chico the robot. This file will initialize and schedule the tasks for Chico. </p>
 <dl class="section author"><dt>Authors</dt><dd>C. Maathuis, N. Horton, J. Mageau, N. Seguin </dd></dl>
 </div><h2 class="groupheader">Function Documentation</h2>
 <a class="anchor" id="a840291bc02cba5474a4cb46a9b9566fe"></a>
@@ -145,39 +142,6 @@ Variables</h2></td></tr>
 
 <p>Main method. </p>
 <p>This method will turn on all serial ports, call initialize methods and schedule tasks. </p>
-
-</div>
-</div>
-<a class="anchor" id="a92fd1e65ee0c5149a64bf4b5d22f8824"></a>
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">static void TaskShowTemperatureLED </td>
-          <td>(</td>
-          <td class="paramtype">void *&#160;</td>
-          <td class="paramname"><em>pvParameters</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">static</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Task used to show the ambient temperature on the Wifi card LED. </p>
-<p>The average temperature is gathered and then displayed on the LED. The color of the LED depends on the temperature.</p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">*pvParameters</td><td></td></tr>
-  </table>
-  </dd>
-</dl>
 
 </div>
 </div>
@@ -205,7 +169,7 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Task used to show the ambient temperature on the Wifi card LED. </p>
+<p>Application Stack Overflow hook. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">xTask</td><td></td></tr>

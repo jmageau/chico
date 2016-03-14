@@ -1,8 +1,11 @@
-/*
- * behaviour.c
- *
- *  Created on: Mar 3, 2016
- *      Author: Nick
+/*! \file behaviour.c
+ *  \authors
+ *  	C. Maathuis,
+ *  	N. Horton,
+ *  	J. Mageau,
+ *  	N. Seguin
+ *	\brief
+ *		Main control module for Chico. This module will handle all of Chico's behaviours and states.
  */
 
 /* Includes */
@@ -32,26 +35,54 @@
 #ifndef BEHAVIOUR
 #define BEHAVIOUR
 
+/*! \brief Amount of times the timer has ticked since being initialized
+ */
 int timerTickCount;
+/*! \brief The current state of Chico.
+ */
 int state;
-int direction;
 
+
+/*! \brief Whether or not the wheel speed need to be calculated
+ */
 bool wheelSpeedUpdated;
+/*! \brief Whether or not wheels need to be updated
+ */
 bool wheelsUpdated;
+/*! \brief Whether or not the LCD needs to be updated
+ */
 bool lcdUpdated;
+/*! \brief Whether or not center servo needs to be updated
+ */
 bool centerServoUpdated;
+/*! \brief Current direction the center servo is going in
+ */
 int centerServoDirection;
-int centerServoUpdateTime;
 
+/*! \brief Updates the state of Chico and checks if the components need to be updated. Is called at every timer tick (10 ms)
+ */
 void updateState();
+/*! \brief Updates the wheels. The wheels will change direction based on the state.
+ */
 void updateWheels();
+/*! \brief Calculates the wheel speed. The wheel speed needs to be calculated often to maintain accuracy and to keep track of distance.
+ */
 void updateWheelSpeed();
+/*! \brief Updates the center servo. The center servo will scan clockwise and counterclockwise until Chico reaches the end state.
+ */
 void updateCenterServo();
+/*! \brief Updates the LCD. The LCD shows the temperatures mesured by the sensor, the current speed and the total distance travelled.
+ */
 void updateLCD();
+/*! \brief Updates the LED. The LED will change color depending on Chico's state.
+ */
 void updateLED();
-
+/*! \brief Will be called by the timer's ISR method at every timer tick (10ms).
+ */
 void timerCallback();
 
+/*! \brief Will initialize all the components and create the starting state of Chico.
+ */
 void initBehaviour() {
 	initLED();
 	initTPA81();
@@ -65,19 +96,19 @@ void initBehaviour() {
 	wheelSpeedUpdated = false;
 	lcdUpdated = false;
 	centerServoUpdated = false;
-	centerServoUpdateTime = 1;
-	centerServoDirection = CLOCKWISE;
-
 	wheelsUpdated = false;
+	centerServoDirection = CLOCKWISE;
 }
 
+/*! \brief Will be called by the timer's ISR method at every timer tick (10ms).
+ */
 void timerCallback() {
 	updateState();
 }
 
-/*! \brief Task used to show the ambient temperature on the Wifi card LED.
+/*! \brief Task responsible for moving Chico in a predefined pattern and scanning with the center servo.
  *
- *  The average temperature is gathered and then displayed on the LED. The color of the LED depends on the temperature.
+ *  Chico will move forwards, backwards, clockwise, then counterclockwise. While moving, the center servo will scan left and right.
  *
  *  \param *pvParameters
  */
@@ -96,6 +127,8 @@ void TaskMoveAndScan(void *pvParameters) {
 	}
 }
 
+/*! \brief Updates the state of Chico and checks if the components need to be updated. Is called at every timer tick (10 ms)
+ */
 void updateState() {
 	if (timerTickCount % TIMER_FREQUENCY*STATE_TIME == 0 && timerTickCount != 0) {
 		if (state != STOPPED) {
@@ -103,22 +136,24 @@ void updateState() {
 		}
 	}
 	wheelSpeedUpdated = false;
-	if (timerTickCount % 2 == 0){
+
+	if (timerTickCount % TIMER_FREQUENCY*WHEEL_UPDATE_TIME == 0){ //0.02
 		wheelsUpdated = false;
 	}
 
-	if (timerTickCount % 12 == 0){
+	if (timerTickCount % TIMER_FREQUENCY*LCD_UPDATE_TIME == 0){
 		lcdUpdated = false;
 	}
 
-	if (timerTickCount % TIMER_FREQUENCY*centerServoUpdateTime == 0 && timerTickCount != 0){
+	if (timerTickCount % TIMER_FREQUENCY*CENTER_SERVO_UPDATE_TIME == 0 && timerTickCount != 0){
 		centerServoUpdated = false;
 	}
-
 
 	timerTickCount++;
 }
 
+/*! \brief Calculates the wheel speed. The wheel speed needs to be calculated often to maintain accuracy and to keep track of distance.
+ */
 void updateWheels() {
 	if (!wheelsUpdated){
 		if (state == MOVING_FORWARDS) {
@@ -136,6 +171,8 @@ void updateWheels() {
 	}
 }
 
+/*! \brief Updates the center servo. The center servo will scan clockwise and counterclockwise until Chico reaches the end state.
+ */
 void updateWheelSpeed(){
 	if (!wheelSpeedUpdated){
 		getSpeed();
@@ -143,6 +180,8 @@ void updateWheelSpeed(){
 	}
 }
 
+/*! \brief Updates the center servo. The center servo will scan clockwise and counterclockwise until Chico reaches the end state.
+ */
 void updateCenterServo() {
 	if (state != STOPPED) {
 		if (!centerServoUpdated) {
@@ -159,12 +198,14 @@ void updateCenterServo() {
 	}
 }
 
+/*! \brief Updates the LCD. The LCD shows the temperatures mesured by the sensor, the current speed and the total distance travelled.
+ */
 void updateLCD() {
 	if (!lcdUpdated) {
 		readTemperatureValues();
 
-		char display_top[16] = "";
-		char display_bottom[16] = "";
+		char display_top[LCD_LINE_SIZE] = "";
+		char display_bottom[LCD_LINE_SIZE] = "";
 
 		sprintf(display_bottom, "S:%2.2f D:%2.2f", getAverageSpeed(), getTotalDistance());
 
@@ -176,6 +217,8 @@ void updateLCD() {
 	}
 }
 
+/*! \brief Updates the LED. The LED will change color depending on Chico's state.
+ */
 void updateLED() {
 	if (state == MOVING_FORWARDS) {
 		setColor(false, true, false);

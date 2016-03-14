@@ -71,16 +71,20 @@ void readTemperatureValues() {
     averageRightTemp = (int) temperature_right_sum / (SENSOR_NUM_PIXELS/2); //calculate right average
 }
 
-/*! \brief Returns the average temperature of the 8 sensors.
+/*! \brief Returns the ambient temperature.
  */
 int getAmbient() {
 	return averageTemp;
 }
 
+/*! \brief Returns average temperature of the left sensors.
+ */
 int getAverageLeft(){
     return averageLeftTemp;
 }
 
+/*! \brief Returns average temperature of the right sensors.
+ */
 int getAverageRight(){
     return averageRightTemp;
 }

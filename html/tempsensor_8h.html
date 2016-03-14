@@ -39,6 +39,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div id="navrow1" class="tabs">
     <ul class="tablist">
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
+      <li><a href="annotated.html"><span>Data&#160;Structures</span></a></li>
       <li class="current"><a href="files.html"><span>Files</span></a></li>
       <li>
         <div id="MSearchBox" class="MSearchBoxInactive">
@@ -104,20 +105,26 @@ Functions</h2></td></tr>
 <tr class="memitem:aa05601e735fc64f483a09cf318ae887e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="tempsensor_8h.html#aa05601e735fc64f483a09cf318ae887e">readTemperatureValues</a> ()</td></tr>
 <tr class="memdesc:aa05601e735fc64f483a09cf318ae887e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Will detect and store all the temperatures from the 8 sensors.  <a href="#aa05601e735fc64f483a09cf318ae887e">More...</a><br /></td></tr>
 <tr class="separator:aa05601e735fc64f483a09cf318ae887e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2f1f42b25ffd40fbc7a6d515b4e21d4a"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="tempsensor_8h.html#a2f1f42b25ffd40fbc7a6d515b4e21d4a">getAverageTemp</a> ()</td></tr>
-<tr class="memdesc:a2f1f42b25ffd40fbc7a6d515b4e21d4a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the average temperature of the 8 sensors.  <a href="#a2f1f42b25ffd40fbc7a6d515b4e21d4a">More...</a><br /></td></tr>
-<tr class="separator:a2f1f42b25ffd40fbc7a6d515b4e21d4a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8f8735704d771effe16a3113b27c0b56"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="tempsensor_8h.html#a8f8735704d771effe16a3113b27c0b56">getAmbient</a> ()</td></tr>
+<tr class="memdesc:a8f8735704d771effe16a3113b27c0b56"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the average temperature of the 8 sensors.  <a href="#a8f8735704d771effe16a3113b27c0b56">More...</a><br /></td></tr>
+<tr class="separator:a8f8735704d771effe16a3113b27c0b56"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2982f315c520f45a1012774f5a0273eb"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="tempsensor_8h.html#a2982f315c520f45a1012774f5a0273eb">getAverageLeft</a> ()</td></tr>
+<tr class="memdesc:a2982f315c520f45a1012774f5a0273eb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns average temperature of the left sensors.  <a href="#a2982f315c520f45a1012774f5a0273eb">More...</a><br /></td></tr>
+<tr class="separator:a2982f315c520f45a1012774f5a0273eb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aec53bd98748f7a034d8114a7e6ec342b"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="tempsensor_8h.html#aec53bd98748f7a034d8114a7e6ec342b">getAverageRight</a> ()</td></tr>
+<tr class="memdesc:aec53bd98748f7a034d8114a7e6ec342b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns average temperature of the right sensors.  <a href="#aec53bd98748f7a034d8114a7e6ec342b">More...</a><br /></td></tr>
+<tr class="separator:aec53bd98748f7a034d8114a7e6ec342b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Header file for the temperature sensor driver. </p>
 <dl class="section author"><dt>Authors</dt><dd>C. Maathuis, N. Horton, J. Mageau, N. Seguin </dd></dl>
 </div><h2 class="groupheader">Function Documentation</h2>
-<a class="anchor" id="a2f1f42b25ffd40fbc7a6d515b4e21d4a"></a>
+<a class="anchor" id="a8f8735704d771effe16a3113b27c0b56"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">int getAverageTemp </td>
+          <td class="memname">int getAmbient </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td></td>
@@ -126,6 +133,41 @@ Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Returns the average temperature of the 8 sensors. </p>
+<p>Returns the average temperature of the 8 sensors. </p>
+
+</div>
+</div>
+<a class="anchor" id="a2982f315c520f45a1012774f5a0273eb"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int getAverageLeft </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Returns average temperature of the left sensors. </p>
+
+</div>
+</div>
+<a class="anchor" id="aec53bd98748f7a034d8114a7e6ec342b"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int getAverageRight </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Returns average temperature of the right sensors. </p>
 
 </div>
 </div>

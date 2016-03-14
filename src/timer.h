@@ -1,3 +1,13 @@
+/*! \file timer.h
+ *  \authors
+ *  	C. Maathuis,
+ *  	N. Horton,
+ *  	J. Mageau,
+ *  	N. Seguin
+ *	\brief
+ *		Timer used to time various method calls for Chico.
+ */
+
 /* Includes */
 #include <stdlib.h>
 #include <stdbool.h>
@@ -19,10 +29,12 @@
 #ifndef SRC_TIMER_H_
 #define SRC_TIMER_H_
 
+/*! \brief The value preloaded into TCNT. Calculated based on a 10ms tick rate.
+ */
 #define TIMER_PRELOAD 63036
 
-void initTimer();
-int getTime();
-void incrementTimer();
+/*! \brief Initializes the timer.
+ */
+void initTimer(void (*isr)());
 
 #endif /* SRC_TIMER_H_ */

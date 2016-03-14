@@ -1,8 +1,11 @@
-/*
- * servo.c
- *
- *  Created on: Feb 24, 2016
- *      Author: Nick
+/*! \file servo.c
+ *  \authors
+ *  	C. Maathuis,
+ *  	N. Horton,
+ *  	J. Mageau,
+ *  	N. Seguin
+ *	\brief
+ *		Module responsible for preparing commands for the servos. Uses the motion module.
  */
 
 /* Includes */
@@ -28,14 +31,25 @@
 #ifndef SERVO
 #define SERVO
 
+/*! \brief Speed of the right wheel
+ */
 double wheelSpeedRight;
+/*! \brief Speed of the left wheel
+ */
 double wheelSpeedLeft;
 
+/*! \brief The speed of the right wheel at the previous clock tick
+ */
 double previousSpeedRight;
+/*! \brief The speed of the left wheel at the previous clock tick
+ */
 double previousSpeedLeft;
-
+/*! \brief Total distance for the left and right wheels.
+ */
 double totalDistance[2];
 
+/*! \brief Initializes the motion module and sets all speeds/distances to zero.
+ */
 void servoInit() {
 	motion_init();
 	wheelSpeedRight = 0;
@@ -46,6 +60,13 @@ void servoInit() {
 	totalDistance[1] = 0;
 }
 
+/*! \brief Calculates the pulse width necessary to move a servo at a certain power level.
+ *
+ * \param direction
+ * 		Direction of the servo. 1 if going clockwise, 0 if going counterclockwise
+ * 	\param power
+ * 		Percentage of the power the wheel should be turning at. If power is 50%, then the wheel should turn 50% slower
+ */
 int getPulseWidth(bool direction, double power){
 	if(direction){
 		return (int)(INITIAL_PULSE_WIDTH_TICKS + (MAX_PULSE_WIDTH_TICKS - INITIAL_PULSE_WIDTH_TICKS) * power);
@@ -53,6 +74,11 @@ int getPulseWidth(bool direction, double power){
 	return (int)(INITIAL_PULSE_WIDTH_TICKS - (INITIAL_PULSE_WIDTH_TICKS - MIN_PULSE_WIDTH_TICKS) * power);
 }
 
+/*! \brief Sends move commands to the wheels depending on the direction.
+ *
+ * \param direction
+ * 	The direction the wheels need to move in.
+ */
 void moveWheels(int direction) {
 	float leftPowerRatio;
 	float rightPowerRatio;
@@ -111,6 +137,11 @@ void moveWheels(int direction) {
 
 }
 
+/*! \brief Sends move commands to the center servo depending on the direction
+ *
+ * \param direction
+ * 	The direction the center servo needs to move in.
+ */
 void moveCenterServo(int direction) {
 	if (direction == CLOCKWISE) {
 		motion_servo_set_pulse_width(MOTION_SERVO_CENTER,
@@ -129,11 +160,14 @@ void moveCenterServo(int direction) {
 	}
 }
 
-//0.0054 is the distance travelled for two fronts (taken from motion module doc)
-//0.0000005 is 500ns in seconds
-//
-//I'm calculating speed by doing v=d/t, while converting the ticks into seconds
-
+/*! \brief Get the speed of a specific wheel
+ *
+ * \param deviceID
+ * 		What wheel's speed to calculate
+ * \param previousSpeed
+ * 		The previous speed of the wheel
+ *
+ */
 double getSpeedById(int deviceID, double previousSpeed){
 	uint32_t* wheelTickDelta;
 	double wheelSpeed;
@@ -141,7 +175,7 @@ double getSpeedById(int deviceID, double previousSpeed){
 	if (motion_enc_read(deviceID, wheelTickDelta) == 1){
 		//There was a new speed and we need to do something about it
 		//0.0054 = distance of 1 capture event, 500ns = period of servos
-		wheelSpeed =  0.0054 / ((*wheelTickDelta) * 0.0000005); //distance over time
+		wheelSpeed = CAPTURE_EVENT_DISTANCE / ((*wheelTickDelta) * SERVO_PERIOD); //distance over time
 	} else {
 		wheelSpeed = previousSpeed;
 	}
@@ -150,6 +184,9 @@ double getSpeedById(int deviceID, double previousSpeed){
 	return wheelSpeed;
 }
 
+
+/*! \brief Calculates the speeds of the wheels
+ */
 void getSpeed(){
 	wheelSpeedLeft  = getSpeedById(MOTION_WHEEL_LEFT, previousSpeedLeft);
 	wheelSpeedRight = getSpeedById(MOTION_WHEEL_RIGHT, previousSpeedRight);
@@ -157,10 +194,14 @@ void getSpeed(){
 	previousSpeedRight = wheelSpeedRight;
 }
 
+/*! \brief Returns the average speed of the wheels
+ */
 double getAverageSpeed(){
 	return (wheelSpeedLeft + wheelSpeedRight)/2;
 }
 
+/*! \brief Returns the total distance traveled by the wheels
+ */
 double getTotalDistance(){
 	return (totalDistance[0] + totalDistance[1])/2;
 }
