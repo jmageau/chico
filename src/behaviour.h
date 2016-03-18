@@ -38,10 +38,11 @@
 #define MOVING_CLOCKWISE          2
 #define MOVING_COUNTERCLOCKWISE   3
 #define STOPPED                   4
-#define STATE_TIME				  1 //in seconds
+#define STATE_TIME				  1    //in seconds
 #define WHEEL_UPDATE_TIME		  0.02 //in seconds
+#define WHEEL_SPEED_READ_TIME     0.01 // in seconds
 #define LCD_UPDATE_TIME			  0.12 //in seconds
-#define CENTER_SERVO_UPDATE_TIME  1 //in seconds
+#define CENTER_SERVO_UPDATE_TIME  1    //in seconds
 
 /*! \brief Will initialize all the components and create the starting state of Chico.
  */

@@ -131,7 +131,10 @@ void updateState() {
 			state++;
 		}
 	}
-	wheelSpeedUpdated = false;
+
+	if (isTimerRepeatMultiple(WHEEL_SPEED_READ_TIME)){
+		wheelSpeedUpdated = false;
+	}
 
 	if (isTimerRepeatMultiple(WHEEL_UPDATE)){ //0.02
 		wheelsUpdated = false;
