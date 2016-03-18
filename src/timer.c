@@ -60,7 +60,8 @@ int getTime(){
 }
 
 bool isTimerRepeatMultiple(int frequency){
-	return timerTickCount % TIMER_FREQUENCY*frequency == 0 && timerTickCount != 0;
+
+	return timerTickCount % frequency == 0 && timerTickCount != 0;
 }
 
 /*! \brief Method called when there is an interrupt. Will call the stored isrCallback method.

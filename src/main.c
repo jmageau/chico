@@ -46,11 +46,7 @@ int main(void) {
 	usart_print_P(PSTR("\r\n\n\nHello World!\r\n")); // Ok, so we're alive...
 
 	initBehaviour();
-	xTaskCreate(TaskMoveAndScan, (const portCHAR *)"MoveAndScan" // Main Arduino Mega 2560, Freetronics EtherMega (Red) LED Blink
-			,256// Tested 9 free @ 208
-			,NULL, 3, NULL); // */
-
-	vTaskStartScheduler();
+	TaskMoveAndScan();
 
 	usart_print_P(PSTR("\r\n\n\nGoodbye... no space for idle task!\r\n")); // Doh, so we're dead...
 }

@@ -94,6 +94,7 @@ void initBehaviour() {
 	centerServoUpdated = false;
 	wheelsUpdated = false;
 	centerServoDirection = CLOCKWISE;
+	moveCenterServo(MIDDLE);
 }
 
 /*! \brief Will be called by the timer's ISR method at every timer tick (10ms).
@@ -108,11 +109,7 @@ void timerCallback() {
  *
  *  \param *pvParameters
  */
-void TaskMoveAndScan(void *pvParameters) {
-	(void) pvParameters;
-
-	TickType_t xLastWakeTime;
-	xLastWakeTime = xTaskGetTickCount();
+void TaskMoveAndScan() {
 
 	while (1) {
 		updateWheelSpeed();
@@ -182,11 +179,11 @@ void updateWheelSpeed(){
 void updateCenterServo() {
 	if (state != STOPPED) {
 		if (!centerServoUpdated) {
-			if (centerServoDirection == CLOCKWISE){
-				centerServoDirection = COUNTERCLOCKWISE;
-			} else {
-				centerServoDirection = CLOCKWISE;
-			}
+			//if (centerServoDirection == CLOCKWISE){
+				//centerServoDirection = COUNTERCLOCKWISE;
+			//} else {
+		//		centerServoDirection = CLOCKWISE;
+		//	}
 			moveCenterServo(centerServoDirection);
 			centerServoUpdated = true;
 		}

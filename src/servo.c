@@ -144,13 +144,14 @@ void moveWheels(int direction) {
  * 	The direction the center servo needs to move in.
  */
 void moveCenterServo(int direction) {
+	int currentPulseWidth = motion_servo_get_pulse_width(MOTION_SERVO_CENTER);
 	if (direction == CLOCKWISE) {
 		motion_servo_set_pulse_width(MOTION_SERVO_CENTER,
-		MIN_PULSE_WIDTH_TICKS);
+		currentPulseWidth - 6);
 		motion_servo_start(MOTION_SERVO_CENTER);
 	} else if (direction == COUNTERCLOCKWISE) {
 		motion_servo_set_pulse_width(MOTION_SERVO_CENTER,
-		MAX_PULSE_WIDTH_TICKS);
+		currentPulseWidth+ 10);
 		motion_servo_start(MOTION_SERVO_CENTER);
 	} else if (direction == MIDDLE) {
 		motion_servo_set_pulse_width(MOTION_SERVO_CENTER,
