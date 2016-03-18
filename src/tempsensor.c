@@ -30,7 +30,7 @@
 
 /*! \brief Stores all temperature readings from the sensors.
  */
-uint8_t temp_pixel_values[SENSOR_NUM_PIXELS][2];
+uint8_t pixel_values[SENSOR_NUM_PIXELS][2];
 
 /*! \brief Average temperature of the 8 sensors
  */
@@ -56,19 +56,28 @@ void readTemperatureValues() {
 		uint8_t readData[2] = { TPA81_READ, 0x01 };
 		I2C_Master_Start_Transceiver_With_Data(writeData, 2);
 		I2C_Master_Start_Transceiver_With_Data(readData, 2);
-		I2C_Master_Get_Data_From_Transceiver(temp_pixel_values[i], 2);
-		temperature_sum += temp_pixel_values[i][1];	//The second of the pair contains the temp
-        if (i > 1 && i <= 1 + SENSOR_NUM_PIXELS/2){ //the first value is ambient
+		I2C_Master_Get_Data_From_Transceiver(pixel_values[i], 2);
+		temperature_sum += pixel_values[i][1];	//The second of the pair contains the temp
+        if (i > 1 && i <= 1 + SENSOR_NUM_PIXELS/2){ //the first value is command register, the second value is ambient
             //left value
-            temperature_left_sum += temp_pixel_values[i][1];
+            temperature_left_sum += pixel_values[i][1];
         } else{
             //right value
-            temperature_right_sum += temp_pixel_values[i][1];
+            temperature_right_sum += pixel_values[i][1];
         }
 	}
 	averageTemp = (int) temperature_sum / SENSOR_NUM_PIXELS; //calculate the average
     averageLeftTemp = (int) temperature_left_sum / (SENSOR_NUM_PIXELS/2); //calculate left average
     averageRightTemp = (int) temperature_right_sum / (SENSOR_NUM_PIXELS/2); //calculate right average
+}
+
+uint8_t *getTemperatureValues() {
+    readTemperatureValues();
+    static uint8_t tempValues[SENSOR_NUM_PIXELS];
+    for (int i = 0; i < SENSOR_NUM_PIXELS; ++i) {
+        tempValues[i] = pixel_values[i][1];
+    }
+    return tempValues;
 }
 
 /*! \brief Returns the ambient temperature.

@@ -19,6 +19,8 @@ void initTPA81();
  */
 void readTemperatureValues();
 
+uint8_t *getTemperatureValues();
+
 /*! \brief Returns the average temperature of the 8 sensors.
  */
 int getAmbient();
