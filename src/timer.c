@@ -32,6 +32,10 @@
 #ifndef TIMER
 #define TIMER
 
+/*! \brief Amount of times the timer has ticked since being initialized
+ */
+int timerTickCount;
+
 /*! \brief The method that will be called when there is an interrupt/
  */
 void (*isrCallback)();
@@ -39,6 +43,7 @@ void (*isrCallback)();
 /*! \brief Initializes the timer.
  */
 void initTimer(void (*isr)()) {
+	timerTickCount = 0; //start logical timer at 0
 	isrCallback = isr; // Set the callback method
 
 	TIMSK3 &= ~_BV(TOIE1); // disable timer overflow interrupts
@@ -50,9 +55,18 @@ void initTimer(void (*isr)()) {
 	TIMSK3 |= (1 << TOIE1);   // enable timer overflow interrupts
 }
 
+int getTime(){
+	return timerTickCount;
+}
+
+bool isTimerRepeatMultiple(int frequency){
+	return timerTickCount % TIMER_FREQUENCY*frequency == 0 && timerTickCount != 0;
+}
+
 /*! \brief Method called when there is an interrupt. Will call the stored isrCallback method.
  */
 ISR(TIMER3_OVF_vect) {
+	timerTickCount++;
 	TCNT3 = TIMER_PRELOAD;
 	isrCallback();
 }

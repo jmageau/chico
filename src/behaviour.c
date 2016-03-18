@@ -35,9 +35,6 @@
 #ifndef BEHAVIOUR
 #define BEHAVIOUR
 
-/*! \brief Amount of times the timer has ticked since being initialized
- */
-int timerTickCount;
 /*! \brief The current state of Chico.
  */
 int state;
@@ -91,7 +88,6 @@ void initBehaviour() {
 	initTimer(timerCallback);
 
 	state = MOVING_FORWARDS;
-	timerTickCount = 0;
 
 	wheelSpeedUpdated = false;
 	lcdUpdated = false;
@@ -130,26 +126,24 @@ void TaskMoveAndScan(void *pvParameters) {
 /*! \brief Updates the state of Chico and checks if the components need to be updated. Is called at every timer tick (10 ms)
  */
 void updateState() {
-	if (timerTickCount % TIMER_FREQUENCY*STATE_TIME == 0 && timerTickCount != 0) {
+	if (isTimerRepeatMultiple(STATE_TIME)) {
 		if (state != STOPPED) {
 			state++;
 		}
 	}
 	wheelSpeedUpdated = false;
 
-	if (timerTickCount % TIMER_FREQUENCY*WHEEL_UPDATE_TIME == 0){ //0.02
+	if (isTimerRepeatMultiple(WHEEL_UPDATE)){ //0.02
 		wheelsUpdated = false;
 	}
 
-	if (timerTickCount % TIMER_FREQUENCY*LCD_UPDATE_TIME == 0){
+	if (isTimerRepeatMultiple(LCD_UPDATE)){
 		lcdUpdated = false;
 	}
 
-	if (timerTickCount % TIMER_FREQUENCY*CENTER_SERVO_UPDATE_TIME == 0 && timerTickCount != 0){
+	if (isTimerRepeatMultiple(CENTER_SERVO_UPDATE_TIME)){
 		centerServoUpdated = false;
 	}
-
-	timerTickCount++;
 }
 
 /*! \brief Calculates the wheel speed. The wheel speed needs to be calculated often to maintain accuracy and to keep track of distance.

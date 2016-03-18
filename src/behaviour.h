@@ -38,7 +38,6 @@
 #define MOVING_CLOCKWISE          2
 #define MOVING_COUNTERCLOCKWISE   3
 #define STOPPED                   4
-#define TIMER_FREQUENCY           100 //1/x seconds
 #define STATE_TIME				  1 //in seconds
 #define WHEEL_UPDATE_TIME		  0.02 //in seconds
 #define LCD_UPDATE_TIME			  0.12 //in seconds
