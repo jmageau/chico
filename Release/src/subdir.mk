@@ -5,36 +5,39 @@
 # Add inputs and outputs from these tool invocations to the build variables 
 C_SRCS += \
 ../src/behaviour.c \
+../src/gainspan_gs1011m.c \
 ../src/lcd.c \
 ../src/led.c \
 ../src/main.c \
 ../src/motion.c \
-../src/runtTimeStatsTimer.c \
 ../src/servo.c \
 ../src/tempsensor.c \
-../src/timer.c 
+../src/timer.c \
+../src/web_server.c 
 
 OBJS += \
 ./src/behaviour.o \
+./src/gainspan_gs1011m.o \
 ./src/lcd.o \
 ./src/led.o \
 ./src/main.o \
 ./src/motion.o \
-./src/runtTimeStatsTimer.o \
 ./src/servo.o \
 ./src/tempsensor.o \
-./src/timer.o 
+./src/timer.o \
+./src/web_server.o 
 
 C_DEPS += \
 ./src/behaviour.d \
+./src/gainspan_gs1011m.d \
 ./src/lcd.d \
 ./src/led.d \
 ./src/main.d \
 ./src/motion.d \
-./src/runtTimeStatsTimer.d \
 ./src/servo.d \
 ./src/tempsensor.d \
-./src/timer.d 
+./src/timer.d \
+./src/web_server.d 
 
 
 # Each subdirectory must supply rules for building sources it contributes
