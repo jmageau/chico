@@ -44,6 +44,8 @@
 #define LCD_UPDATE_TIME			  12 //in ticks
 #define CENTER_SERVO_UPDATE_TIME  1 //in ticks
 
+#define SCAN_SPEED                50
+
 /*! \brief Will initialize all the components and create the starting state of Chico.
  */
 void initBehaviour();

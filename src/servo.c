@@ -154,7 +154,7 @@ void moveCenterServo(int direction, int speed) {
 		} else if (currentPulseWidth >= MAX_PULSE_WIDTH_TICKS){
 			currentCenterServoDirection = CLOCKWISE;
 		}
-		moveCenterServo(currentCenterServoDirection, 50);
+		moveCenterServo(currentCenterServoDirection, speed);
 
 	} else if (direction == CLOCKWISE) {
 		motion_servo_set_pulse_width(MOTION_SERVO_CENTER,

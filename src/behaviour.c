@@ -179,7 +179,7 @@ void updateWheelSpeed(){
 void updateCenterServo() {
 	if (state != STOPPED) {
 		if (!centerServoUpdated) {
-			moveCenterServo(SCAN, 50);
+			moveCenterServo(SCAN, SCAN_SPEED);
 			centerServoUpdated = true;
 		}
 	} else {
