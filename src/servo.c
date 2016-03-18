@@ -49,6 +49,8 @@ double previousSpeedLeft;
  */
 double totalDistance[2];
 
+int currentCenterServoDirection;
+
 /*! \brief Initializes the motion module and sets all speeds/distances to zero.
  */
 void servoInit() {
@@ -59,6 +61,7 @@ void servoInit() {
 	previousSpeedLeft = 0;
 	totalDistance[0] = 0;
 	totalDistance[1] = 0;
+	currentCenterServoDirection = CLOCKWISE;
 }
 
 /*! \brief Calculates the pulse width necessary to move a servo at a certain power level.
@@ -143,15 +146,23 @@ void moveWheels(int direction) {
  * \param direction
  * 	The direction the center servo needs to move in.
  */
-void moveCenterServo(int direction) {
+void moveCenterServo(int direction, int speed) {
 	int currentPulseWidth = motion_servo_get_pulse_width(MOTION_SERVO_CENTER);
-	if (direction == CLOCKWISE) {
+	if (direction == SCAN) {
+		if (currentPulseWidth <= MIN_PULSE_WIDTH_TICKS){
+			currentCenterServoDirection = COUNTERCLOCKWISE;
+		} else if (currentPulseWidth >= MAX_PULSE_WIDTH_TICKS){
+			currentCenterServoDirection = CLOCKWISE;
+		}
+		moveCenterServo(currentCenterServoDirection, 50);
+
+	} else if (direction == CLOCKWISE) {
 		motion_servo_set_pulse_width(MOTION_SERVO_CENTER,
-		currentPulseWidth - 6);
+		currentPulseWidth - speed);
 		motion_servo_start(MOTION_SERVO_CENTER);
 	} else if (direction == COUNTERCLOCKWISE) {
 		motion_servo_set_pulse_width(MOTION_SERVO_CENTER,
-		currentPulseWidth+ 10);
+		currentPulseWidth + speed);
 		motion_servo_start(MOTION_SERVO_CENTER);
 	} else if (direction == MIDDLE) {
 		motion_servo_set_pulse_width(MOTION_SERVO_CENTER,

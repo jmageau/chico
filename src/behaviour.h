@@ -42,7 +42,7 @@
 #define WHEEL_UPDATE_TIME		  2 //in ticks
 #define WHEEL_SPEED_READ_TIME     1 // in ticks
 #define LCD_UPDATE_TIME			  12 //in ticks
-#define CENTER_SERVO_UPDATE_TIME  10 //in ticks
+#define CENTER_SERVO_UPDATE_TIME  1 //in ticks
 
 /*! \brief Will initialize all the components and create the starting state of Chico.
  */

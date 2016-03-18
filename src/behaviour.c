@@ -94,7 +94,7 @@ void initBehaviour() {
 	centerServoUpdated = false;
 	wheelsUpdated = false;
 	centerServoDirection = CLOCKWISE;
-	moveCenterServo(MIDDLE);
+	moveCenterServo(MIDDLE, 0);
 }
 
 /*! \brief Will be called by the timer's ISR method at every timer tick (10ms).
@@ -179,16 +179,11 @@ void updateWheelSpeed(){
 void updateCenterServo() {
 	if (state != STOPPED) {
 		if (!centerServoUpdated) {
-			//if (centerServoDirection == CLOCKWISE){
-				//centerServoDirection = COUNTERCLOCKWISE;
-			//} else {
-		//		centerServoDirection = CLOCKWISE;
-		//	}
-			moveCenterServo(centerServoDirection);
+			moveCenterServo(SCAN, 50);
 			centerServoUpdated = true;
 		}
 	} else {
-		moveCenterServo(MIDDLE);
+		moveCenterServo(MIDDLE, 0);
 	}
 }
 

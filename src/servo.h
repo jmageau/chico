@@ -27,12 +27,13 @@
 #ifndef SRC_SERVO_H_
 #define SRC_SERVO_H_
 
-#define FORWARDS           ((uint8_t) 0)
-#define BACKWARDS          ((uint8_t) 1)
-#define COUNTERCLOCKWISE   ((uint8_t) 2)
-#define CLOCKWISE          ((uint8_t) 3)
-#define STOP               ((uint8_t) 4)
-#define MIDDLE             ((uint8_t) 5)
+#define FORWARDS           0
+#define BACKWARDS          1
+#define COUNTERCLOCKWISE   2
+#define CLOCKWISE          3
+#define STOP               4
+#define MIDDLE             5
+#define SCAN			   6
 
 #define CAPTURE_EVENT_DISTANCE  0.0054
 #define SERVO_PERIOD            0.0000005
@@ -51,7 +52,7 @@ void moveWheels(int direction);
  * \param direction
  * 	The direction the center servo needs to move in.
  */
-void moveCenterServo(int direction);
+void moveCenterServo(int direction, int speed);
 
 /*! \brief Calculates the speeds of the wheels
  */
