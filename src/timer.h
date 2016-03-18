@@ -31,7 +31,7 @@
 
 /*! \brief The value preloaded into TCNT. Calculated based on a 10ms tick rate.
  */
-#define TIMER_PRELOAD    63036
+#define TIMER_PRELOAD    64911
 #define TIMER_FREQUENCY  100 //1/x seconds
 
 /*! \brief Initializes the timer.

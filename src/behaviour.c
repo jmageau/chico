@@ -136,11 +136,11 @@ void updateState() {
 		wheelSpeedUpdated = false;
 	}
 
-	if (isTimerRepeatMultiple(WHEEL_UPDATE)){ //0.02
+	if (isTimerRepeatMultiple(WHEEL_UPDATE_TIME)){ //0.02
 		wheelsUpdated = false;
 	}
 
-	if (isTimerRepeatMultiple(LCD_UPDATE)){
+	if (isTimerRepeatMultiple(LCD_UPDATE_TIME)){
 		lcdUpdated = false;
 	}
 

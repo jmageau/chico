@@ -27,6 +27,7 @@
 #include "motion.h"
 #include "servo.h"
 #include "behaviour.h"
+#include "timer.h"
 
 #ifndef SERVO
 #define SERVO
