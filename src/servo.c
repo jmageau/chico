@@ -28,6 +28,7 @@
 #include "servo.h"
 #include "behaviour.h"
 #include "timer.h"
+#include "tempsensor.h"
 
 #ifndef SERVO
 #define SERVO
@@ -49,8 +50,6 @@ double previousSpeedLeft;
  */
 double totalDistance[2];
 
-int currentCenterServoDirection;
-
 /*! \brief Initializes the motion module and sets all speeds/distances to zero.
  */
 void servoInit() {
@@ -61,7 +60,6 @@ void servoInit() {
 	previousSpeedLeft = 0;
 	totalDistance[0] = 0;
 	totalDistance[1] = 0;
-	currentCenterServoDirection = CLOCKWISE;
 }
 
 /*! \brief Calculates the pulse width necessary to move a servo at a certain power level.
@@ -148,15 +146,7 @@ void moveWheels(int direction) {
  */
 void moveCenterServo(int direction, int speed) {
 	int currentPulseWidth = motion_servo_get_pulse_width(MOTION_SERVO_CENTER);
-	if (direction == SCAN) {
-		if (currentPulseWidth <= MIN_PULSE_WIDTH_TICKS){
-			currentCenterServoDirection = COUNTERCLOCKWISE;
-		} else if (currentPulseWidth >= MAX_PULSE_WIDTH_TICKS){
-			currentCenterServoDirection = CLOCKWISE;
-		}
-		moveCenterServo(currentCenterServoDirection, speed);
-
-	} else if (direction == CLOCKWISE) {
+	if (direction == CLOCKWISE) {
 		motion_servo_set_pulse_width(MOTION_SERVO_CENTER,
 		currentPulseWidth - speed);
 		motion_servo_start(MOTION_SERVO_CENTER);
@@ -169,7 +159,7 @@ void moveCenterServo(int direction, int speed) {
 		((MAX_PULSE_WIDTH_TICKS - MIN_PULSE_WIDTH_TICKS) / 2) + MIN_PULSE_WIDTH_TICKS);
 		motion_servo_start(MOTION_SERVO_CENTER);
 	} else if (direction == STOP) {
-		motion_servo_start(MOTION_SERVO_CENTER);
+		motion_servo_stop(MOTION_SERVO_CENTER);
 	}
 }
 

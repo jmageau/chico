@@ -34,6 +34,7 @@
 #define STOP               4
 #define MIDDLE             5
 #define SCAN			   6
+#define TRACK              7
 
 #define CAPTURE_EVENT_DISTANCE  0.0054
 #define SERVO_PERIOD            0.0000005
