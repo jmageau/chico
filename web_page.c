@@ -11,7 +11,7 @@
  */
 void createWebPage() {
 
-	SET_WEB_SERVER_TERMINAL_OUTPUT_ON = 1; 
+	//SET_WEB_SERVER_TERMINAL_OUTPUT_ON = 1; 
 	configure_web_page("Chico: The Robot", " Control Interface ", HTML_RADIO_BUTTON);
 	add_element_choice('0', "FORWARDS");
 	add_element_choice ('1', "BACKWARDS");
