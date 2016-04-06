@@ -15,6 +15,7 @@
 #ifndef SRC_ATTACHED_MODE_H_
 #define SRC_ATTACHED_MODE_H_
 
-void updateAttachedMode();
+void initAttachedMode();
+void updateCenterServoAttachedMode();
 
 #endif /* SRC_ATTACHED_MODE_H_ */

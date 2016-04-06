@@ -4,6 +4,7 @@
 
 # Add inputs and outputs from these tool invocations to the build variables 
 C_SRCS += \
+../src/attached_mode.c \
 ../src/behaviour.c \
 ../src/lcd.c \
 ../src/led.c \
@@ -14,6 +15,7 @@ C_SRCS += \
 ../src/timer.c 
 
 OBJS += \
+./src/attached_mode.o \
 ./src/behaviour.o \
 ./src/lcd.o \
 ./src/led.o \
@@ -24,6 +26,7 @@ OBJS += \
 ./src/timer.o 
 
 C_DEPS += \
+./src/attached_mode.d \
 ./src/behaviour.d \
 ./src/lcd.d \
 ./src/led.d \

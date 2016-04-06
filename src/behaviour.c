@@ -31,6 +31,7 @@
 #include "servo.h"
 #include "timer.h"
 #include "behaviour.h"
+#include "attached_mode.h"
 
 #ifndef BEHAVIOUR
 #define BEHAVIOUR
@@ -86,6 +87,7 @@ void initBehaviour() {
 	LCDInit();
 	servoInit();
 	initTimer(timerCallback);
+	initAttachedMode();
 
 	state = MOVING_FORWARDS;
 
@@ -95,6 +97,8 @@ void initBehaviour() {
 	wheelsUpdated = false;
 	centerServoDirection = CLOCKWISE;
 	moveCenterServo(MIDDLE, 0);
+
+	currentMode = ATTACHED_MODE;
 }
 
 /*! \brief Will be called by the timer's ISR method at every timer tick (10ms).
@@ -113,7 +117,7 @@ void TaskMoveAndScan() {
 
 	while (1) {
 		updateWheelSpeed();
-		updateWheels();
+		//updateWheels();
 		updateCenterServo();
 		updateLCD();
 		updateLED();
@@ -177,13 +181,16 @@ void updateWheelSpeed(){
 /*! \brief Updates the center servo. The center servo will scan clockwise and counterclockwise until Chico reaches the end state.
  */
 void updateCenterServo() {
-	if (state != STOPPED) {
-		if (!centerServoUpdated) {
-			moveCenterServo(SCAN, SCAN_SPEED);
-			centerServoUpdated = true;
+	if (!centerServoUpdated) {
+		if (currentMode == ATTACHED_MODE){
+			updateCenterServoAttachedMode();
+		} else if (currentMode == COMMAND_MODE){
+			//TODO: updateCenterServoCommandMode();
+		} else {
+			moveCenterServo(MIDDLE, 0);
 		}
-	} else {
-		moveCenterServo(MIDDLE, 0);
+
+		centerServoUpdated = true;
 	}
 }
 

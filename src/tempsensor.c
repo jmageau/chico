@@ -12,21 +12,6 @@
 #include "i2cMultiMaster.h"
 #include "tempsensor.h"
 
-/* Defines */
-
-/*! \brief Slave write address for I2C communications.
- */
-#define TPA81_WRITE 	0xD0
-/*! \brief Slave read address for I2C communications.
- */
-#define TPA81_READ	 	0xD1
-/*! \brief Master address for I2C communications.
- */
-#define I2C_MASTER_ADDRESS 0xC0
-
-/*! \brief Number of pixels on the temperature sensor
- */
-#define SENSOR_NUM_PIXELS	8
 
 /*! \brief Stores all temperature readings from the sensors.
  */
