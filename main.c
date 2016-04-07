@@ -30,6 +30,8 @@
 #include "behaviour.h"
 
 /* Web page creation/management module */
+ #include "wireless_interface.h"
+ #include "wireless_interface.c"
  #include "web_page.h"
  #include "web_page.c"
 
@@ -48,9 +50,8 @@ int main(void) {
 	portSERIAL_BUFFER_RX); //  serial port: WantedBaud, TxQueueLength, RxQueueLength (8n1)
 
 	usart_print_P(PSTR("\r\n\n\nHello World!\r\n")); // Ok, so we're alive...
-
-	initBehaviour();
 	createWebPage();
+	initBehaviour();
 	TaskMoveAndScan();
 
 

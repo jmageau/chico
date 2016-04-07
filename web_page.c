@@ -1,8 +1,6 @@
-#include web_server.c
-#include web_server.h
-#include gainspan_gs1011m.h
-#include gainspan_gs1011m.c
-#include web_page.h
+#include "wireless_interface.h"
+#include "wireless_interface.c"
+#include "web_page.h"
 
 #ifndef web_page
 #define web_page
@@ -11,7 +9,11 @@
  */
 void createWebPage() {
 
-	//SET_WEB_SERVER_TERMINAL_OUTPUT_ON = 1; 
+	//Setup web server
+	gs_initialize_module(usart_two, BAUD_RATE_9600, usart_zero, BAUD_RATE_115200);
+	gs_set_wireless_ssid(char "Robotomy wih Chico");
+	gs_activate_wireless_connection();
+	//set up web page
 	configure_web_page("Chico: The Robot", " Control Interface ", HTML_RADIO_BUTTON);
 	add_element_choice('0', "FORWARDS");
 	add_element_choice ('1', "BACKWARDS");

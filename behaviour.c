@@ -91,7 +91,7 @@ void initBehaviour() {
 	LCDInit();
 	servoInit();
 	initTimer(timerCallback);
-    UserInputValue = getClientResponse(); 
+   
 
 
 	state = MOVING_FORWARDS;
@@ -151,6 +151,8 @@ void updateState() {
 	if (isTimerRepeatMultiple(CENTER_SERVO_UPDATE_TIME)){
 		centerServoUpdated = false;
 	}
+
+	UserInputValue = getClientResponse(); 
 }
 
 /*! \brief Calculates the wheel speed. The wheel speed needs to be calculated often to maintain accuracy and to keep track of distance.
@@ -204,7 +206,7 @@ void updateLCD() {
 		char display_bottom[LCD_LINE_SIZE] = "";
 
 		//sprintf(display_bottom, "S:%2.2f D:%2.2f", getAverageSpeed(), getTotalDistance());
-		sprintf(display_bottom, "Input:%c D:%2.2f", getClientResponse(), getTotalDistance());
+		sprintf(display_bottom, "Input:%c", getClientResponse());
 
 		sprintf(display_top, "A:%d R:%d L:%d", getAmbient(), getAverageLeft(),
 				getAverageRight());
