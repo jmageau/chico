@@ -17,5 +17,5 @@
 
 void initAttachedMode();
 void updateCenterServoAttachedMode();
-
+void updateWheelsAttachedMode();
 #endif /* SRC_ATTACHED_MODE_H_ */

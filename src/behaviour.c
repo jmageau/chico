@@ -117,7 +117,7 @@ void TaskMoveAndScan() {
 
 	while (1) {
 		updateWheelSpeed();
-		//updateWheels();
+		updateWheels();
 		updateCenterServo();
 		updateLCD();
 		updateLED();
@@ -154,17 +154,13 @@ void updateState() {
  */
 void updateWheels() {
 	if (!wheelsUpdated){
-		if (state == MOVING_FORWARDS) {
-				moveWheels(FORWARDS);
-			} else if (state == MOVING_BACKWARDS) {
-				moveWheels(BACKWARDS);
-			} else if (state == MOVING_CLOCKWISE) {
-				moveWheels(CLOCKWISE);
-			} else if (state == MOVING_COUNTERCLOCKWISE) {
-				moveWheels(COUNTERCLOCKWISE);
-			} else { // state == STOPPED
-				moveWheels(STOP);
-			}
+		if (currentMode == ATTACHED_MODE){
+			updateWheelsAttachedMode();
+		} else if (currentMode == COMMAND_MODE){
+			//TODO:
+		} else {
+			moveWheels(STOP, 1);
+		}
 		wheelsUpdated = true;
 	}
 }

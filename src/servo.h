@@ -47,7 +47,7 @@ void servoInit();
  * \param direction
  * 	The direction the wheels need to move in.
  */
-void moveWheels(int direction);
+void moveWheels(int direction, float powerFactor);
 /*! \brief Sends move commands to the center servo depending on the direction
  *
  * \param direction
