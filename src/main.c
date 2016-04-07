@@ -23,12 +23,13 @@
 #include "semphr.h"
 
 /* Serial interface include file. */
-#include "usartserial.h"
+#include "usartSerial.h"
 
 /* Our drivers */
 
 #include "behaviour.h"
 
+#include "web_page.h"
 /*! \brief Usart for terminal and wifi card.
  */
 int usartfd;

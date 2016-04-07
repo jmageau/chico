@@ -12,7 +12,9 @@ C_SRCS += \
 ../src/motion.c \
 ../src/servo.c \
 ../src/tempsensor.c \
-../src/timer.c 
+../src/timer.c \
+../src/web_page.c \
+../src/wireless_interface.c 
 
 OBJS += \
 ./src/attached_mode.o \
@@ -23,7 +25,9 @@ OBJS += \
 ./src/motion.o \
 ./src/servo.o \
 ./src/tempsensor.o \
-./src/timer.o 
+./src/timer.o \
+./src/web_page.o \
+./src/wireless_interface.o 
 
 C_DEPS += \
 ./src/attached_mode.d \
@@ -34,7 +38,9 @@ C_DEPS += \
 ./src/motion.d \
 ./src/servo.d \
 ./src/tempsensor.d \
-./src/timer.d 
+./src/timer.d \
+./src/web_page.d \
+./src/wireless_interface.d 
 
 
 # Each subdirectory must supply rules for building sources it contributes
