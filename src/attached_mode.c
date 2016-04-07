@@ -27,12 +27,15 @@ void trackHeat();
 int currentCenterServoDirection;
 int lastTrackedDirection;
 
+bool targetFound;
+
 //moveWheels
 //lcd
 //led
 void initAttachedMode(){
 	currentCenterServoDirection = CLOCKWISE;
 	lastTrackedDirection = CLOCKWISE;
+	targetFound = false;
 }
 
 bool readHeat() {
@@ -57,7 +60,9 @@ void trackHeat() {
 void updateCenterServoAttachedMode() {
 	if (readHeat()) {
 		trackHeat();
+		targetFound = true;
 	} else {
+		targetFound = false;
 		int currentPulseWidth = motion_servo_get_pulse_width(
 				MOTION_SERVO_CENTER);
 
@@ -75,6 +80,15 @@ void updateCenterServoAttachedMode() {
 }
 
 void updateWheelsAttachedMode() {
-
+	if (targetFound){
+		int currentPulseWidth = motion_servo_get_pulse_width(MOTION_SERVO_CENTER);
+		if (abs(currentPulseWidth - INITIAL_PULSE_WIDTH_TICKS) <= 100 ) {
+			//TODO: forwards
+		} else {
+			moveWheels(currentCenterServoDirection, 0.1f);
+		}
+	} else {
+		moveWheels(STOP, 1);
+	}
 }
 
