@@ -145,7 +145,7 @@
 
 #include <avr/pgmspace.h>
 
-#include "usartSerial.h"					/*USART Serial communication*/
+#include "usart_serial.h"					/*USART Serial communication*/
 
 /******************************************************************************************************************/
 /* CODING STANDARDS
@@ -235,7 +235,7 @@
 /*Maximum buffer length in bytes (characters) for data transmission*/
 #define MAX_TX_BUFFER									128				/*!<Maximum transmission buffer*/
 
-#define SERIAL_TERNMINAL								USART0_ID			/*!Default - USART0 for serial terminal communication*/
+#define SERIAL_TERNMINAL								USART_0			/*!Default - USART0 for serial terminal communication*/
 #define SERVER_PORT										80				/*!Default - web server port*/
 #define SERVER_PROTOCOL									PROTOCOL_TCP	/*!Default - protocol - PROTOCOL_TCP*/
 #define RING_BUFFER_SIZE 								10				/*!Ring buffer size, no of characters*/
@@ -592,7 +592,7 @@ typedef struct _WEBSERVER_AUTHENTICATION_PROFILE {
 
 /******************************************************************************************************************/
 /* CODING STANDARDS:
- * Header file: Section IV. Global   or   external   data   declarations -> externs, nonÂ­static globals, and then
+ * Header file: Section IV. Global   or   external   data   declarations -> externs, non­static globals, and then
  * 				static globals.
  *
  * Naming convention: variables names must be meaningful lower case and words joined with an underscore (_). Limit
@@ -605,10 +605,10 @@ typedef struct _WEBSERVER_AUTHENTICATION_PROFILE {
 /******************************************************************************************************************/
 /* CODING STANDARDS
  * Header file: Section V. Functions: order on abstraction level or usage; and if independent alphabetical
- * 				orÂ­dering is good choice.
+ * 				or­dering is good choice.
  *
  * 1) Declare all the entry point functions.
- * 2) Declare function names, parameters (names and types) and reÂ­turn type in one line; if not possible fold it at
+ * 2) Declare function names, parameters (names and types) and re­turn type in one line; if not possible fold it at
  *    an appropriate place to make it easily readable.
  */
 

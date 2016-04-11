@@ -33,6 +33,8 @@
 #include "behaviour.h"
 #include "attached_mode.h"
 
+#include "wireless_interface.h"
+
 #ifndef BEHAVIOUR
 #define BEHAVIOUR
 
@@ -128,6 +130,8 @@ void TaskMoveAndScan() {
  */
 void updateState() {
 	if (isTimerRepeatMultiple(STATE_TIME)) {
+		process_client_request();
+		char clientRequest = get_next_client_response();
 		if (state != STOPPED) {
 			state++;
 		}

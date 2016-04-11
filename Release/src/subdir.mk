@@ -13,7 +13,7 @@ C_SRCS += \
 ../src/servo.c \
 ../src/tempsensor.c \
 ../src/timer.c \
-../src/web_page.c \
+../src/usart_serial.c \
 ../src/wireless_interface.c 
 
 OBJS += \
@@ -26,7 +26,7 @@ OBJS += \
 ./src/servo.o \
 ./src/tempsensor.o \
 ./src/timer.o \
-./src/web_page.o \
+./src/usart_serial.o \
 ./src/wireless_interface.o 
 
 C_DEPS += \
@@ -39,7 +39,7 @@ C_DEPS += \
 ./src/servo.d \
 ./src/tempsensor.d \
 ./src/timer.d \
-./src/web_page.d \
+./src/usart_serial.d \
 ./src/wireless_interface.d 
 
 

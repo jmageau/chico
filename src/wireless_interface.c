@@ -241,7 +241,7 @@ typedef struct _HTML_WEB_PAGE {
 
 /******************************************************************************************************************/
 /* CODING STANDARDS:
- * Program file: Section IV. Global   or   external   data   declarations -> externs, nonÂ­static globals, and then
+ * Program file: Section IV. Global   or   external   data   declarations -> externs, non­static globals, and then
  * 				static globals.
  *
  * Naming convention: variables names must be meaningful lower case and words joined with an underscore (_). Limit
@@ -249,7 +249,7 @@ typedef struct _HTML_WEB_PAGE {
  * Guidelines for variable declaration:
  *				1) Do not group unrelated variables declarations even if of same data type.
  * 				2) Do not declare multiple variables in one declaration that spans lines. Start a new declaration
- * 				   on each line, inÂ­stead.
+ * 				   on each line, in­stead.
  * 				3) Move the declaration of each local variable into the smallest scope that includes all its uses.
  * 				   This makes the program cleaner.
  */
@@ -413,20 +413,20 @@ WEB_SERVER_STATUS web_server_status = WEB_SERVER_NOT_ACTIVE;							/*!<Web serve
 /******************************************************************************************************************/
 /* CODING STANDARDS
  * Program file: Section V. Functions: order on abstraction level or usage; and if independent alphabetical
- * 				orÂ­dering is good choice.
+ * 				or­dering is good choice.
  *
  * 1) Declare all the functions (entry points, external functions, local functions, and ISR-interrupt service
  *    routines) before first function definition in the program file or in header file and include it; and define
  *    functions in the same order as of declaration.
  * 2) Suggested order of declaration and definition of functions is
  * 	  Entry points -> External functions -> Local functions -> ISR-Interrupt Service Routines
- * 3) Declare function names, parameters (names and types) and reÂ­turn type in one line; if not possible fold it at
+ * 3) Declare function names, parameters (names and types) and re­turn type in one line; if not possible fold it at
  *    an appropriate place to make it easily readable.
  * 4) No function definition should be longer than a page or screen long. If it is long, try and split it into two
  *    or more functions.
  * 5) Indentation and Spacing: this can improve the readability of the source code greatly. Tabs should be used to
  *    indent code, rather than spaces; because spaces can often be out by one and lead to confusions.
- * 6) Keep the length of source lines to 79 characters or less, for maxÂ­imum readability.
+ * 6) Keep the length of source lines to 79 characters or less, for max­imum readability.
  */
 
 /*---------------------------------------  Function Declarations  -------------------------------------------------*/
@@ -1627,9 +1627,9 @@ char get_next_client_response(void){
  */
 void gs_initialize_gainspan(void){
 	TCP_SOCKET socket = 0;
-	gainspan.serial_terminal_usart_id = USART0_ID;
+	gainspan.serial_terminal_usart_id = USART_0;
 	gainspan.serial_terminal_baud_rate = BAUD_RATE_9600;
-	gainspan.usart_id = USART2_ID;
+	gainspan.usart_id = USART_2;
 	gainspan.baud_rate = BAUD_RATE_9600;
 	gainspan.device_connection_status = GAINSPAN_ACTIVE_FALSE;
 	gainspan.ssid = (char *)pvPortMalloc( sizeof(char) * GENERAL_SIZE);
@@ -2203,4 +2203,3 @@ char int_to_hex(uint8_t character){
 /*NO ISR's */
 
 /*!@}*/   // end module
-

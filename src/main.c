@@ -8,28 +8,23 @@
  *		Main file for Chico the robot. This file will initialize and schedule the tasks for Chico.
  */
 
-/* Includes */
-#include <stdlib.h>
-#include <stdbool.h>
-#include <string.h>
-#include <stdio.h>
-
 #include <avr/io.h>
+#include <stdbool.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
 
 /* Scheduler include files. */
 #include "FreeRTOS.h"
-#include "task.h"
 #include "queue.h"
 #include "semphr.h"
+#include "task.h"
 
-/* Serial interface include file. */
-#include "usartSerial.h"
-
-/* Our drivers */
+#include "wireless_interface.h"
+#include "usart_serial.h"
 
 #include "behaviour.h"
 
-#include "web_page.h"
 /*! \brief Usart for terminal and wifi card.
  */
 int usartfd;
@@ -40,13 +35,28 @@ int usartfd;
  */
 int main(void) {
 
-	// turn on the serial port for debugging or for other USART reasons.
-	usartfd = usartOpen(USART0_ID, 115200, portSERIAL_BUFFER_TX,
-	portSERIAL_BUFFER_RX); //  serial port: WantedBaud, TxQueueLength, RxQueueLength (8n1)
+	taskENABLE_INTERRUPTS();
+	int terminalUSART = usartOpen(USART_0, BAUD_RATE_115200,
+			portSERIAL_BUFFER_TX, portSERIAL_BUFFER_RX);
+	int wifiUSART = usartOpen(USART_2, BAUD_RATE_9600, portSERIAL_BUFFER_TX,
+			portSERIAL_BUFFER_RX);
+	gs_initialize_module(wifiUSART, BAUD_RATE_9600, terminalUSART,
+			BAUD_RATE_115200);
+	gs_set_wireless_ssid("RICO");
+	gs_activate_wireless_connection();
+	//set up web page
+	configure_web_page("Chico", "Control",
+			HTML_RADIO_BUTTON);
+	add_element_choice('0', "FORWARDS");
+	add_element_choice('1', "BACKWARDS");
+	add_element_choice('2', "CLOCKWISE");
+	add_element_choice('3', "COUNTERCLOCKWISE");
+	start_web_server();
 
 	usart_print_P(PSTR("\r\n\n\nHello World!\r\n")); // Ok, so we're alive...
 
 	initBehaviour();
+
 	TaskMoveAndScan();
 
 	usart_print_P(PSTR("\r\n\n\nGoodbye... no space for idle task!\r\n")); // Doh, so we're dead...
