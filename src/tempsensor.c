@@ -57,7 +57,6 @@ void readTemperatureValues() {
 }
 
 uint8_t *getTemperatureValues() {
-    readTemperatureValues();
     static uint8_t tempValues[SENSOR_NUM_PIXELS];
     for (int i = 0; i < SENSOR_NUM_PIXELS; ++i) {
         tempValues[i] = pixel_values[i][1];

@@ -38,14 +38,13 @@
 #define MOVING_CLOCKWISE          2
 #define MOVING_COUNTERCLOCKWISE   3
 #define STOPPED                   4
+#define ATTACHED			      5
+
 #define STATE_TIME				  100    //in ticks
 #define WHEEL_UPDATE_TIME		  2 //in ticks
 #define WHEEL_SPEED_READ_TIME     1 // in ticks
 #define LCD_UPDATE_TIME			  12 //in ticks
 #define CENTER_SERVO_UPDATE_TIME  2 //in ticks
-
-#define ATTACHED_MODE		0
-#define COMMAND_MODE		1
 
 #define SCAN_SPEED                50
 

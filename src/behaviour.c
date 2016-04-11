@@ -100,7 +100,7 @@ void initBehaviour() {
 	centerServoDirection = CLOCKWISE;
 	moveCenterServo(MIDDLE, 0);
 
-	currentMode = ATTACHED_MODE;
+	//currentMode = ATTACHED_MODE;
 }
 
 /*! \brief Will be called by the timer's ISR method at every timer tick (10ms).
@@ -157,16 +157,16 @@ void updateState() {
 /*! \brief Calculates the wheel speed. The wheel speed needs to be calculated often to maintain accuracy and to keep track of distance.
  */
 void updateWheels() {
-	if (!wheelsUpdated){
-		if (currentMode == ATTACHED_MODE){
-			updateWheelsAttachedMode();
-		} else if (currentMode == COMMAND_MODE){
-			//TODO:
-		} else {
-			moveWheels(STOP, 1);
-		}
-		wheelsUpdated = true;
-	}
+//	if (!wheelsUpdated){
+//		if (currentMode == ATTACHED_MODE){
+//			updateWheelsAttachedMode();
+//		} else if (currentMode == COMMAND_MODE){
+//			//TODO:
+//		} else {
+//			moveWheels(STOP, 1);
+//		}
+//		wheelsUpdated = true;
+//	}
 }
 
 /*! \brief Updates the center servo. The center servo will scan clockwise and counterclockwise until Chico reaches the end state.
@@ -182,15 +182,15 @@ void updateWheelSpeed(){
  */
 void updateCenterServo() {
 	if (!centerServoUpdated) {
-		if (currentMode == ATTACHED_MODE){
-			updateCenterServoAttachedMode();
-		} else if (currentMode == COMMAND_MODE){
-			//TODO: updateCenterServoCommandMode();
-		} else {
-			moveCenterServo(MIDDLE, 0);
-		}
-
-		centerServoUpdated = true;
+//		if (currentMode == ATTACHED_MODE){
+//			updateCenterServoAttachedMode();
+//		} else if (currentMode == COMMAND_MODE){
+//			//TODO: updateCenterServoCommandMode();
+//		} else {
+//			moveCenterServo(MIDDLE, 0);
+//		}
+//
+//		centerServoUpdated = true;
 	}
 }
 
