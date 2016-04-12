@@ -1,8 +1,7 @@
-#ifndef PING
-#define PING
+#ifndef PING_SENSOR
+#define PING_SENSOR
 
 void initPing();
-int ping();
-int getDistance();
+double getPingDistance(double speedSound);
 
 #endif

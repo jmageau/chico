@@ -24,7 +24,9 @@
 #include "usart_serial.h"
 
 #include "behaviour.h"
+#include "custom_timer.h"
 #include "attached_mode.h"
+#include "ping.h"
 
 int currentState = ATTACHED;
 
@@ -58,9 +60,9 @@ void createTasks() {
 	xTaskCreate(TaskCenterServo, (const portCHAR *)"", 120, NULL, 3, NULL);
 	xTaskCreate(TaskThermoSensor, (const portCHAR *)"", 120, NULL, 3, NULL);
 	xTaskCreate(TaskWheelSpeed, (const portCHAR *)"", 128, NULL, 3, NULL);
-	xTaskCreate(TaskLCD, (const portCHAR *)"", 128, NULL, 3, NULL);
+	xTaskCreate(TaskLCD, (const portCHAR *)"", 256, NULL, 3, NULL);
 	xTaskCreate(TaskLED, (const portCHAR *)"", 128, NULL, 3, NULL);
-	xTaskCreate(TaskWIFI, (const portCHAR *)"", 636, NULL, 1, NULL);
+	//xTaskCreate(TaskWIFI, (const portCHAR *)"", 128, NULL, 1, NULL);
 	xTaskCreate(TaskWheels, (const portCHAR *)"", 128, NULL, 3, NULL);
 	//wheels
 	//sonar
@@ -72,6 +74,10 @@ void initModules() {
 	initTPA81();
 	LCDInit();
 	servoInit();
+
+	initialize_module_timer0();
+	initPing();
+
 
 	initAttachedMode();
 }
@@ -154,15 +160,17 @@ void TaskLCD(void *pvParameters) {
 
 		uint8_t *tempValues = getTemperatureValues();
 
-		sprintf(display_bottom, "S:%2.2f D:%2.2f", getAverageSpeed(),
-				getTotalDistance());
+//		sprintf(display_bottom, "S:%2.2f D:%2.2f", getAverageSpeed(),
+//				getTotalDistance());
 
-		//sprintf(display_top, "P:%d,%d,%d,%d,%d",tempValues[0],tempValues[1],tempValues[2],tempValues[3],tempValues[4]);
+		sprintf(display_top, "%d,%d,%d,%d,%d",tempValues[0],tempValues[1],tempValues[2],tempValues[3],tempValues[4]);
 
-		sprintf(display_top, "A:%d R:%d L:%d", getAmbient(), getAverageLeft(),
-				getAverageRight());
+//		sprintf(display_top, "A:%d R:%d L:%d", getAmbient(), getAverageLeft(),
+//				getAverageRight());
 
-		//sprintf(display_bottom, "%d,%d,%dA:%dD:%d",tempValues[5],tempValues[6],tempValues[7],getAmbient(),99);
+		//sprintf(display_bottom, "%d,%d,%d,%d,D:%1.1f",tempValues[5],tempValues[6],tempValues[7],getAmbient(), getPingDistance());
+		//getPingDistance(331 + 0.6 * getAmbient());
+		sprintf(display_bottom, "%1.1f", 1.1);
 
 		LCDPrint(display_top, display_bottom);
 

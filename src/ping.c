@@ -2,6 +2,7 @@
 #include "BitDefinitions.h"
 
 #include "custom_timer.h"
+#include "ping.h"
 
 int ping();
 void pulse_out(int duration);
@@ -21,7 +22,7 @@ int ping() {
 }
 
 //speedSound determined based on ambient temp (v = 331m/s + 0.6m/s/C * T`)
-double getDistance(double speedSound) {
+double getPingDistance(double speedSound) {
 	double echoTime = ping() / 1000000; //echo time in seconds
 	return speedSound * echoTime; //Both in seconds
 }
@@ -29,7 +30,7 @@ double getDistance(double speedSound) {
 //send a pulse (high value) for a given amount of time
 void pulse_out(int duration) {
 	PORTA |= BIT0; //high
-
+	//delay_milliseconds(1);
 	PORTA &= ~BIT0; //low
 }
 
