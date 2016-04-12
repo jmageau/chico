@@ -18,7 +18,8 @@ src/main.o src/main.o: ../src/main.c \
   ../src/behaviour.h \
   C:\Users\Nick\workspace\CEG4166_RTS_Lib\include/BitDefinitions.h \
   ../src/led.h ../src/tempsensor.h ../src/motion.h ../src/lcd.h \
-  ../src/servo.h ../src/attached_mode.h
+  ../src/servo.h ../src/custom_timer.h ../src/attached_mode.h \
+  ../src/ping.h
 
 C:\Users\Nick\workspace\FreeRTOS801\include/FreeRTOS.h:
 
@@ -68,4 +69,8 @@ C:\Users\Nick\workspace\CEG4166_RTS_Lib\include/BitDefinitions.h:
 
 ../src/servo.h:
 
+../src/custom_timer.h:
+
 ../src/attached_mode.h:
+
+../src/ping.h:

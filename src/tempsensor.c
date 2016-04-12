@@ -35,7 +35,7 @@ void readTemperatureValues() {
     int temperature_right_sum = 0;
 
     for (int i = 0; i < SENSOR_NUM_REGISTERS; i++) {
-        uint8_t writeData[2] = { TPA81_WRITE, i + 2 };
+        uint8_t writeData[2] = { TPA81_WRITE, i };
         uint8_t readData[2] = { TPA81_READ, 0x01 };
         I2C_Master_Start_Transceiver_With_Data(writeData, 2);
         I2C_Master_Start_Transceiver_With_Data(readData, 2);
