@@ -169,6 +169,7 @@ void TaskLCD(void *pvParameters) {
 
 		vTaskDelay(period / portTICK_PERIOD_MS);
 	}
+
 }
 
 void TaskLED(void *pvParameters) {

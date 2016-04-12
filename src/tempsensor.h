@@ -21,6 +21,8 @@
  */
 #define I2C_MASTER_ADDRESS 0xC0
 
+#define SENSOR_NUM_REGISTERS 10
+
 /*! \brief Number of pixels on the temperature sensor
  */
 #define SENSOR_NUM_PIXELS	8
