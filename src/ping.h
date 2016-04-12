@@ -2,7 +2,7 @@
 #define PING_SENSOR
 
 void initPing();
-void readDistance(double speedSound);
+void readDistance();
 double getDistance();
 int testgetDistance();
 

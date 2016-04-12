@@ -11,6 +11,8 @@
 #define CHIRP_TIME_MICROSECONDS		10
 #define LISTEN_TIME_MICROSECONDS	20000
 
+#define SPEED_OF_SOUND				0.03448  //room temperature, cm/microsecond
+
 double distance;
 
 int ping();
@@ -25,18 +27,13 @@ void initPing() {
 
 //returns time in microseconds between ping and echo
 int ping() {
-	DDRA |= BIT0; //Ensure ouput mode
-	PORTA &= ~BIT0; //Set ping to low
 	pulse_out(CHIRP_TIME_MICROSECONDS); //chirp for 10 microseconds
 	return pulse_in(LISTEN_TIME_MICROSECONDS); //time the echo delay
 }
 
 //speedSound determined based on ambient temp (v = 331cm/s + 0.6m/s/C * T`)
-void readDistance(double speedSound) {
-	//double echoTime = 100000 / 1000000; //convert echo time to seconds
-	//distance = 331 *ping()/(double) 1000000; //Both in seconds
-	distance = ping()/29/2; //Both in seconds
-
+void readDistance() {
+	distance = ping() * SPEED_OF_SOUND / 2; //Ping travels double the distance
 }
 
 double getDistance() {
@@ -45,13 +42,13 @@ double getDistance() {
 
 //send a pulse (high value) for a given amount of time
 void pulse_out(unsigned long duration) {
+	DDRA |= BIT0; //Ensure ouput mode
+	PORTA &= ~BIT0; //Set ping to low
 	_delay_us(2);
 	PORTA |= BIT0; //high
 	_delay_us(5);
 	PORTA &= ~BIT0; //low
 }
-
-//reads how long the pin reads the given value
 
 double pulse_in(unsigned long maxDelay) {
 
@@ -59,19 +56,9 @@ double pulse_in(unsigned long maxDelay) {
 
 	unsigned long tStart = time_in_microseconds(); //start timer to test for timeout
 
-	/* Wait for pulse begin */
-//	while (PORTA << 0 != 1){
-//		if (time_in_microseconds() - tStart >= maxDelay){
-//			setColor(true,false,false);
-//			return 1000; //Error, no signal!
-//		}
-//	}
-	unsigned long count = 0;
-
 	while (!bit_is_set(PINA, PA0)) {
-		_delay_us(5);
-		count++;
-		if (count > 200000) {
+		//_delay_us(5);
+		if (time_in_microseconds - tStart > maxDelay) {
 			return -1;
 		}
 	}
