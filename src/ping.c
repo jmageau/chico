@@ -49,21 +49,24 @@ void pulse_out(unsigned long duration) {
 int pulse_in(unsigned long maxDelay){
 
 	DDRA &= ~BIT0; //Set to input mode
-	unsigned long tStart = time_in_microseconds();
+
+	unsigned long tStart = time_in_microseconds(); //start timer to test for timeout
 
 	/* Wait for pulse begin */
 	while (PORTA << 0 != 1){
 		if (time_in_microseconds() - tStart >= maxDelay){
-			return -1; //Error, no echo!
+			return -1; //Error, no signal!
 		}
 	}
 
+	tStart = time_in_microseconds(); //reset time, we only want to measure the high signal
+
 	/* Wait for pulse end */
-	// while (PORTA << 0 == 1){
-	// 	if (time_in_microseconds() - tStart >= maxDelay){
-	// 		return -1; //Error, no echo!
-	// 	}
-	// }
+	while (PORTA << 0 == 1){
+		if (time_in_microseconds() - tStart >= maxDelay){
+			return -2; //Error, no echo!
+		}
+	}
 
 	return time_in_microseconds() - tStart;
 }
