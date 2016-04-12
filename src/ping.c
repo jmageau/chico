@@ -4,6 +4,11 @@
 #include "custom_timer.h"
 #include "ping.h"
 
+#define CHIRP_TIME_MICROSECONDS		10
+#define LISTEN_TIME_MICROSECONDS	20000
+
+double distance = 0;
+
 int ping();
 void pulse_out(int duration);
 int pulse_in();
@@ -17,14 +22,18 @@ void initPing() {
 int ping() {
 	DDRA |= BIT0; //Ensure ouput mode
 	PORTA &= ~BIT0; //Set ping to low
-	pulse_out(10); //chirp for 10 microseconds
-	return pulse_in(10000); //time the echo delay
+	pulse_out(CHIRP_TIME_MICROSECONDS); //chirp for 10 microseconds
+	return pulse_in(LISTEN_TIME_MICROSECONDS); //time the echo delay
 }
 
-//speedSound determined based on ambient temp (v = 331m/s + 0.6m/s/C * T`)
-double getPingDistance(double speedSound) {
-	double echoTime = ping() / 1000000; //echo time in seconds
-	return speedSound * echoTime; //Both in seconds
+//speedSound determined based on ambient temp (v = 331cm/s + 0.6m/s/C * T`)
+void readDistance(double speedSound) {
+	double echoTime = ping() / 1000000; //convert echo time to seconds
+	distance = speedSound * echoTime; //Both in seconds
+}
+
+double getDistance(){
+	return distance;
 }
 
 //send a pulse (high value) for a given amount of time
