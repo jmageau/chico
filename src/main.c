@@ -38,6 +38,7 @@ void TaskLCD(void *pvParameters);
 void TaskLED(void *pvParameters);
 void TaskWIFI(void *pvParameters);
 void TaskWheels(void *pvParameters);
+void TaskSonar(void *pvParamaters);
 void createTasks();
 void initWifi();
 
@@ -63,9 +64,9 @@ void createTasks() {
 	xTaskCreate(TaskLCD, (const portCHAR *)"", 256, NULL, 3, NULL);
 	xTaskCreate(TaskLED, (const portCHAR *)"", 128, NULL, 3, NULL);
 	//xTaskCreate(TaskWIFI, (const portCHAR *)"", 128, NULL, 1, NULL);
-	xTaskCreate(TaskWheels, (const portCHAR *)"", 128, NULL, 3, NULL);
-	//wheels
-	//sonar
+	xTaskCreate(TaskWheels, (const portCHAR *)"", 128, NULL, 1, NULL);
+	xTaskCreate(TaskSonar, (const portCHAR *)"", 120, NULL, 3, NULL);
+
 }
 
 void initModules() {
@@ -78,7 +79,6 @@ void initModules() {
 	initialize_module_timer0();
 	initPing();
 
-
 	initAttachedMode();
 }
 
@@ -90,19 +90,19 @@ void initWifi() {
 	int wifiUSART = usartOpen(USART_2, BAUD_RATE_9600, portSERIAL_BUFFER_TX,
 	portSERIAL_BUFFER_RX);
 
-	gs_initialize_module(wifiUSART, BAUD_RATE_9600, terminalUSART,
-			BAUD_RATE_115200);
-	gs_set_wireless_ssid("RICO");
-	gs_activate_wireless_connection();
+//	gs_initialize_module(wifiUSART, BAUD_RATE_9600, terminalUSART,
+//			BAUD_RATE_115200);
+//	gs_set_wireless_ssid("RICO");
+//	gs_activate_wireless_connection();
 
 	//set up web page
-	configure_web_page("Chico", "Control", HTML_RADIO_BUTTON);
-	add_element_choice('0', "FORWARDS");
-	add_element_choice('1', "BACKWARDS");
-	add_element_choice('2', "CLOCKWISE");
-	add_element_choice('3', "COUNTERCLOCKWISE");
-	add_element_choice('4', "ATTACHED");
-	start_web_server();
+//	configure_web_page("Chico", "Control", HTML_RADIO_BUTTON);
+//	add_element_choice('0', "FORWARDS");
+//	add_element_choice('1', "BACKWARDS");
+//	add_element_choice('2', "CLOCKWISE");
+//	add_element_choice('3', "COUNTERCLOCKWISE");
+//	add_element_choice('4', "ATTACHED");
+//	start_web_server();
 }
 
 void TaskCenterServo(void *pvParameters) {
@@ -135,6 +135,20 @@ void TaskThermoSensor(void *pvParameters) {
 	}
 }
 
+void TaskSonar(void *pvParameters) {
+	TickType_t xLastWakeTime;
+	xLastWakeTime = xTaskGetTickCount();
+
+	int period = 100;
+
+	while (1) {
+		//readDistance(331 + 0.6 * getAmbient());
+		readDistance(331);
+
+		vTaskDelay(period / portTICK_PERIOD_MS);
+	}
+}
+
 void TaskWheelSpeed(void *pvParameters) {
 	TickType_t xLastWakeTime;
 	xLastWakeTime = xTaskGetTickCount();
@@ -154,23 +168,16 @@ void TaskLCD(void *pvParameters) {
 	int period = 100;
 
 	while (1) {
-		//TODO
 		char display_top[LCD_LINE_SIZE] = "";
 		char display_bottom[LCD_LINE_SIZE] = "";
 
 		uint8_t *tempValues = getTemperatureValues();
 
-//		sprintf(display_bottom, "S:%2.2f D:%2.2f", getAverageSpeed(),
-//				getTotalDistance());
-
 		sprintf(display_top, "%d,%d,%d,%d,%d",tempValues[0],tempValues[1],tempValues[2],tempValues[3],tempValues[4]);
 
-//		sprintf(display_top, "A:%d R:%d L:%d", getAmbient(), getAverageLeft(),
-//				getAverageRight());
+		//sprintf(display_bottom, "%d,%d,%d,%d,D%1.1f",tempValues[5],tempValues[6],tempValues[7],getAmbient(), getDistance());
 
-		//sprintf(display_bottom, "%d,%d,%d,%d,D:%1.1f",tempValues[5],tempValues[6],tempValues[7],getAmbient(), getPingDistance());
-		//getPingDistance(331 + 0.6 * getAmbient());
-		sprintf(display_bottom, "%1.1f", 1.1);
+		sprintf(display_bottom, "%10.2f", getDistance());
 
 		LCDPrint(display_top, display_bottom);
 
@@ -237,11 +244,11 @@ void TaskWheels(void *pvParamaters) {
 	TickType_t xLastWakeTime;
 	xLastWakeTime = xTaskGetTickCount();
 
-	int period = 20;
+	int period = 50;
 
 	while (1) {
 		if (currentState == ATTACHED) {
-			//TODO:
+			//updateWheelsAttachedMode();
 		} else if (currentState == MOVING_FORWARDS) {
 			moveWheels(FORWARDS, 1);
 		} else if (currentState == MOVING_BACKWARDS) {

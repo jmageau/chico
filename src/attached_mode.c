@@ -44,15 +44,18 @@ bool readHeat() {
 
 void trackHeat() {
 	int leftTemp = getAverageLeft();
+	int middleTemp = getAverageMiddle();
 	int rightTemp = getAverageRight();
 
-	if (leftTemp > rightTemp && (leftTemp - rightTemp) > 2) {
-		moveCenterServo(COUNTERCLOCKWISE, TRACK_SPEED * (leftTemp / rightTemp));
-		lastTrackedDirection = COUNTERCLOCKWISE;
-	} else if (rightTemp > leftTemp && (rightTemp - leftTemp) > 2) {
-		moveCenterServo(CLOCKWISE, TRACK_SPEED * (rightTemp / leftTemp));
-		lastTrackedDirection = CLOCKWISE;
-	} else {
+	if (leftTemp > middleTemp || rightTemp > middleTemp){
+		if(leftTemp > rightTemp) {
+			moveCenterServo(COUNTERCLOCKWISE, TRACK_SPEED * (leftTemp / rightTemp));
+			lastTrackedDirection = COUNTERCLOCKWISE;
+		} else {
+			moveCenterServo(CLOCKWISE, TRACK_SPEED * (rightTemp / leftTemp));
+			lastTrackedDirection = CLOCKWISE;
+		}
+	} else{
 		moveCenterServo(STOP, 0);
 	}
 }
@@ -63,18 +66,14 @@ void updateCenterServoAttachedMode() {
 		targetFound = true;
 	} else {
 		targetFound = false;
-		int currentPulseWidth = motion_servo_get_pulse_width(
-				MOTION_SERVO_CENTER);
+		int currentPulseWidth = motion_servo_get_pulse_width(MOTION_SERVO_CENTER);
 
 		if (currentPulseWidth <= MIN_PULSE_WIDTH_TICKS + 100) {
-			currentCenterServoDirection = COUNTERCLOCKWISE;
 			lastTrackedDirection = COUNTERCLOCKWISE;
 		} else if (currentPulseWidth >= MAX_PULSE_WIDTH_TICKS - 100) {
-			currentCenterServoDirection = CLOCKWISE;
 			lastTrackedDirection = CLOCKWISE;
-		} else {
-			currentCenterServoDirection = lastTrackedDirection;
 		}
+		currentCenterServoDirection = lastTrackedDirection;
 		moveCenterServo(currentCenterServoDirection, SCAN_SPEED);
 	}
 }
@@ -82,13 +81,17 @@ void updateCenterServoAttachedMode() {
 void updateWheelsAttachedMode() {
 	if (targetFound){
 		int currentPulseWidth = motion_servo_get_pulse_width(MOTION_SERVO_CENTER);
-		if (abs(currentPulseWidth - INITIAL_PULSE_WIDTH_TICKS) <= 100 ) {
+		int centerServoPosition = currentPulseWidth - INITIAL_PULSE_WIDTH_TICKS;
+		if (abs(centerServoPosition) <= 100 ) {
 			//TODO: forwards
 		} else {
-			moveWheels(currentCenterServoDirection, 0.1f);
+			if(centerServoPosition > 0) {
+				moveWheels(COUNTERCLOCKWISE, 0.1f);
+			} else {
+				moveWheels(CLOCKWISE, 0.1f);
+			}
 		}
 	} else {
 		moveWheels(STOP, 1);
 	}
 }
-

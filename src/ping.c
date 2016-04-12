@@ -3,17 +3,22 @@
 
 #include "custom_timer.h"
 #include "ping.h"
+#include <stdbool.h>
+#include <util/delay.h>
+
+#include "led.h"
 
 #define CHIRP_TIME_MICROSECONDS		10
 #define LISTEN_TIME_MICROSECONDS	20000
 
-double distance = 0;
+double distance;
 
 int ping();
-void pulse_out(int duration);
-int pulse_in();
+void pulse_out(unsigned long duration);
+double pulse_in(unsigned long maxDelay);
 
 void initPing() {
+	distance = 0;
 	DDRA |= BIT0;  //Initialize as ouput
 	PORTA &= ~BIT0; //Zero out value
 }
@@ -28,45 +33,53 @@ int ping() {
 
 //speedSound determined based on ambient temp (v = 331cm/s + 0.6m/s/C * T`)
 void readDistance(double speedSound) {
-	double echoTime = ping() / 1000000; //convert echo time to seconds
-	distance = speedSound * echoTime; //Both in seconds
+	//double echoTime = 100000 / 1000000; //convert echo time to seconds
+	//distance = 331 *ping()/(double) 1000000; //Both in seconds
+	distance = ping()/29/2; //Both in seconds
+
 }
 
-double getDistance(){
+double getDistance() {
 	return distance;
 }
 
 //send a pulse (high value) for a given amount of time
 void pulse_out(unsigned long duration) {
+	_delay_us(2);
 	PORTA |= BIT0; //high
-	double tStart = time_in_microseconds();
-	while (time_in_microseconds() - tStart <= duration);
+	_delay_us(5);
 	PORTA &= ~BIT0; //low
 }
 
 //reads how long the pin reads the given value
 
-int pulse_in(unsigned long maxDelay){
+double pulse_in(unsigned long maxDelay) {
 
 	DDRA &= ~BIT0; //Set to input mode
 
 	unsigned long tStart = time_in_microseconds(); //start timer to test for timeout
 
 	/* Wait for pulse begin */
-	while (PORTA << 0 != 1){
-		if (time_in_microseconds() - tStart >= maxDelay){
-			return -1; //Error, no signal!
+//	while (PORTA << 0 != 1){
+//		if (time_in_microseconds() - tStart >= maxDelay){
+//			setColor(true,false,false);
+//			return 1000; //Error, no signal!
+//		}
+//	}
+	unsigned long count = 0;
+
+	while (!bit_is_set(PINA, PA0)) {
+		_delay_us(5);
+		count++;
+		if (count > 200000) {
+			return -1;
 		}
 	}
 
 	tStart = time_in_microseconds(); //reset time, we only want to measure the high signal
 
 	/* Wait for pulse end */
-	while (PORTA << 0 == 1){
-		if (time_in_microseconds() - tStart >= maxDelay){
-			return -2; //Error, no echo!
-		}
-	}
+	loop_until_bit_is_clear(PINA, PA0);
 
 	return time_in_microseconds() - tStart;
 }

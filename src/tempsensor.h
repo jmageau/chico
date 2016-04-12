@@ -40,11 +40,15 @@ uint8_t *getTemperatureValues();
 /*! \brief Returns the average temperature of the 8 sensors.
  */
 int getAmbient();
-/*! \brief Returns average temperature of the left sensors.
+/*! \brief Returns average temperature of the 3 left sensors.
  */
 int getAverageLeft();
-/*! \brief Returns average temperature of the right sensors.
+/*! \brief Returns average temperature of the 2 middle sensors.
+ */
+int getAverageMiddle();
+/*! \brief Returns average temperature of the 3 right sensors.
  */
 int getAverageRight();
+
 
 #endif

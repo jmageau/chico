@@ -4,6 +4,6 @@
 void initPing();
 void readDistance(double speedSound);
 double getDistance();
-
+int testgetDistance();
 
 #endif
