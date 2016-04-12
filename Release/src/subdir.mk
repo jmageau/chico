@@ -6,10 +6,12 @@
 C_SRCS += \
 ../src/attached_mode.c \
 ../src/behaviour.c \
+../src/custom_timer.c \
 ../src/lcd.c \
 ../src/led.c \
 ../src/main.c \
 ../src/motion.c \
+../src/ping.c \
 ../src/servo.c \
 ../src/tempsensor.c \
 ../src/timer.c \
@@ -19,10 +21,12 @@ C_SRCS += \
 OBJS += \
 ./src/attached_mode.o \
 ./src/behaviour.o \
+./src/custom_timer.o \
 ./src/lcd.o \
 ./src/led.o \
 ./src/main.o \
 ./src/motion.o \
+./src/ping.o \
 ./src/servo.o \
 ./src/tempsensor.o \
 ./src/timer.o \
@@ -32,10 +36,12 @@ OBJS += \
 C_DEPS += \
 ./src/attached_mode.d \
 ./src/behaviour.d \
+./src/custom_timer.d \
 ./src/lcd.d \
 ./src/led.d \
 ./src/main.d \
 ./src/motion.d \
+./src/ping.d \
 ./src/servo.d \
 ./src/tempsensor.d \
 ./src/timer.d \

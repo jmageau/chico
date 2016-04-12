@@ -1,2 +1,6 @@
 eclipse.preferences.version=1
+encoding//src/custom_timer.c=UTF-8
+encoding//src/custom_timer.h=UTF-8
+encoding//src/ping.c=UTF-8
+encoding//src/ping.h=UTF-8
 encoding//src/tempsensor.c=UTF-8

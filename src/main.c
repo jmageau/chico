@@ -63,7 +63,6 @@ void createTasks() {
 	xTaskCreate(TaskWIFI, (const portCHAR *)"", 636, NULL, 1, NULL);
 	xTaskCreate(TaskWheels, (const portCHAR *)"", 128, NULL, 3, NULL);
 	//wheels
-	//web/wifi
 	//sonar
 }
 
