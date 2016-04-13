@@ -30,6 +30,9 @@
 
 int currentState = ATTACHED;
 
+char clientRequest = ' ';
+
+
 void initModules();
 void TaskCenterServo(void *pvParameters);
 void TaskThermoSensor(void *pvParameters);
@@ -58,14 +61,14 @@ int main(void) {
 }
 
 void createTasks() {
-	xTaskCreate(TaskCenterServo, (const portCHAR *)"", 120, NULL, 3, NULL);
-	xTaskCreate(TaskThermoSensor, (const portCHAR *)"", 120, NULL, 3, NULL);
-	xTaskCreate(TaskWheelSpeed, (const portCHAR *)"", 128, NULL, 3, NULL);
-	xTaskCreate(TaskLCD, (const portCHAR *)"", 256, NULL, 3, NULL);
-	xTaskCreate(TaskLED, (const portCHAR *)"", 128, NULL, 3, NULL);
-	//xTaskCreate(TaskWIFI, (const portCHAR *)"", 128, NULL, 1, NULL);
-	xTaskCreate(TaskWheels, (const portCHAR *)"", 128, NULL, 1, NULL);
-	xTaskCreate(TaskSonar, (const portCHAR *)"", 120, NULL, 3, NULL);
+	xTaskCreate(TaskCenterServo, (const portCHAR *)"", 100, NULL, 3, NULL);
+	//xTaskCreate(TaskThermoSensor, (const portCHAR *)"", 100, NULL, 3, NULL);
+	//xTaskCreate(TaskWheelSpeed, (const portCHAR *)"", 128, NULL, 3, NULL);
+	xTaskCreate(TaskLCD, (const portCHAR *)"", 220, NULL, 3, NULL);
+	xTaskCreate(TaskLED, (const portCHAR *)"", 100, NULL, 3, NULL);
+	xTaskCreate(TaskWIFI, (const portCHAR *)"", 800, NULL, 3, NULL);
+	//xTaskCreate(TaskWheels, (const portCHAR *)"", 128, NULL, 1, NULL);
+	//xTaskCreate(TaskSonar, (const portCHAR *)"", 120, NULL, 3, NULL);
 
 }
 
@@ -83,26 +86,26 @@ void initModules() {
 }
 
 void initWifi() {
-	taskENABLE_INTERRUPTS()
+	portENABLE_INTERRUPTS()
 	;
 	int terminalUSART = usartOpen(USART_0, BAUD_RATE_115200,
 	portSERIAL_BUFFER_TX, portSERIAL_BUFFER_RX);
 	int wifiUSART = usartOpen(USART_2, BAUD_RATE_9600, portSERIAL_BUFFER_TX,
 	portSERIAL_BUFFER_RX);
 
-//	gs_initialize_module(wifiUSART, BAUD_RATE_9600, terminalUSART,
-//			BAUD_RATE_115200);
-//	gs_set_wireless_ssid("RICO");
-//	gs_activate_wireless_connection();
+	gs_initialize_module(USART_2, BAUD_RATE_9600, USART_0, BAUD_RATE_115200);
+	gs_set_wireless_ssid("RICO");
+	gs_activate_wireless_connection();
 
 	//set up web page
-//	configure_web_page("Chico", "Control", HTML_RADIO_BUTTON);
-//	add_element_choice('0', "FORWARDS");
-//	add_element_choice('1', "BACKWARDS");
-//	add_element_choice('2', "CLOCKWISE");
-//	add_element_choice('3', "COUNTERCLOCKWISE");
-//	add_element_choice('4', "ATTACHED");
-//	start_web_server();
+	configure_web_page("Chico", "Control", HTML_DROPDOWN_LIST);
+	add_element_choice('0', "FORWARDS");
+	add_element_choice('1', "BACKWARDS");
+	add_element_choice('2', "CLOCKWISE");
+	add_element_choice('3', "COUNTERCLOCKWISE");
+	add_element_choice('4', "ATTACHED");
+	start_web_server();
+	setColor(true, false, false);
 }
 
 void TaskCenterServo(void *pvParameters) {
@@ -114,7 +117,9 @@ void TaskCenterServo(void *pvParameters) {
 	moveCenterServo(MIDDLE, 0);
 
 	while (1) {
-		if (currentState == ATTACHED){
+		readTemperatureValues();
+
+		if (currentState == ATTACHED) {
 			updateCenterServoAttachedMode();
 		} else {
 			moveCenterServo(SCAN, SCAN_SPEED);
@@ -123,6 +128,7 @@ void TaskCenterServo(void *pvParameters) {
 	}
 }
 
+//DEFUNCT
 void TaskThermoSensor(void *pvParameters) {
 	TickType_t xLastWakeTime;
 	xLastWakeTime = xTaskGetTickCount();
@@ -165,7 +171,7 @@ void TaskLCD(void *pvParameters) {
 	TickType_t xLastWakeTime;
 	xLastWakeTime = xTaskGetTickCount();
 
-	int period = 100;
+	int period = 200;
 
 	while (1) {
 		char display_top[LCD_LINE_SIZE] = "";
@@ -173,11 +179,14 @@ void TaskLCD(void *pvParameters) {
 
 		uint8_t *tempValues = getTemperatureValues();
 
-		sprintf(display_top, "%d,%d,%d,%d,%d",tempValues[0],tempValues[1],tempValues[2],tempValues[3],tempValues[4]);
+		sprintf(display_top, "%d,%d,%d,%d,%d", tempValues[0], tempValues[1],
+				tempValues[2], tempValues[3], tempValues[4]);
 
-		//sprintf(display_bottom, "%d,%d,%d,%d,D%1.1f",tempValues[5],tempValues[6],tempValues[7],getAmbient(), getDistance());
+		sprintf(display_bottom, "%d,%d,%d,%dD%3.0f", tempValues[5],
+				tempValues[6], tempValues[7], getAmbient(), getDistance());
 
-		sprintf(display_bottom, "%10.2f", getDistance());
+
+		//sprintf(display_bottom, "%d", currentState);
 
 		LCDPrint(display_top, display_bottom);
 
@@ -190,21 +199,21 @@ void TaskLED(void *pvParameters) {
 	TickType_t xLastWakeTime;
 	xLastWakeTime = xTaskGetTickCount();
 
-	int period = 50;
+	int period = 500;
 
 	while (1) {
-		if (currentState == ATTACHED){
-			setColor(false, false, false);
-		} else if (currentState == MOVING_FORWARDS){
-			setColor(false, true, false);
-		} else if (currentState == MOVING_BACKWARDS){
-			setColor(true, false, false);
-		} else if (currentState == MOVING_CLOCKWISE){
-			setColor(false, false, true);
-		} else if (currentState == MOVING_COUNTERCLOCKWISE){
-			setColor(false, false, true);
-		} else if (currentState == STOPPED){
-			setColor(true, true, true);
+		if (currentState == ATTACHED) {
+			setColor(false, false, false); //off
+		} else if (currentState == MOVING_FORWARDS) {
+			setColor(false, true, false); // Green
+		} else if (currentState == MOVING_BACKWARDS) {
+			setColor(true, false, false); // Red
+		} else if (currentState == MOVING_CLOCKWISE) {
+			setColor(false, false, true); // Blue
+		} else if (currentState == MOVING_COUNTERCLOCKWISE) {
+			setColor(false, false, true); // Blue
+		} else if (currentState == STOPPED) {
+			setColor(true, true, true);  //White
 		} else {
 			setColor(false, false, false);
 		}
@@ -220,20 +229,24 @@ void TaskWIFI(void *pvParameters) {
 	int period = 500;
 
 	vTaskDelay(6000 / portTICK_PERIOD_MS);
+	setColor(true, false, false);
 	while (1) {
-		process_client_request();
-		char clientRequest = get_next_client_response();
+		clientRequest = process_client_request();
 
-		if (clientRequest == '0'){
-			currentState = MOVING_FORWARDS;
-		} else if (clientRequest == '1') {
-			currentState = MOVING_BACKWARDS;
-		} else if (clientRequest == '2') {
-			currentState = MOVING_CLOCKWISE;
-		} else if (clientRequest == '3') {
-			currentState = MOVING_COUNTERCLOCKWISE;
-		} else if (clientRequest == '4') {
-			currentState = ATTACHED;
+		if (clientRequest != ' ' && clientRequest != '\0') {
+			if (clientRequest == '0') {
+				currentState = MOVING_FORWARDS;
+			} else if (clientRequest == '1') {
+				currentState = MOVING_BACKWARDS;
+			} else if (clientRequest == '2') {
+				currentState = MOVING_CLOCKWISE;
+			} else if (clientRequest == '3') {
+				currentState = MOVING_COUNTERCLOCKWISE;
+			} else if (clientRequest == '4') {
+				currentState = ATTACHED;
+			} else {
+				setColor(true,true,true);
+			}
 		}
 
 		vTaskDelay(period / portTICK_PERIOD_MS);

@@ -672,7 +672,7 @@ void add_element_choice(char choice_identifier, char *element_label);
 
 void start_web_server(void);
 
-void process_client_request(void);
+char process_client_request(void);
 
 char get_next_client_response(void);
 

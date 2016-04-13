@@ -53,7 +53,7 @@ c:/arduino/hardware/tools/avr/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr6\
 c:/arduino/hardware/tools/avr/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr6\libm.a(gesf2.o)
                               ./src/servo.o (__gtsf2)
 c:/arduino/hardware/tools/avr/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr6\libm.a(mulsf3.o)
-                              ./src/servo.o (__mulsf3)
+                              ./src/ping.o (__mulsf3)
 c:/arduino/hardware/tools/avr/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr6\libm.a(mulsf3x.o)
                               c:/arduino/hardware/tools/avr/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr6\libm.a(mulsf3.o) (__mulsf3x)
 c:/arduino/hardware/tools/avr/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr6\libprintf_flt.a(vfprintf_flt.o)
@@ -270,7 +270,7 @@ LOAD c:/arduino/hardware/tools/avr/bin/../lib/gcc/avr/4.3.2/avr6\libgcc.a
 .rela.plt
  *(.rela.plt)
 
-.text           0x00000000     0xb04c
+.text           0x00000000     0xb11c
  *(.vectors)
  .vectors       0x00000000       0xe4 c:/arduino/hardware/tools/avr/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr6/crtm2560.o
                 0x00000000                __vectors
@@ -538,575 +538,575 @@ LOAD c:/arduino/hardware/tools/avr/bin/../lib/gcc/avr/4.3.2/avr6\libgcc.a
  .text.TaskWheels
                 0x00001a18       0x88 ./src/main.o
                 0x00001a18                TaskWheels
+ .text.TaskLED  0x00001aa0       0x70 ./src/main.o
+                0x00001aa0                TaskLED
  .text.TaskWIFI
-                0x00001aa0       0x84 ./src/main.o
-                0x00001aa0                TaskWIFI
- .text.TaskLED  0x00001b24       0x70 ./src/main.o
-                0x00001b24                TaskLED
- .text.TaskLCD  0x00001b94      0x154 ./src/main.o
-                0x00001b94                TaskLCD
+                0x00001b10       0xa0 ./src/main.o
+                0x00001b10                TaskWIFI
+ .text.TaskLCD  0x00001bb0      0x154 ./src/main.o
+                0x00001bb0                TaskLCD
  .text.TaskWheelSpeed
-                0x00001ce8       0x12 ./src/main.o
-                0x00001ce8                TaskWheelSpeed
+                0x00001d04       0x12 ./src/main.o
+                0x00001d04                TaskWheelSpeed
  .text.TaskSonar
-                0x00001cfa       0x1a ./src/main.o
-                0x00001cfa                TaskSonar
+                0x00001d16       0x16 ./src/main.o
+                0x00001d16                TaskSonar
  .text.TaskThermoSensor
-                0x00001d14       0x12 ./src/main.o
-                0x00001d14                TaskThermoSensor
+                0x00001d2c       0x12 ./src/main.o
+                0x00001d2c                TaskThermoSensor
  .text.TaskCenterServo
-                0x00001d26       0x38 ./src/main.o
-                0x00001d26                TaskCenterServo
+                0x00001d3e       0x3c ./src/main.o
+                0x00001d3e                TaskCenterServo
  .text.initWifi
-                0x00001d5e       0x38 ./src/main.o
-                0x00001d5e                initWifi
+                0x00001d7a       0xbc ./src/main.o
+                0x00001d7a                initWifi
  .text.initModules
-                0x00001d96       0x22 ./src/main.o
-                0x00001d96                initModules
+                0x00001e36       0x22 ./src/main.o
+                0x00001e36                initModules
  .text.createTasks
-                0x00001db8       0xbe ./src/main.o
-                0x00001db8                createTasks
- .text.main     0x00001e76       0x22 ./src/main.o
-                0x00001e76                main
+                0x00001e58       0x84 ./src/main.o
+                0x00001e58                createTasks
+ .text.main     0x00001edc       0x22 ./src/main.o
+                0x00001edc                main
  .text.motion_servo_start
-                0x00001e98       0xc4 ./src/motion.o
-                0x00001e98                motion_servo_start
+                0x00001efe       0xc4 ./src/motion.o
+                0x00001efe                motion_servo_start
  .text.motion_servo_stop
-                0x00001f5c       0x9e ./src/motion.o
-                0x00001f5c                motion_servo_stop
+                0x00001fc2       0x9e ./src/motion.o
+                0x00001fc2                motion_servo_stop
  .text.motion_servo_set_pulse_width
-                0x00001ffa       0x36 ./src/motion.o
-                0x00001ffa                motion_servo_set_pulse_width
+                0x00002060       0x36 ./src/motion.o
+                0x00002060                motion_servo_set_pulse_width
  .text.motion_servo_get_pulse_width
-                0x00002030       0x2a ./src/motion.o
-                0x00002030                motion_servo_get_pulse_width
+                0x00002096       0x2a ./src/motion.o
+                0x00002096                motion_servo_get_pulse_width
  .text.motion_enc_read
-                0x0000205a       0x5a ./src/motion.o
-                0x0000205a                motion_enc_read
+                0x000020c0       0x5a ./src/motion.o
+                0x000020c0                motion_enc_read
  .text.__vector_45
-                0x000020b4       0x4a ./src/motion.o
-                0x000020b4                __vector_45
+                0x0000211a       0x4a ./src/motion.o
+                0x0000211a                __vector_45
  .text.__vector_50
-                0x000020fe       0x4a ./src/motion.o
-                0x000020fe                __vector_50
+                0x00002164       0x4a ./src/motion.o
+                0x00002164                __vector_50
  .text.__vector_41
-                0x00002148      0x116 ./src/motion.o
-                0x00002148                __vector_41
+                0x000021ae      0x116 ./src/motion.o
+                0x000021ae                __vector_41
  .text.__vector_46
-                0x0000225e      0x11c ./src/motion.o
-                0x0000225e                __vector_46
+                0x000022c4      0x11c ./src/motion.o
+                0x000022c4                __vector_46
  .text.motion_init
-                0x0000237a      0x13e ./src/motion.o
-                0x0000237a                motion_init
+                0x000023e0      0x13e ./src/motion.o
+                0x000023e0                motion_init
  .text.initPing
-                0x000024b8       0x1e ./src/ping.o
-                0x000024b8                initPing
+                0x0000251e       0x1e ./src/ping.o
+                0x0000251e                initPing
  .text.getDistance
-                0x000024d6       0x16 ./src/ping.o
-                0x000024d6                getDistance
+                0x0000253c       0x16 ./src/ping.o
+                0x0000253c                getDistance
  .text.pulse_out
-                0x000024ec       0x12 ./src/ping.o
-                0x000024ec                pulse_out
+                0x00002552       0x16 ./src/ping.o
+                0x00002552                pulse_out
  .text.pulse_in
-                0x000024fe       0x72 ./src/ping.o
-                0x000024fe                pulse_in
- .text.ping     0x00002570       0x28 ./src/ping.o
-                0x00002570                ping
+                0x00002568       0x70 ./src/ping.o
+                0x00002568                pulse_in
+ .text.ping     0x000025d8       0x28 ./src/ping.o
+                0x000025d8                ping
  .text.readDistance
-                0x00002598       0x2a ./src/ping.o
-                0x00002598                readDistance
+                0x00002600       0x3e ./src/ping.o
+                0x00002600                readDistance
  .text.getPulseWidth
-                0x000025c2       0x4c ./src/servo.o
-                0x000025c2                getPulseWidth
+                0x0000263e       0x4c ./src/servo.o
+                0x0000263e                getPulseWidth
  .text.getAverageSpeed
-                0x0000260e       0x32 ./src/servo.o
-                0x0000260e                getAverageSpeed
+                0x0000268a       0x32 ./src/servo.o
+                0x0000268a                getAverageSpeed
  .text.getTotalDistance
-                0x00002640       0x32 ./src/servo.o
-                0x00002640                getTotalDistance
+                0x000026bc       0x32 ./src/servo.o
+                0x000026bc                getTotalDistance
  .text.getSpeedById
-                0x00002672       0xb2 ./src/servo.o
-                0x00002672                getSpeedById
+                0x000026ee       0xb2 ./src/servo.o
+                0x000026ee                getSpeedById
  .text.getSpeed
-                0x00002724       0x82 ./src/servo.o
-                0x00002724                getSpeed
+                0x000027a0       0x82 ./src/servo.o
+                0x000027a0                getSpeed
  .text.moveCenterServo
-                0x000027a6       0xa2 ./src/servo.o
-                0x000027a6                moveCenterServo
+                0x00002822       0xdc ./src/servo.o
+                0x00002822                moveCenterServo
  .text.moveWheels
-                0x00002848      0x228 ./src/servo.o
-                0x00002848                moveWheels
+                0x000028fe      0x228 ./src/servo.o
+                0x000028fe                moveWheels
  .text.servoInit
-                0x00002a70       0x6e ./src/servo.o
-                0x00002a70                servoInit
+                0x00002b26       0x7a ./src/servo.o
+                0x00002b26                servoInit
  .text.getAmbient
-                0x00002ade        0x8 ./src/tempsensor.o
-                0x00002ade                getAmbient
+                0x00002ba0        0x8 ./src/tempsensor.o
+                0x00002ba0                getAmbient
  .text.getAverageLeft
-                0x00002ae6       0x22 ./src/tempsensor.o
-                0x00002ae6                getAverageLeft
+                0x00002ba8       0x22 ./src/tempsensor.o
+                0x00002ba8                getAverageLeft
  .text.getAverageMiddle
-                0x00002b08       0x16 ./src/tempsensor.o
-                0x00002b08                getAverageMiddle
+                0x00002bca       0x16 ./src/tempsensor.o
+                0x00002bca                getAverageMiddle
  .text.getAverageRight
-                0x00002b1e       0x22 ./src/tempsensor.o
-                0x00002b1e                getAverageRight
+                0x00002be0       0x22 ./src/tempsensor.o
+                0x00002be0                getAverageRight
  .text.readTemperatureValues
-                0x00002b40       0x64 ./src/tempsensor.o
-                0x00002b40                readTemperatureValues
+                0x00002c02       0x64 ./src/tempsensor.o
+                0x00002c02                readTemperatureValues
  .text.getTemperatureValues
-                0x00002ba4       0x20 ./src/tempsensor.o
-                0x00002ba4                getTemperatureValues
+                0x00002c66       0x20 ./src/tempsensor.o
+                0x00002c66                getTemperatureValues
  .text.initTPA81
-                0x00002bc4        0x8 ./src/tempsensor.o
-                0x00002bc4                initTPA81
+                0x00002c86        0x8 ./src/tempsensor.o
+                0x00002c86                initTPA81
  .text.initTimer
-                0x00002bcc       0x3e ./src/timer.o
-                0x00002bcc                initTimer
- .text.getTime  0x00002c0a        0xa ./src/timer.o
-                0x00002c0a                getTime
+                0x00002c8e       0x3e ./src/timer.o
+                0x00002c8e                initTimer
+ .text.getTime  0x00002ccc        0xa ./src/timer.o
+                0x00002ccc                getTime
  .text.isTimerRepeatMultiple
-                0x00002c14       0x24 ./src/timer.o
-                0x00002c14                isTimerRepeatMultiple
+                0x00002cd6       0x24 ./src/timer.o
+                0x00002cd6                isTimerRepeatMultiple
  .text.__vector_35
-                0x00002c38       0x74 ./src/timer.o
-                0x00002c38                __vector_35
+                0x00002cfa       0x74 ./src/timer.o
+                0x00002cfa                __vector_35
  .text.setDefaultUSART
-                0x00002cac        0xa ./src/usart_serial.o
-                0x00002cac                setDefaultUSART
+                0x00002d6e        0xa ./src/usart_serial.o
+                0x00002d6e                setDefaultUSART
  .text.usartWrite
-                0x00002cb6       0x56 ./src/usart_serial.o
-                0x00002cb6                usartWrite
+                0x00002d78       0x56 ./src/usart_serial.o
+                0x00002d78                usartWrite
  .text.usartRead
-                0x00002d0c       0x60 ./src/usart_serial.o
-                0x00002d0c                usartRead
+                0x00002dce       0x60 ./src/usart_serial.o
+                0x00002dce                usartRead
  .text.usart_xflushRx
-                0x00002d6c       0x9c ./src/usart_serial.o
-                0x00002d6c                usart_xflushRx
+                0x00002e2e       0x9c ./src/usart_serial.o
+                0x00002e2e                usart_xflushRx
  .text.usart_AvailableCharRx
-                0x00002e08       0x32 ./src/usart_serial.o
-                0x00002e08                usart_AvailableCharRx
+                0x00002eca       0x32 ./src/usart_serial.o
+                0x00002eca                usart_AvailableCharRx
  .text.usart_xgetChar
-                0x00002e3a       0x9e ./src/usart_serial.o
-                0x00002e3a                usart_xgetChar
+                0x00002efc       0x9e ./src/usart_serial.o
+                0x00002efc                usart_xgetChar
  .text.usart_xputChar
-                0x00002ed8      0x136 ./src/usart_serial.o
-                0x00002ed8                usart_xputChar
+                0x00002f9a      0x136 ./src/usart_serial.o
+                0x00002f9a                usart_xputChar
  .text.usartCheckRxComplete
-                0x0000300e       0x22 ./src/usart_serial.o
-                0x0000300e                usartCheckRxComplete
+                0x000030d0       0x22 ./src/usart_serial.o
+                0x000030d0                usartCheckRxComplete
  .text.usartCheckTxReady
-                0x00003030       0x22 ./src/usart_serial.o
-                0x00003030                usartCheckTxReady
+                0x000030f2       0x22 ./src/usart_serial.o
+                0x000030f2                usartCheckTxReady
  .text.xmitInterrupt_On
-                0x00003052       0x2a ./src/usart_serial.o
-                0x00003052                xmitInterrupt_On
+                0x00003114       0x2a ./src/usart_serial.o
+                0x00003114                xmitInterrupt_On
  .text.xmitInterrupt_Off
-                0x0000307c       0x2a ./src/usart_serial.o
-                0x0000307c                xmitInterrupt_Off
+                0x0000313e       0x2a ./src/usart_serial.o
+                0x0000313e                xmitInterrupt_Off
  .text.usart_rx_isr
-                0x000030a6       0xe6 ./src/usart_serial.o
-                0x000030a6                usart_rx_isr
+                0x00003168       0xe6 ./src/usart_serial.o
+                0x00003168                usart_rx_isr
  .text.__vector_54
-                0x0000318c       0x54 ./src/usart_serial.o
-                0x0000318c                __vector_54
+                0x0000324e       0x54 ./src/usart_serial.o
+                0x0000324e                __vector_54
  .text.__vector_51
-                0x000031e0       0x54 ./src/usart_serial.o
-                0x000031e0                __vector_51
+                0x000032a2       0x54 ./src/usart_serial.o
+                0x000032a2                __vector_51
  .text.__vector_36
-                0x00003234       0x54 ./src/usart_serial.o
-                0x00003234                __vector_36
+                0x000032f6       0x54 ./src/usart_serial.o
+                0x000032f6                __vector_36
  .text.__vector_25
-                0x00003288       0x54 ./src/usart_serial.o
-                0x00003288                __vector_25
+                0x0000334a       0x54 ./src/usart_serial.o
+                0x0000334a                __vector_25
  .text.usart_tx_isr
-                0x000032dc       0xd6 ./src/usart_serial.o
-                0x000032dc                usart_tx_isr
+                0x0000339e       0xd6 ./src/usart_serial.o
+                0x0000339e                usart_tx_isr
  .text.__vector_55
-                0x000033b2       0x54 ./src/usart_serial.o
-                0x000033b2                __vector_55
+                0x00003474       0x54 ./src/usart_serial.o
+                0x00003474                __vector_55
  .text.__vector_52
-                0x00003406       0x54 ./src/usart_serial.o
-                0x00003406                __vector_52
+                0x000034c8       0x54 ./src/usart_serial.o
+                0x000034c8                __vector_52
  .text.__vector_37
-                0x0000345a       0x54 ./src/usart_serial.o
-                0x0000345a                __vector_37
+                0x0000351c       0x54 ./src/usart_serial.o
+                0x0000351c                __vector_37
  .text.__vector_26
-                0x000034ae       0x54 ./src/usart_serial.o
-                0x000034ae                __vector_26
+                0x00003570       0x54 ./src/usart_serial.o
+                0x00003570                __vector_26
  .text.usart_xfprint_P
-                0x00003502       0x4a ./src/usart_serial.o
-                0x00003502                usart_xfprint_P
+                0x000035c4       0x4a ./src/usart_serial.o
+                0x000035c4                usart_xfprint_P
  .text.usart_xprint_P
-                0x0000354c       0x10 ./src/usart_serial.o
-                0x0000354c                usart_xprint_P
+                0x0000360e       0x10 ./src/usart_serial.o
+                0x0000360e                usart_xprint_P
  .text.usart_xfprint
-                0x0000355c       0x4c ./src/usart_serial.o
-                0x0000355c                usart_xfprint
+                0x0000361e       0x4c ./src/usart_serial.o
+                0x0000361e                usart_xfprint
  .text.usart_xfprintf_P_arg
-                0x000035a8       0xa2 ./src/usart_serial.o
-                0x000035a8                usart_xfprintf_P_arg
+                0x0000366a       0xa2 ./src/usart_serial.o
+                0x0000366a                usart_xfprintf_P_arg
  .text.usart_xfprintf_arg
-                0x0000364a       0xa2 ./src/usart_serial.o
-                0x0000364a                usart_xfprintf_arg
+                0x0000370c       0xa2 ./src/usart_serial.o
+                0x0000370c                usart_xfprintf_arg
  .text.usart_xprint
-                0x000036ec       0x10 ./src/usart_serial.o
-                0x000036ec                usart_xprint
+                0x000037ae       0x10 ./src/usart_serial.o
+                0x000037ae                usart_xprint
  .text.usart_fprint_P
-                0x000036fc       0x8e ./src/usart_serial.o
-                0x000036fc                usart_fprint_P
+                0x000037be       0x8e ./src/usart_serial.o
+                0x000037be                usart_fprint_P
  .text.usart_print_P
-                0x0000378a       0x10 ./src/usart_serial.o
-                0x0000378a                usart_print_P
+                0x0000384c       0x10 ./src/usart_serial.o
+                0x0000384c                usart_print_P
  .text.usart_fprint
-                0x0000379a       0x8e ./src/usart_serial.o
-                0x0000379a                usart_fprint
+                0x0000385c       0x8e ./src/usart_serial.o
+                0x0000385c                usart_fprint
  .text.usart_fprintf_P_arg
-                0x00003828       0x72 ./src/usart_serial.o
-                0x00003828                usart_fprintf_P_arg
+                0x000038ea       0x72 ./src/usart_serial.o
+                0x000038ea                usart_fprintf_P_arg
  .text.usart_fprintf_arg
-                0x0000389a       0x72 ./src/usart_serial.o
-                0x0000389a                usart_fprintf_arg
+                0x0000395c       0x72 ./src/usart_serial.o
+                0x0000395c                usart_fprintf_arg
  .text.usart_print
-                0x0000390c       0x10 ./src/usart_serial.o
-                0x0000390c                usart_print
+                0x000039ce       0x10 ./src/usart_serial.o
+                0x000039ce                usart_print
  .text.usart_xfprintf_P
-                0x0000391c       0x28 ./src/usart_serial.o
-                0x0000391c                usart_xfprintf_P
+                0x000039de       0x28 ./src/usart_serial.o
+                0x000039de                usart_xfprintf_P
  .text.usart_xfprintf
-                0x00003944       0x28 ./src/usart_serial.o
-                0x00003944                usart_xfprintf
+                0x00003a06       0x28 ./src/usart_serial.o
+                0x00003a06                usart_xfprintf
  .text.usart_xprintf_P
-                0x0000396c       0x2a ./src/usart_serial.o
-                0x0000396c                usart_xprintf_P
+                0x00003a2e       0x2a ./src/usart_serial.o
+                0x00003a2e                usart_xprintf_P
  .text.usart_xprintf
-                0x00003996       0x2a ./src/usart_serial.o
-                0x00003996                usart_xprintf
+                0x00003a58       0x2a ./src/usart_serial.o
+                0x00003a58                usart_xprintf
  .text.usart_fprintf_P
-                0x000039c0       0x28 ./src/usart_serial.o
-                0x000039c0                usart_fprintf_P
+                0x00003a82       0x28 ./src/usart_serial.o
+                0x00003a82                usart_fprintf_P
  .text.usart_fprintf
-                0x000039e8       0x28 ./src/usart_serial.o
-                0x000039e8                usart_fprintf
+                0x00003aaa       0x28 ./src/usart_serial.o
+                0x00003aaa                usart_fprintf
  .text.usart_printf_P
-                0x00003a10       0x2a ./src/usart_serial.o
-                0x00003a10                usart_printf_P
+                0x00003ad2       0x2a ./src/usart_serial.o
+                0x00003ad2                usart_printf_P
  .text.usart_printf
-                0x00003a3a       0x2a ./src/usart_serial.o
-                0x00003a3a                usart_printf
+                0x00003afc       0x2a ./src/usart_serial.o
+                0x00003afc                usart_printf
  .text.usartClose
-                0x00003a64       0x8a ./src/usart_serial.o
-                0x00003a64                usartClose
+                0x00003b26       0x8a ./src/usart_serial.o
+                0x00003b26                usartClose
  .text.usartOpen
-                0x00003aee      0x1ac ./src/usart_serial.o
-                0x00003aee                usartOpen
+                0x00003bb0      0x1ac ./src/usart_serial.o
+                0x00003bb0                usartOpen
  .text.gs_set_usart
-                0x00003c9a       0x42 ./src/wireless_interface.o
-                0x00003c9a                gs_set_usart
+                0x00003d5c       0x42 ./src/wireless_interface.o
+                0x00003d5c                gs_set_usart
  .text.gs_get_socket_status
-                0x00003cdc       0x2c ./src/wireless_interface.o
-                0x00003cdc                gs_get_socket_status
+                0x00003d9e       0x2c ./src/wireless_interface.o
+                0x00003d9e                gs_get_socket_status
  .text.gs_activate_socket
-                0x00003d08       0x42 ./src/wireless_interface.o
-                0x00003d08                gs_activate_socket
+                0x00003dca       0x42 ./src/wireless_interface.o
+                0x00003dca                gs_activate_socket
  .text.gs_get_active_socket
-                0x00003d4a        0x6 ./src/wireless_interface.o
-                0x00003d4a                gs_get_active_socket
+                0x00003e0c        0x6 ./src/wireless_interface.o
+                0x00003e0c                gs_get_active_socket
  .text.gs_get_socket_protocol
-                0x00003d50       0x1e ./src/wireless_interface.o
-                0x00003d50                gs_get_socket_protocol
+                0x00003e12       0x1e ./src/wireless_interface.o
+                0x00003e12                gs_get_socket_protocol
  .text.gs_get_socket_port
-                0x00003d6e       0x1e ./src/wireless_interface.o
-                0x00003d6e                gs_get_socket_port
+                0x00003e30       0x1e ./src/wireless_interface.o
+                0x00003e30                gs_get_socket_port
  .text.gs_get_data_on_socket_status
-                0x00003d8c       0x18 ./src/wireless_interface.o
-                0x00003d8c                gs_get_data_on_socket_status
+                0x00003e4e       0x18 ./src/wireless_interface.o
+                0x00003e4e                gs_get_data_on_socket_status
  .text.gs_configure_socket
-                0x00003da4       0x2e ./src/wireless_interface.o
-                0x00003da4                gs_configure_socket
+                0x00003e66       0x2e ./src/wireless_interface.o
+                0x00003e66                gs_configure_socket
  .text.gs_get_socket_having_active_connection_and_data
-                0x00003dd2       0x26 ./src/wireless_interface.o
-                0x00003dd2                gs_get_socket_having_active_connection_and_data
+                0x00003e94       0x26 ./src/wireless_interface.o
+                0x00003e94                gs_get_socket_having_active_connection_and_data
  .text.gs_get_socket_connection_status
-                0x00003df8       0x30 ./src/wireless_interface.o
-                0x00003df8                gs_get_socket_connection_status
+                0x00003eba       0x30 ./src/wireless_interface.o
+                0x00003eba                gs_get_socket_connection_status
  .text.get_next_client_response
-                0x00003e28       0x2c ./src/wireless_interface.o
-                0x00003e28                get_next_client_response
+                0x00003eea       0x2c ./src/wireless_interface.o
+                0x00003eea                get_next_client_response
  .text.hex_to_int
-                0x00003e54       0x24 ./src/wireless_interface.o
-                0x00003e54                hex_to_int
+                0x00003f16       0x24 ./src/wireless_interface.o
+                0x00003f16                hex_to_int
  .text.int_to_hex
-                0x00003e78       0x1a ./src/wireless_interface.o
-                0x00003e78                int_to_hex
+                0x00003f3a       0x1a ./src/wireless_interface.o
+                0x00003f3a                int_to_hex
  .text.initialize_web_server
-                0x00003e92       0x20 ./src/wireless_interface.o
-                0x00003e92                initialize_web_server
+                0x00003f54       0x20 ./src/wireless_interface.o
+                0x00003f54                initialize_web_server
  .text.gs_send_activation_status_to_serial_terminal
-                0x00003eb2      0x106 ./src/wireless_interface.o
-                0x00003eb2                gs_send_activation_status_to_serial_terminal
+                0x00003f74      0x106 ./src/wireless_interface.o
+                0x00003f74                gs_send_activation_status_to_serial_terminal
  .text.gs_send_command_response_to_serial_terminal
-                0x00003fb8      0x12c ./src/wireless_interface.o
-                0x00003fb8                gs_send_command_response_to_serial_terminal
+                0x0000407a      0x12c ./src/wireless_interface.o
+                0x0000407a                gs_send_command_response_to_serial_terminal
  .text.gs_reset_socket
-                0x000040e4      0x162 ./src/wireless_interface.o
-                0x000040e4                gs_reset_socket
+                0x000041a6      0x162 ./src/wireless_interface.o
+                0x000041a6                gs_reset_socket
  .text.gs_parse_command_response_tcp
-                0x00004246      0x398 ./src/wireless_interface.o
-                0x00004246                gs_parse_command_response_tcp
+                0x00004308      0x398 ./src/wireless_interface.o
+                0x00004308                gs_parse_command_response_tcp
  .text.gs_parse_command_response
-                0x000045de       0xd8 ./src/wireless_interface.o
-                0x000045de                gs_parse_command_response
+                0x000046a0       0xd8 ./src/wireless_interface.o
+                0x000046a0                gs_parse_command_response
  .text.gs_flush
-                0x000046b6       0x3e ./src/wireless_interface.o
-                0x000046b6                gs_flush
+                0x00004778       0x3e ./src/wireless_interface.o
+                0x00004778                gs_flush
  .text.gs_send_command
-                0x000046f4      0x6fa ./src/wireless_interface.o
-                0x000046f4                gs_send_command
+                0x000047b6      0x6fa ./src/wireless_interface.o
+                0x000047b6                gs_send_command
  .text.gs_get_command_response
-                0x00004dee       0xcc ./src/wireless_interface.o
-                0x00004dee                gs_get_command_response
+                0x00004eb0       0xcc ./src/wireless_interface.o
+                0x00004eb0                gs_get_command_response
  .text.gs_read_data_from_socket
-                0x00004eba      0x23c ./src/wireless_interface.o
-                0x00004eba                gs_read_data_from_socket
+                0x00004f7c      0x23c ./src/wireless_interface.o
+                0x00004f7c                gs_read_data_from_socket
  .text.gs_disconnect_deactivate_socket
-                0x000050f6      0x17e ./src/wireless_interface.o
-                0x000050f6                gs_disconnect_deactivate_socket
+                0x000051b8      0x17e ./src/wireless_interface.o
+                0x000051b8                gs_disconnect_deactivate_socket
  .text.gs_enable_activate_socket
-                0x00005274       0xaa ./src/wireless_interface.o
-                0x00005274                gs_enable_activate_socket
+                0x00005336       0xaa ./src/wireless_interface.o
+                0x00005336                gs_enable_activate_socket
  .text.start_web_server
-                0x0000531e       0xc6 ./src/wireless_interface.o
-                0x0000531e                start_web_server
+                0x000053e0       0xc6 ./src/wireless_interface.o
+                0x000053e0                start_web_server
  .text.gs_activate_wireless_connection
-                0x000053e4      0x256 ./src/wireless_interface.o
-                0x000053e4                gs_activate_wireless_connection
+                0x000054a6      0x256 ./src/wireless_interface.o
+                0x000054a6                gs_activate_wireless_connection
  .text.gs_initialize_gainspan
-                0x0000563a      0x1c8 ./src/wireless_interface.o
-                0x0000563a                gs_initialize_gainspan
+                0x000056fc      0x1c8 ./src/wireless_interface.o
+                0x000056fc                gs_initialize_gainspan
  .text.gs_initialize_module
-                0x00005802       0x6e ./src/wireless_interface.o
-                0x00005802                gs_initialize_module
+                0x000058c4       0x6e ./src/wireless_interface.o
+                0x000058c4                gs_initialize_module
  .text.gs_set_webserver_authentication
-                0x00005870       0x32 ./src/wireless_interface.o
-                0x00005870                gs_set_webserver_authentication
+                0x00005932       0x32 ./src/wireless_interface.o
+                0x00005932                gs_set_webserver_authentication
  .text.gs_set_wireless_ssid
-                0x000058a2       0x10 ./src/wireless_interface.o
-                0x000058a2                gs_set_wireless_ssid
+                0x00005964       0x10 ./src/wireless_interface.o
+                0x00005964                gs_set_wireless_ssid
  .text.gs_set_wireless_configuration
-                0x000058b2       0x8e ./src/wireless_interface.o
-                0x000058b2                gs_set_wireless_configuration
+                0x00005974       0x8e ./src/wireless_interface.o
+                0x00005974                gs_set_wireless_configuration
  .text.gs_set_network_configuration
-                0x00005940       0x54 ./src/wireless_interface.o
-                0x00005940                gs_set_network_configuration
+                0x00005a02       0x54 ./src/wireless_interface.o
+                0x00005a02                gs_set_network_configuration
  .text.add_element_choice
-                0x00005994      0x112 ./src/wireless_interface.o
-                0x00005994                add_element_choice
+                0x00005a56      0x112 ./src/wireless_interface.o
+                0x00005a56                add_element_choice
  .text.configure_web_page
-                0x00005aa6      0x1ae ./src/wireless_interface.o
-                0x00005aa6                configure_web_page
+                0x00005b68      0x1ae ./src/wireless_interface.o
+                0x00005b68                configure_web_page
  .text.gs_write_data_to_socket
-                0x00005c54      0x1a8 ./src/wireless_interface.o
-                0x00005c54                gs_write_data_to_socket
+                0x00005d16      0x1a8 ./src/wireless_interface.o
+                0x00005d16                gs_write_data_to_socket
  .text.process_client_request
-                0x00005dfc      0x446 ./src/wireless_interface.o
-                0x00005dfc                process_client_request
- .text.hot      0x00006242      0x12a C:/Users/Nick/workspace/FreeRTOS801/Release/libFreeRTOS801.a(port.o)
-                0x000062d8                xPortStartScheduler
-                0x0000636a                vPortEndScheduler
-                0x00006242                pxPortInitialiseStack
+                0x00005ebe      0x454 ./src/wireless_interface.o
+                0x00005ebe                process_client_request
+ .text.hot      0x00006312      0x12a C:/Users/Nick/workspace/FreeRTOS801/Release/libFreeRTOS801.a(port.o)
+                0x000063a8                xPortStartScheduler
+                0x0000643a                vPortEndScheduler
+                0x00006312                pxPortInitialiseStack
  .text.vPortYieldFromTick
-                0x0000636c       0xf8 C:/Users/Nick/workspace/FreeRTOS801/Release/libFreeRTOS801.a(port.o)
-                0x0000636c                vPortYieldFromTick
+                0x0000643c       0xf8 C:/Users/Nick/workspace/FreeRTOS801/Release/libFreeRTOS801.a(port.o)
+                0x0000643c                vPortYieldFromTick
  .text.__vector_32
-                0x00006464        0x6 C:/Users/Nick/workspace/FreeRTOS801/Release/libFreeRTOS801.a(port.o)
-                0x00006464                __vector_32
+                0x00006534        0x6 C:/Users/Nick/workspace/FreeRTOS801/Release/libFreeRTOS801.a(port.o)
+                0x00006534                __vector_32
  .text.vPortYield
-                0x0000646a       0xc2 C:/Users/Nick/workspace/FreeRTOS801/Release/libFreeRTOS801.a(port.o)
-                0x0000646a                vPortYield
+                0x0000653a       0xc2 C:/Users/Nick/workspace/FreeRTOS801/Release/libFreeRTOS801.a(port.o)
+                0x0000653a                vPortYield
  .text.I2C_Slave_Start_Transceiver
-                0x0000652c       0x1a C:/Users/Nick/workspace/FreeRTOS801/Release/libFreeRTOS801.a(i2cMultiMaster.o)
-                0x0000652c                I2C_Slave_Start_Transceiver
+                0x000065fc       0x1a C:/Users/Nick/workspace/FreeRTOS801/Release/libFreeRTOS801.a(i2cMultiMaster.o)
+                0x000065fc                I2C_Slave_Start_Transceiver
  .text.I2C_Master_Start_Transceiver
-                0x00006546       0x1a C:/Users/Nick/workspace/FreeRTOS801/Release/libFreeRTOS801.a(i2cMultiMaster.o)
-                0x00006546                I2C_Master_Start_Transceiver
+                0x00006616       0x1a C:/Users/Nick/workspace/FreeRTOS801/Release/libFreeRTOS801.a(i2cMultiMaster.o)
+                0x00006616                I2C_Master_Start_Transceiver
  .text.I2C_Slave_Start_Transceiver_With_Data
-                0x00006560       0x40 C:/Users/Nick/workspace/FreeRTOS801/Release/libFreeRTOS801.a(i2cMultiMaster.o)
-                0x00006560                I2C_Slave_Start_Transceiver_With_Data
+                0x00006630       0x40 C:/Users/Nick/workspace/FreeRTOS801/Release/libFreeRTOS801.a(i2cMultiMaster.o)
+                0x00006630                I2C_Slave_Start_Transceiver_With_Data
  .text.I2C_Master_Start_Transceiver_With_Data
-                0x000065a0       0x4e C:/Users/Nick/workspace/FreeRTOS801/Release/libFreeRTOS801.a(i2cMultiMaster.o)
-                0x000065a0                I2C_Master_Start_Transceiver_With_Data
+                0x00006670       0x4e C:/Users/Nick/workspace/FreeRTOS801/Release/libFreeRTOS801.a(i2cMultiMaster.o)
+                0x00006670                I2C_Master_Start_Transceiver_With_Data
  .text.I2C_Slave_Get_Data_From_Transceiver
-                0x000065ee       0x48 C:/Users/Nick/workspace/FreeRTOS801/Release/libFreeRTOS801.a(i2cMultiMaster.o)
-                0x000065ee                I2C_Slave_Get_Data_From_Transceiver
+                0x000066be       0x48 C:/Users/Nick/workspace/FreeRTOS801/Release/libFreeRTOS801.a(i2cMultiMaster.o)
+                0x000066be                I2C_Slave_Get_Data_From_Transceiver
  .text.I2C_Master_Get_Data_From_Transceiver
-                0x00006636       0x40 C:/Users/Nick/workspace/FreeRTOS801/Release/libFreeRTOS801.a(i2cMultiMaster.o)
-                0x00006636                I2C_Master_Get_Data_From_Transceiver
+                0x00006706       0x40 C:/Users/Nick/workspace/FreeRTOS801/Release/libFreeRTOS801.a(i2cMultiMaster.o)
+                0x00006706                I2C_Master_Get_Data_From_Transceiver
  .text.I2C_Check_Free_After_Stop
-                0x00006676       0x12 C:/Users/Nick/workspace/FreeRTOS801/Release/libFreeRTOS801.a(i2cMultiMaster.o)
-                0x00006676                I2C_Check_Free_After_Stop
+                0x00006746       0x12 C:/Users/Nick/workspace/FreeRTOS801/Release/libFreeRTOS801.a(i2cMultiMaster.o)
+                0x00006746                I2C_Check_Free_After_Stop
  .text.I2C_Get_State_Info
-                0x00006688        0xe C:/Users/Nick/workspace/FreeRTOS801/Release/libFreeRTOS801.a(i2cMultiMaster.o)
-                0x00006688                I2C_Get_State_Info
+                0x00006758        0xe C:/Users/Nick/workspace/FreeRTOS801/Release/libFreeRTOS801.a(i2cMultiMaster.o)
+                0x00006758                I2C_Get_State_Info
  .text.__vector_39
-                0x00006696      0x1b2 C:/Users/Nick/workspace/FreeRTOS801/Release/libFreeRTOS801.a(i2cMultiMaster.o)
-                0x00006696                __vector_39
+                0x00006766      0x1b2 C:/Users/Nick/workspace/FreeRTOS801/Release/libFreeRTOS801.a(i2cMultiMaster.o)
+                0x00006766                __vector_39
  .text.I2C_Master_Initialise
-                0x00006848       0x60 C:/Users/Nick/workspace/FreeRTOS801/Release/libFreeRTOS801.a(i2cMultiMaster.o)
-                0x00006848                I2C_Master_Initialise
+                0x00006918       0x60 C:/Users/Nick/workspace/FreeRTOS801/Release/libFreeRTOS801.a(i2cMultiMaster.o)
+                0x00006918                I2C_Master_Initialise
  .text.I2C_Slave_Initialise
-                0x000068a8       0x50 C:/Users/Nick/workspace/FreeRTOS801/Release/libFreeRTOS801.a(i2cMultiMaster.o)
-                0x000068a8                I2C_Slave_Initialise
- .text.hot      0x000068f8      0x2f8 C:/Users/Nick/workspace/FreeRTOS801/Release/libFreeRTOS801.a(heap_4.o)
-                0x000068f8                xPortGetFreeHeapSize
-                0x0000690e                vPortFree
-                0x000069f4                pvPortMalloc
-                0x0000690c                vPortInitialiseBlocks
-                0x00006902                xPortGetMinimumEverFreeHeapSize
- .text.hot      0x00006bf0      0xc06 C:/Users/Nick/workspace/FreeRTOS801/Release/libFreeRTOS801.a(queue.o)
-                0x000070e2                xQueueGenericSendFromISR
-                0x00006c70                xQueuePeekFromISR
-                0x00006c1a                uxQueueGetQueueNumber
-                0x00006c52                vQueueDelete
-                0x000071f4                xQueueGenericSend
-                0x00006c26                ucQueueGetQueueType
-                0x00006cca                xQueueReceiveFromISR
-                0x0000771a                xQueueGenericCreate
-                0x00006c20                vQueueSetQueueNumber
-                0x00006c00                uxQueueSpacesAvailable
-                0x00006c3c                xQueueIsQueueFullFromISR
-                0x00006d5a                xQueueGenericReceive
-                0x00006bf0                uxQueueMessagesWaiting
-                0x0000768a                xQueueGenericReset
-                0x00006c14                uxQueueMessagesWaitingFromISR
-                0x00006c2c                xQueueIsQueueEmptyFromISR
-                0x000075a8                xQueueCreateMutex
- .text.hot      0x000077f6     0x3098 C:/Users/Nick/workspace/FreeRTOS801/Release/libFreeRTOS801.a(tasks.o)
-                0x00007f20                vTaskPlaceOnUnorderedEventList
-                0x000084a4                vTaskGetRunTimeStats
-                0x0000a4ac                vTaskEndScheduler
-                0x00007ffe                vTaskPlaceOnEventList
-                0x0000a4b8                xTaskGenericCreate
-                0x00007a3c                uxTaskGetStackHighWaterMark
-                0x00007e72                xTaskResumeFromISR
-                0x00007802                xTaskGetTickCount
-                0x00007c2a                xTaskRemoveFromEventList
-                0x0000a3e2                vTaskDelete
-                0x00007840                xTaskCheckForTimeOut
-                0x000077f6                vTaskSuspendAll
-                0x00007818                xTaskGetTickCountFromISR
-                0x00007ab6                vTaskPriorityDisinherit
-                0x00007b1a                vTaskPriorityInherit
-                0x00009ae4                vTaskResume
-                0x000080ce                vTaskSwitchContext
-                0x000078d4                vTaskSetTaskNumber
-                0x00009b70                vTaskSuspend
-                0x00007824                uxTaskGetNumberOfTasks
-                0x00008ff2                vTaskList
-                0x000078c6                uxTaskGetTaskNumber
-                0x0000a0a2                vTaskDelayUntil
-                0x00007a7a                xTaskGetCurrentTaskHandle
-                0x00007bba                xTaskRemoveFromUnorderedEventList
-                0x0000822a                xTaskResumeAll
-                0x0000a6c2                vTaskStartScheduler
-                0x000078be                vTaskMissedYield
-                0x00007cbc                xTaskIncrementTick
-                0x00009d92                vTaskDelay
-                0x0000782a                vTaskSetTimeOutState
-                0x00007a86                uxTaskResetEventItemValue
+                0x00006978       0x50 C:/Users/Nick/workspace/FreeRTOS801/Release/libFreeRTOS801.a(i2cMultiMaster.o)
+                0x00006978                I2C_Slave_Initialise
+ .text.hot      0x000069c8      0x2f8 C:/Users/Nick/workspace/FreeRTOS801/Release/libFreeRTOS801.a(heap_4.o)
+                0x000069c8                xPortGetFreeHeapSize
+                0x000069de                vPortFree
+                0x00006ac4                pvPortMalloc
+                0x000069dc                vPortInitialiseBlocks
+                0x000069d2                xPortGetMinimumEverFreeHeapSize
+ .text.hot      0x00006cc0      0xc06 C:/Users/Nick/workspace/FreeRTOS801/Release/libFreeRTOS801.a(queue.o)
+                0x000071b2                xQueueGenericSendFromISR
+                0x00006d40                xQueuePeekFromISR
+                0x00006cea                uxQueueGetQueueNumber
+                0x00006d22                vQueueDelete
+                0x000072c4                xQueueGenericSend
+                0x00006cf6                ucQueueGetQueueType
+                0x00006d9a                xQueueReceiveFromISR
+                0x000077ea                xQueueGenericCreate
+                0x00006cf0                vQueueSetQueueNumber
+                0x00006cd0                uxQueueSpacesAvailable
+                0x00006d0c                xQueueIsQueueFullFromISR
+                0x00006e2a                xQueueGenericReceive
+                0x00006cc0                uxQueueMessagesWaiting
+                0x0000775a                xQueueGenericReset
+                0x00006ce4                uxQueueMessagesWaitingFromISR
+                0x00006cfc                xQueueIsQueueEmptyFromISR
+                0x00007678                xQueueCreateMutex
+ .text.hot      0x000078c6     0x3098 C:/Users/Nick/workspace/FreeRTOS801/Release/libFreeRTOS801.a(tasks.o)
+                0x00007ff0                vTaskPlaceOnUnorderedEventList
+                0x00008574                vTaskGetRunTimeStats
+                0x0000a57c                vTaskEndScheduler
+                0x000080ce                vTaskPlaceOnEventList
+                0x0000a588                xTaskGenericCreate
+                0x00007b0c                uxTaskGetStackHighWaterMark
+                0x00007f42                xTaskResumeFromISR
+                0x000078d2                xTaskGetTickCount
+                0x00007cfa                xTaskRemoveFromEventList
+                0x0000a4b2                vTaskDelete
+                0x00007910                xTaskCheckForTimeOut
+                0x000078c6                vTaskSuspendAll
+                0x000078e8                xTaskGetTickCountFromISR
+                0x00007b86                vTaskPriorityDisinherit
+                0x00007bea                vTaskPriorityInherit
+                0x00009bb4                vTaskResume
+                0x0000819e                vTaskSwitchContext
+                0x000079a4                vTaskSetTaskNumber
+                0x00009c40                vTaskSuspend
+                0x000078f4                uxTaskGetNumberOfTasks
+                0x000090c2                vTaskList
+                0x00007996                uxTaskGetTaskNumber
+                0x0000a172                vTaskDelayUntil
+                0x00007b4a                xTaskGetCurrentTaskHandle
+                0x00007c8a                xTaskRemoveFromUnorderedEventList
+                0x000082fa                xTaskResumeAll
+                0x0000a792                vTaskStartScheduler
+                0x0000798e                vTaskMissedYield
+                0x00007d8c                xTaskIncrementTick
+                0x00009e62                vTaskDelay
+                0x000078fa                vTaskSetTimeOutState
+                0x00007b56                uxTaskResetEventItemValue
  .text.uxTaskGetSystemState
-                0x0000a88e      0x102 C:/Users/Nick/workspace/FreeRTOS801/Release/libFreeRTOS801.a(tasks.o)
-                0x0000a88e                uxTaskGetSystemState
+                0x0000a95e      0x102 C:/Users/Nick/workspace/FreeRTOS801/Release/libFreeRTOS801.a(tasks.o)
+                0x0000a95e                uxTaskGetSystemState
  .text.vListInitialise
-                0x0000a990       0x20 C:/Users/Nick/workspace/FreeRTOS801/Release/libFreeRTOS801.a(list.o)
-                0x0000a990                vListInitialise
+                0x0000aa60       0x20 C:/Users/Nick/workspace/FreeRTOS801/Release/libFreeRTOS801.a(list.o)
+                0x0000aa60                vListInitialise
  .text.vListInitialiseItem
-                0x0000a9b0        0x8 C:/Users/Nick/workspace/FreeRTOS801/Release/libFreeRTOS801.a(list.o)
-                0x0000a9b0                vListInitialiseItem
+                0x0000aa80        0x8 C:/Users/Nick/workspace/FreeRTOS801/Release/libFreeRTOS801.a(list.o)
+                0x0000aa80                vListInitialiseItem
  .text.vListInsertEnd
-                0x0000a9b8       0x3e C:/Users/Nick/workspace/FreeRTOS801/Release/libFreeRTOS801.a(list.o)
-                0x0000a9b8                vListInsertEnd
+                0x0000aa88       0x3e C:/Users/Nick/workspace/FreeRTOS801/Release/libFreeRTOS801.a(list.o)
+                0x0000aa88                vListInsertEnd
  .text.vListInsert
-                0x0000a9f6       0x64 C:/Users/Nick/workspace/FreeRTOS801/Release/libFreeRTOS801.a(list.o)
-                0x0000a9f6                vListInsert
+                0x0000aac6       0x64 C:/Users/Nick/workspace/FreeRTOS801/Release/libFreeRTOS801.a(list.o)
+                0x0000aac6                vListInsert
  .text.uxListRemove
-                0x0000aa5a       0x56 C:/Users/Nick/workspace/FreeRTOS801/Release/libFreeRTOS801.a(list.o)
-                0x0000aa5a                uxListRemove
+                0x0000ab2a       0x56 C:/Users/Nick/workspace/FreeRTOS801/Release/libFreeRTOS801.a(list.o)
+                0x0000ab2a                uxListRemove
  .text.xconfigTimerForRunTimeStats
-                0x0000aab0       0x18 C:/Users/Nick/workspace/FreeRTOS801/Release/libFreeRTOS801.a(runtTimeStatsTimer.o)
-                0x0000aab0                xconfigTimerForRunTimeStats
- .text.fplib    0x0000aac8        0xa c:/arduino/hardware/tools/avr/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr6\libm.a(addsf3.o)
-                0x0000aac8                __subsf3
-                0x0000aaca                __addsf3
- .text.fplib    0x0000aad2       0xc0 c:/arduino/hardware/tools/avr/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr6\libm.a(addsf3x.o)
-                0x0000aaec                __addsf3x
- .text.fplib    0x0000ab92        0x8 c:/arduino/hardware/tools/avr/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr6\libm.a(cmpsf2.o)
-                0x0000ab92                __lesf2
-                0x0000ab92                __nesf2
-                0x0000ab92                __eqsf2
-                0x0000ab92                __cmpsf2
-                0x0000ab92                __ltsf2
- .text.fplib    0x0000ab9a        0x4 c:/arduino/hardware/tools/avr/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr6\libm.a(divsf3.o)
-                0x0000ab9a                __divsf3
- .text.fplib    0x0000ab9e       0xcc c:/arduino/hardware/tools/avr/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr6\libm.a(divsf3x.o)
-                0x0000abb4                __divsf3x
-                0x0000abb8                __divsf3_pse
- .text.fplib    0x0000ac6a        0xa c:/arduino/hardware/tools/avr/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr6\libm.a(fixsfsi.o)
-                0x0000ac6a                __fixsfsi
- .text.fplib    0x0000ac74       0x58 c:/arduino/hardware/tools/avr/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr6\libm.a(fixunssfsi.o)
-                0x0000ac74                __fixunssfsi
- .text.fplib    0x0000accc       0x7a c:/arduino/hardware/tools/avr/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr6\libm.a(floatsisf.o)
-                0x0000acd0                __floatsisf
-                0x0000accc                __floatunsisf
- .text.fplib    0x0000ad46       0x48 c:/arduino/hardware/tools/avr/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr6\libm.a(fp_cmp.o)
-                0x0000ad46                __fp_cmp
- .text.fplib    0x0000ad8e        0xc c:/arduino/hardware/tools/avr/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr6\libm.a(fp_inf.o)
-                0x0000ad8e                __fp_inf
- .text.fplib    0x0000ad9a        0x6 c:/arduino/hardware/tools/avr/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr6\libm.a(fp_nan.o)
-                0x0000ad9a                __fp_nan
- .text.fplib    0x0000ada0        0xe c:/arduino/hardware/tools/avr/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr6\libm.a(fp_pscA.o)
-                0x0000ada0                __fp_pscA
- .text.fplib    0x0000adae        0xe c:/arduino/hardware/tools/avr/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr6\libm.a(fp_pscB.o)
-                0x0000adae                __fp_pscB
- .text.fplib    0x0000adbc       0x22 c:/arduino/hardware/tools/avr/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr6\libm.a(fp_round.o)
-                0x0000adbc                __fp_round
- .text.fplib    0x0000adde       0x44 c:/arduino/hardware/tools/avr/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr6\libm.a(fp_split3.o)
-                0x0000adde                __fp_split3
-                0x0000adee                __fp_splitA
- .text.fplib    0x0000ae22        0xe c:/arduino/hardware/tools/avr/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr6\libm.a(fp_zero.o)
-                0x0000ae22                __fp_zero
-                0x0000ae24                __fp_szero
- .text.fplib    0x0000ae30        0x8 c:/arduino/hardware/tools/avr/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr6\libm.a(gesf2.o)
-                0x0000ae30                __gtsf2
-                0x0000ae30                __gesf2
- .text.fplib    0x0000ae38        0x4 c:/arduino/hardware/tools/avr/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr6\libm.a(mulsf3.o)
-                0x0000ae38                __mulsf3
- .text.fplib    0x0000ae3c       0xc2 c:/arduino/hardware/tools/avr/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr6\libm.a(mulsf3x.o)
-                0x0000ae54                __mulsf3_pse
-                0x0000ae50                __mulsf3x
- .text.libgcc   0x0000aefe       0x3e c:/arduino/hardware/tools/avr/bin/../lib/gcc/avr/4.3.2/avr6\libgcc.a(_mulsi3.o)
-                0x0000aefe                __mulsi3
- .text.libgcc   0x0000af3c       0x28 c:/arduino/hardware/tools/avr/bin/../lib/gcc/avr/4.3.2/avr6\libgcc.a(_udivmodhi4.o)
-                0x0000af3c                __udivmodhi4
- .text.libgcc   0x0000af64       0x26 c:/arduino/hardware/tools/avr/bin/../lib/gcc/avr/4.3.2/avr6\libgcc.a(_divmodhi4.o)
-                0x0000af64                __divmodhi4
-                0x0000af64                _div
- .text.libgcc   0x0000af8a       0x44 c:/arduino/hardware/tools/avr/bin/../lib/gcc/avr/4.3.2/avr6\libgcc.a(_udivmodsi4.o)
-                0x0000af8a                __udivmodsi4
- .text.libgcc   0x0000afce       0x38 c:/arduino/hardware/tools/avr/bin/../lib/gcc/avr/4.3.2/avr6\libgcc.a(_prologue.o)
-                0x0000afce                __prologue_saves__
- .text.libgcc   0x0000b006       0x36 c:/arduino/hardware/tools/avr/bin/../lib/gcc/avr/4.3.2/avr6\libgcc.a(_epilogue.o)
-                0x0000b006                __epilogue_restores__
- .text.libgcc   0x0000b03c        0x0 c:/arduino/hardware/tools/avr/bin/../lib/gcc/avr/4.3.2/avr6\libgcc.a(_exit.o)
- .text.libgcc   0x0000b03c        0xc c:/arduino/hardware/tools/avr/bin/../lib/gcc/avr/4.3.2/avr6\libgcc.a(_tablejump.o)
-                0x0000b040                __tablejump__
-                0x0000b03c                __tablejump2__
- .text.libgcc   0x0000b048        0x0 c:/arduino/hardware/tools/avr/bin/../lib/gcc/avr/4.3.2/avr6\libgcc.a(_clear_bss.o)
-                0x0000b048                . = ALIGN (0x2)
+                0x0000ab80       0x18 C:/Users/Nick/workspace/FreeRTOS801/Release/libFreeRTOS801.a(runtTimeStatsTimer.o)
+                0x0000ab80                xconfigTimerForRunTimeStats
+ .text.fplib    0x0000ab98        0xa c:/arduino/hardware/tools/avr/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr6\libm.a(addsf3.o)
+                0x0000ab98                __subsf3
+                0x0000ab9a                __addsf3
+ .text.fplib    0x0000aba2       0xc0 c:/arduino/hardware/tools/avr/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr6\libm.a(addsf3x.o)
+                0x0000abbc                __addsf3x
+ .text.fplib    0x0000ac62        0x8 c:/arduino/hardware/tools/avr/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr6\libm.a(cmpsf2.o)
+                0x0000ac62                __lesf2
+                0x0000ac62                __nesf2
+                0x0000ac62                __eqsf2
+                0x0000ac62                __cmpsf2
+                0x0000ac62                __ltsf2
+ .text.fplib    0x0000ac6a        0x4 c:/arduino/hardware/tools/avr/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr6\libm.a(divsf3.o)
+                0x0000ac6a                __divsf3
+ .text.fplib    0x0000ac6e       0xcc c:/arduino/hardware/tools/avr/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr6\libm.a(divsf3x.o)
+                0x0000ac84                __divsf3x
+                0x0000ac88                __divsf3_pse
+ .text.fplib    0x0000ad3a        0xa c:/arduino/hardware/tools/avr/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr6\libm.a(fixsfsi.o)
+                0x0000ad3a                __fixsfsi
+ .text.fplib    0x0000ad44       0x58 c:/arduino/hardware/tools/avr/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr6\libm.a(fixunssfsi.o)
+                0x0000ad44                __fixunssfsi
+ .text.fplib    0x0000ad9c       0x7a c:/arduino/hardware/tools/avr/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr6\libm.a(floatsisf.o)
+                0x0000ada0                __floatsisf
+                0x0000ad9c                __floatunsisf
+ .text.fplib    0x0000ae16       0x48 c:/arduino/hardware/tools/avr/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr6\libm.a(fp_cmp.o)
+                0x0000ae16                __fp_cmp
+ .text.fplib    0x0000ae5e        0xc c:/arduino/hardware/tools/avr/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr6\libm.a(fp_inf.o)
+                0x0000ae5e                __fp_inf
+ .text.fplib    0x0000ae6a        0x6 c:/arduino/hardware/tools/avr/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr6\libm.a(fp_nan.o)
+                0x0000ae6a                __fp_nan
+ .text.fplib    0x0000ae70        0xe c:/arduino/hardware/tools/avr/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr6\libm.a(fp_pscA.o)
+                0x0000ae70                __fp_pscA
+ .text.fplib    0x0000ae7e        0xe c:/arduino/hardware/tools/avr/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr6\libm.a(fp_pscB.o)
+                0x0000ae7e                __fp_pscB
+ .text.fplib    0x0000ae8c       0x22 c:/arduino/hardware/tools/avr/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr6\libm.a(fp_round.o)
+                0x0000ae8c                __fp_round
+ .text.fplib    0x0000aeae       0x44 c:/arduino/hardware/tools/avr/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr6\libm.a(fp_split3.o)
+                0x0000aeae                __fp_split3
+                0x0000aebe                __fp_splitA
+ .text.fplib    0x0000aef2        0xe c:/arduino/hardware/tools/avr/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr6\libm.a(fp_zero.o)
+                0x0000aef2                __fp_zero
+                0x0000aef4                __fp_szero
+ .text.fplib    0x0000af00        0x8 c:/arduino/hardware/tools/avr/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr6\libm.a(gesf2.o)
+                0x0000af00                __gtsf2
+                0x0000af00                __gesf2
+ .text.fplib    0x0000af08        0x4 c:/arduino/hardware/tools/avr/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr6\libm.a(mulsf3.o)
+                0x0000af08                __mulsf3
+ .text.fplib    0x0000af0c       0xc2 c:/arduino/hardware/tools/avr/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr6\libm.a(mulsf3x.o)
+                0x0000af24                __mulsf3_pse
+                0x0000af20                __mulsf3x
+ .text.libgcc   0x0000afce       0x3e c:/arduino/hardware/tools/avr/bin/../lib/gcc/avr/4.3.2/avr6\libgcc.a(_mulsi3.o)
+                0x0000afce                __mulsi3
+ .text.libgcc   0x0000b00c       0x28 c:/arduino/hardware/tools/avr/bin/../lib/gcc/avr/4.3.2/avr6\libgcc.a(_udivmodhi4.o)
+                0x0000b00c                __udivmodhi4
+ .text.libgcc   0x0000b034       0x26 c:/arduino/hardware/tools/avr/bin/../lib/gcc/avr/4.3.2/avr6\libgcc.a(_divmodhi4.o)
+                0x0000b034                __divmodhi4
+                0x0000b034                _div
+ .text.libgcc   0x0000b05a       0x44 c:/arduino/hardware/tools/avr/bin/../lib/gcc/avr/4.3.2/avr6\libgcc.a(_udivmodsi4.o)
+                0x0000b05a                __udivmodsi4
+ .text.libgcc   0x0000b09e       0x38 c:/arduino/hardware/tools/avr/bin/../lib/gcc/avr/4.3.2/avr6\libgcc.a(_prologue.o)
+                0x0000b09e                __prologue_saves__
+ .text.libgcc   0x0000b0d6       0x36 c:/arduino/hardware/tools/avr/bin/../lib/gcc/avr/4.3.2/avr6\libgcc.a(_epilogue.o)
+                0x0000b0d6                __epilogue_restores__
+ .text.libgcc   0x0000b10c        0x0 c:/arduino/hardware/tools/avr/bin/../lib/gcc/avr/4.3.2/avr6\libgcc.a(_exit.o)
+ .text.libgcc   0x0000b10c        0xc c:/arduino/hardware/tools/avr/bin/../lib/gcc/avr/4.3.2/avr6\libgcc.a(_tablejump.o)
+                0x0000b110                __tablejump__
+                0x0000b10c                __tablejump2__
+ .text.libgcc   0x0000b118        0x0 c:/arduino/hardware/tools/avr/bin/../lib/gcc/avr/4.3.2/avr6\libgcc.a(_clear_bss.o)
+                0x0000b118                . = ALIGN (0x2)
  *(.fini9)
- .fini9         0x0000b048        0x0 c:/arduino/hardware/tools/avr/bin/../lib/gcc/avr/4.3.2/avr6\libgcc.a(_exit.o)
-                0x0000b048                exit
-                0x0000b048                _exit
+ .fini9         0x0000b118        0x0 c:/arduino/hardware/tools/avr/bin/../lib/gcc/avr/4.3.2/avr6\libgcc.a(_exit.o)
+                0x0000b118                exit
+                0x0000b118                _exit
  *(.fini9)
  *(.fini8)
  *(.fini8)
@@ -1125,11 +1125,11 @@ LOAD c:/arduino/hardware/tools/avr/bin/../lib/gcc/avr/4.3.2/avr6\libgcc.a
  *(.fini1)
  *(.fini1)
  *(.fini0)
- .fini0         0x0000b048        0x4 c:/arduino/hardware/tools/avr/bin/../lib/gcc/avr/4.3.2/avr6\libgcc.a(_exit.o)
+ .fini0         0x0000b118        0x4 c:/arduino/hardware/tools/avr/bin/../lib/gcc/avr/4.3.2/avr6\libgcc.a(_exit.o)
  *(.fini0)
-                0x0000b04c                _etext = .
+                0x0000b11c                _etext = .
 
-.data           0x00800200      0x7d6 load address 0x0000b04c
+.data           0x00800200      0x82c load address 0x0000b11c
                 0x00800200                PROVIDE (__data_start, .)
  *(.data)
  .data          0x00800200        0x0 c:/arduino/hardware/tools/avr/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr6/crtm2560.o
@@ -1138,304 +1138,307 @@ LOAD c:/arduino/hardware/tools/avr/bin/../lib/gcc/avr/4.3.2/avr6\libgcc.a
  .data          0x0080021f        0x0 ./src/custom_timer.o
  .data          0x0080021f        0x0 ./src/lcd.o
  .data          0x0080021f        0x0 ./src/led.o
- .data          0x0080021f       0x17 ./src/main.o
- .data          0x00800236        0x0 ./src/motion.o
- .data          0x00800236        0x0 ./src/ping.o
- .data          0x00800236        0x0 ./src/servo.o
- .data          0x00800236        0x0 ./src/tempsensor.o
- .data          0x00800236        0x0 ./src/timer.o
- .data          0x00800236        0x0 ./src/usart_serial.o
- .data          0x00800236      0x697 ./src/wireless_interface.o
- .data          0x008008cd        0x0 C:/Users/Nick/workspace/FreeRTOS801/Release/libFreeRTOS801.a(port.o)
- .data          0x008008cd        0x0 C:/Users/Nick/workspace/FreeRTOS801/Release/libFreeRTOS801.a(system_tick.o)
- .data          0x008008cd        0x0 C:/Users/Nick/workspace/FreeRTOS801/Release/libFreeRTOS801.a(system_time.o)
- .data          0x008008cd        0x0 C:/Users/Nick/workspace/FreeRTOS801/Release/libFreeRTOS801.a(i2cMultiMaster.o)
- .data          0x008008cd        0x0 C:/Users/Nick/workspace/FreeRTOS801/Release/libFreeRTOS801.a(heap_4.o)
- .data          0x008008cd        0x0 C:/Users/Nick/workspace/FreeRTOS801/Release/libFreeRTOS801.a(queue.o)
- .data          0x008008cd       0x35 C:/Users/Nick/workspace/FreeRTOS801/Release/libFreeRTOS801.a(tasks.o)
- .data          0x00800902        0x0 C:/Users/Nick/workspace/FreeRTOS801/Release/libFreeRTOS801.a(list.o)
- .data          0x00800902        0x0 C:/Users/Nick/workspace/FreeRTOS801/Release/libFreeRTOS801.a(runtTimeStatsTimer.o)
- .data          0x00800902        0x0 c:/arduino/hardware/tools/avr/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr6\libm.a(addsf3.o)
- .data          0x00800902        0x0 c:/arduino/hardware/tools/avr/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr6\libm.a(addsf3x.o)
- .data          0x00800902        0x0 c:/arduino/hardware/tools/avr/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr6\libm.a(cmpsf2.o)
- .data          0x00800902        0x0 c:/arduino/hardware/tools/avr/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr6\libm.a(divsf3.o)
- .data          0x00800902        0x0 c:/arduino/hardware/tools/avr/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr6\libm.a(divsf3x.o)
- .data          0x00800902        0x0 c:/arduino/hardware/tools/avr/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr6\libm.a(fixsfsi.o)
- .data          0x00800902        0x0 c:/arduino/hardware/tools/avr/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr6\libm.a(fixunssfsi.o)
- .data          0x00800902        0x0 c:/arduino/hardware/tools/avr/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr6\libm.a(floatsisf.o)
- .data          0x00800902        0x0 c:/arduino/hardware/tools/avr/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr6\libm.a(fp_cmp.o)
- .data          0x00800902        0x0 c:/arduino/hardware/tools/avr/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr6\libm.a(fp_inf.o)
- .data          0x00800902        0x0 c:/arduino/hardware/tools/avr/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr6\libm.a(fp_nan.o)
- .data          0x00800902        0x0 c:/arduino/hardware/tools/avr/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr6\libm.a(fp_pscA.o)
- .data          0x00800902        0x0 c:/arduino/hardware/tools/avr/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr6\libm.a(fp_pscB.o)
- .data          0x00800902        0x0 c:/arduino/hardware/tools/avr/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr6\libm.a(fp_round.o)
- .data          0x00800902        0x0 c:/arduino/hardware/tools/avr/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr6\libm.a(fp_split3.o)
- .data          0x00800902        0x0 c:/arduino/hardware/tools/avr/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr6\libm.a(fp_zero.o)
- .data          0x00800902        0x0 c:/arduino/hardware/tools/avr/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr6\libm.a(gesf2.o)
- .data          0x00800902        0x0 c:/arduino/hardware/tools/avr/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr6\libm.a(mulsf3.o)
- .data          0x00800902        0x0 c:/arduino/hardware/tools/avr/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr6\libm.a(mulsf3x.o)
- .data          0x00800902        0x0 c:/arduino/hardware/tools/avr/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr6\libprintf_flt.a(vfprintf_flt.o)
- .data          0x00800902        0x0 c:/arduino/hardware/tools/avr/bin/../lib/gcc/avr/4.3.2/avr6\libgcc.a(_mulsi3.o)
- .data          0x00800902        0x0 c:/arduino/hardware/tools/avr/bin/../lib/gcc/avr/4.3.2/avr6\libgcc.a(_udivmodhi4.o)
- .data          0x00800902        0x0 c:/arduino/hardware/tools/avr/bin/../lib/gcc/avr/4.3.2/avr6\libgcc.a(_divmodhi4.o)
- .data          0x00800902        0x0 c:/arduino/hardware/tools/avr/bin/../lib/gcc/avr/4.3.2/avr6\libgcc.a(_udivmodsi4.o)
- .data          0x00800902        0x0 c:/arduino/hardware/tools/avr/bin/../lib/gcc/avr/4.3.2/avr6\libgcc.a(_prologue.o)
- .data          0x00800902        0x0 c:/arduino/hardware/tools/avr/bin/../lib/gcc/avr/4.3.2/avr6\libgcc.a(_epilogue.o)
- .data          0x00800902        0x0 c:/arduino/hardware/tools/avr/bin/../lib/gcc/avr/4.3.2/avr6\libgcc.a(_exit.o)
- .data          0x00800902        0x0 c:/arduino/hardware/tools/avr/bin/../lib/gcc/avr/4.3.2/avr6\libgcc.a(_tablejump.o)
- .data          0x00800902        0x0 c:/arduino/hardware/tools/avr/bin/../lib/gcc/avr/4.3.2/avr6\libgcc.a(_clear_bss.o)
- .data          0x00800902        0x0 c:/arduino/hardware/tools/avr/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr6\libc.a(ftoa_engine.o)
- .data          0x00800902        0x0 c:/arduino/hardware/tools/avr/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr6\libc.a(strnlen_P.o)
- .data          0x00800902        0x0 c:/arduino/hardware/tools/avr/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr6\libc.a(memcpy.o)
- .data          0x00800902        0x0 c:/arduino/hardware/tools/avr/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr6\libc.a(memset.o)
- .data          0x00800902        0x0 c:/arduino/hardware/tools/avr/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr6\libc.a(strcat.o)
- .data          0x00800902        0x0 c:/arduino/hardware/tools/avr/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr6\libc.a(strcpy.o)
- .data          0x00800902        0x0 c:/arduino/hardware/tools/avr/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr6\libc.a(strncat.o)
- .data          0x00800902        0x0 c:/arduino/hardware/tools/avr/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr6\libc.a(strncmp.o)
- .data          0x00800902        0x0 c:/arduino/hardware/tools/avr/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr6\libc.a(strncpy.o)
- .data          0x00800902        0x0 c:/arduino/hardware/tools/avr/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr6\libc.a(strnlen.o)
- .data          0x00800902        0x0 c:/arduino/hardware/tools/avr/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr6\libc.a(strstr.o)
- .data          0x00800902        0x0 c:/arduino/hardware/tools/avr/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr6\libc.a(fputc.o)
- .data          0x00800902        0x0 c:/arduino/hardware/tools/avr/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr6\libc.a(sprintf.o)
- .data          0x00800902        0x0 c:/arduino/hardware/tools/avr/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr6\libc.a(vsnprintf.o)
- .data          0x00800902        0x0 c:/arduino/hardware/tools/avr/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr6\libc.a(vsnprintf_p.o)
- .data          0x00800902        0x0 c:/arduino/hardware/tools/avr/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr6\libc.a(ultoa_invert.o)
+ .data          0x0080021f       0x6c ./src/main.o
+ .data          0x0080028b        0x0 ./src/motion.o
+ .data          0x0080028b        0x0 ./src/ping.o
+ .data          0x0080028b        0x0 ./src/servo.o
+ .data          0x0080028b        0x0 ./src/tempsensor.o
+ .data          0x0080028b        0x0 ./src/timer.o
+ .data          0x0080028b        0x0 ./src/usart_serial.o
+ .data          0x0080028b      0x697 ./src/wireless_interface.o
+ .data          0x00800922        0x0 C:/Users/Nick/workspace/FreeRTOS801/Release/libFreeRTOS801.a(port.o)
+ .data          0x00800922        0x0 C:/Users/Nick/workspace/FreeRTOS801/Release/libFreeRTOS801.a(system_tick.o)
+ .data          0x00800922        0x0 C:/Users/Nick/workspace/FreeRTOS801/Release/libFreeRTOS801.a(system_time.o)
+ .data          0x00800922        0x0 C:/Users/Nick/workspace/FreeRTOS801/Release/libFreeRTOS801.a(i2cMultiMaster.o)
+ .data          0x00800922        0x0 C:/Users/Nick/workspace/FreeRTOS801/Release/libFreeRTOS801.a(heap_4.o)
+ .data          0x00800922        0x0 C:/Users/Nick/workspace/FreeRTOS801/Release/libFreeRTOS801.a(queue.o)
+ .data          0x00800922       0x35 C:/Users/Nick/workspace/FreeRTOS801/Release/libFreeRTOS801.a(tasks.o)
+ .data          0x00800957        0x0 C:/Users/Nick/workspace/FreeRTOS801/Release/libFreeRTOS801.a(list.o)
+ .data          0x00800957        0x0 C:/Users/Nick/workspace/FreeRTOS801/Release/libFreeRTOS801.a(runtTimeStatsTimer.o)
+ .data          0x00800957        0x0 c:/arduino/hardware/tools/avr/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr6\libm.a(addsf3.o)
+ .data          0x00800957        0x0 c:/arduino/hardware/tools/avr/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr6\libm.a(addsf3x.o)
+ .data          0x00800957        0x0 c:/arduino/hardware/tools/avr/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr6\libm.a(cmpsf2.o)
+ .data          0x00800957        0x0 c:/arduino/hardware/tools/avr/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr6\libm.a(divsf3.o)
+ .data          0x00800957        0x0 c:/arduino/hardware/tools/avr/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr6\libm.a(divsf3x.o)
+ .data          0x00800957        0x0 c:/arduino/hardware/tools/avr/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr6\libm.a(fixsfsi.o)
+ .data          0x00800957        0x0 c:/arduino/hardware/tools/avr/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr6\libm.a(fixunssfsi.o)
+ .data          0x00800957        0x0 c:/arduino/hardware/tools/avr/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr6\libm.a(floatsisf.o)
+ .data          0x00800957        0x0 c:/arduino/hardware/tools/avr/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr6\libm.a(fp_cmp.o)
+ .data          0x00800957        0x0 c:/arduino/hardware/tools/avr/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr6\libm.a(fp_inf.o)
+ .data          0x00800957        0x0 c:/arduino/hardware/tools/avr/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr6\libm.a(fp_nan.o)
+ .data          0x00800957        0x0 c:/arduino/hardware/tools/avr/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr6\libm.a(fp_pscA.o)
+ .data          0x00800957        0x0 c:/arduino/hardware/tools/avr/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr6\libm.a(fp_pscB.o)
+ .data          0x00800957        0x0 c:/arduino/hardware/tools/avr/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr6\libm.a(fp_round.o)
+ .data          0x00800957        0x0 c:/arduino/hardware/tools/avr/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr6\libm.a(fp_split3.o)
+ .data          0x00800957        0x0 c:/arduino/hardware/tools/avr/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr6\libm.a(fp_zero.o)
+ .data          0x00800957        0x0 c:/arduino/hardware/tools/avr/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr6\libm.a(gesf2.o)
+ .data          0x00800957        0x0 c:/arduino/hardware/tools/avr/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr6\libm.a(mulsf3.o)
+ .data          0x00800957        0x0 c:/arduino/hardware/tools/avr/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr6\libm.a(mulsf3x.o)
+ .data          0x00800957        0x0 c:/arduino/hardware/tools/avr/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr6\libprintf_flt.a(vfprintf_flt.o)
+ .data          0x00800957        0x0 c:/arduino/hardware/tools/avr/bin/../lib/gcc/avr/4.3.2/avr6\libgcc.a(_mulsi3.o)
+ .data          0x00800957        0x0 c:/arduino/hardware/tools/avr/bin/../lib/gcc/avr/4.3.2/avr6\libgcc.a(_udivmodhi4.o)
+ .data          0x00800957        0x0 c:/arduino/hardware/tools/avr/bin/../lib/gcc/avr/4.3.2/avr6\libgcc.a(_divmodhi4.o)
+ .data          0x00800957        0x0 c:/arduino/hardware/tools/avr/bin/../lib/gcc/avr/4.3.2/avr6\libgcc.a(_udivmodsi4.o)
+ .data          0x00800957        0x0 c:/arduino/hardware/tools/avr/bin/../lib/gcc/avr/4.3.2/avr6\libgcc.a(_prologue.o)
+ .data          0x00800957        0x0 c:/arduino/hardware/tools/avr/bin/../lib/gcc/avr/4.3.2/avr6\libgcc.a(_epilogue.o)
+ .data          0x00800957        0x0 c:/arduino/hardware/tools/avr/bin/../lib/gcc/avr/4.3.2/avr6\libgcc.a(_exit.o)
+ .data          0x00800957        0x0 c:/arduino/hardware/tools/avr/bin/../lib/gcc/avr/4.3.2/avr6\libgcc.a(_tablejump.o)
+ .data          0x00800957        0x0 c:/arduino/hardware/tools/avr/bin/../lib/gcc/avr/4.3.2/avr6\libgcc.a(_clear_bss.o)
+ .data          0x00800957        0x0 c:/arduino/hardware/tools/avr/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr6\libc.a(ftoa_engine.o)
+ .data          0x00800957        0x0 c:/arduino/hardware/tools/avr/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr6\libc.a(strnlen_P.o)
+ .data          0x00800957        0x0 c:/arduino/hardware/tools/avr/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr6\libc.a(memcpy.o)
+ .data          0x00800957        0x0 c:/arduino/hardware/tools/avr/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr6\libc.a(memset.o)
+ .data          0x00800957        0x0 c:/arduino/hardware/tools/avr/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr6\libc.a(strcat.o)
+ .data          0x00800957        0x0 c:/arduino/hardware/tools/avr/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr6\libc.a(strcpy.o)
+ .data          0x00800957        0x0 c:/arduino/hardware/tools/avr/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr6\libc.a(strncat.o)
+ .data          0x00800957        0x0 c:/arduino/hardware/tools/avr/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr6\libc.a(strncmp.o)
+ .data          0x00800957        0x0 c:/arduino/hardware/tools/avr/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr6\libc.a(strncpy.o)
+ .data          0x00800957        0x0 c:/arduino/hardware/tools/avr/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr6\libc.a(strnlen.o)
+ .data          0x00800957        0x0 c:/arduino/hardware/tools/avr/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr6\libc.a(strstr.o)
+ .data          0x00800957        0x0 c:/arduino/hardware/tools/avr/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr6\libc.a(fputc.o)
+ .data          0x00800957        0x0 c:/arduino/hardware/tools/avr/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr6\libc.a(sprintf.o)
+ .data          0x00800957        0x0 c:/arduino/hardware/tools/avr/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr6\libc.a(vsnprintf.o)
+ .data          0x00800957        0x0 c:/arduino/hardware/tools/avr/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr6\libc.a(vsnprintf_p.o)
+ .data          0x00800957        0x0 c:/arduino/hardware/tools/avr/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr6\libc.a(ultoa_invert.o)
  *(.data*)
  .data.currentState
-                0x00800902        0x2 ./src/main.o
-                0x00800902                currentState
+                0x00800957        0x2 ./src/main.o
+                0x00800957                currentState
+ .data.clientRequest
+                0x00800959        0x1 ./src/main.o
+                0x00800959                clientRequest
  .data.usartReg
-                0x00800904       0x28 ./src/usart_serial.o
-                0x00800904                usartReg
+                0x0080095a       0x28 ./src/usart_serial.o
+                0x0080095a                usartReg
  .data.gs_at_commands
-                0x0080092c       0x56 ./src/wireless_interface.o
-                0x0080092c                gs_at_commands
+                0x00800982       0x56 ./src/wireless_interface.o
+                0x00800982                gs_at_commands
  .data.I2C_state
-                0x00800982        0x1 C:/Users/Nick/workspace/FreeRTOS801/Release/libFreeRTOS801.a(i2cMultiMaster.o)
+                0x008009d8        0x1 C:/Users/Nick/workspace/FreeRTOS801/Release/libFreeRTOS801.a(i2cMultiMaster.o)
  .data.xMinimumEverFreeBytesRemaining
-                0x00800983        0x2 C:/Users/Nick/workspace/FreeRTOS801/Release/libFreeRTOS801.a(heap_4.o)
+                0x008009d9        0x2 C:/Users/Nick/workspace/FreeRTOS801/Release/libFreeRTOS801.a(heap_4.o)
  .data.xFreeBytesRemaining
-                0x00800985        0x2 C:/Users/Nick/workspace/FreeRTOS801/Release/libFreeRTOS801.a(heap_4.o)
+                0x008009db        0x2 C:/Users/Nick/workspace/FreeRTOS801/Release/libFreeRTOS801.a(heap_4.o)
  .data.xNextTaskUnblockTime
-                0x00800987        0x2 C:/Users/Nick/workspace/FreeRTOS801/Release/libFreeRTOS801.a(tasks.o)
+                0x008009dd        0x2 C:/Users/Nick/workspace/FreeRTOS801/Release/libFreeRTOS801.a(tasks.o)
  *(.rodata)
  *(.rodata*)
  .rodata.encoders
-                0x00800989        0xe ./src/motion.o
+                0x008009df        0xe ./src/motion.o
  .rodata.tc_module_s
-                0x00800997       0x20 ./src/motion.o
+                0x008009ed       0x20 ./src/motion.o
  .rodata.motors
-                0x008009b7       0x1e ./src/motion.o
+                0x00800a0d       0x1e ./src/motion.o
  *(.gnu.linkonce.d*)
-                0x008009d6                . = ALIGN (0x2)
- *fill*         0x008009d5        0x1 00
-                0x008009d6                _edata = .
-                0x008009d6                PROVIDE (__data_end, .)
+                0x00800a2c                . = ALIGN (0x2)
+ *fill*         0x00800a2b        0x1 00
+                0x00800a2c                _edata = .
+                0x00800a2c                PROVIDE (__data_end, .)
 
-.bss            0x008009d6     0x1404
-                0x008009d6                PROVIDE (__bss_start, .)
+.bss            0x00800a2c     0x1404
+                0x00800a2c                PROVIDE (__bss_start, .)
  *(.bss)
- .bss           0x008009d6        0x0 c:/arduino/hardware/tools/avr/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr6/crtm2560.o
- .bss           0x008009d6        0x0 ./src/attached_mode.o
- .bss           0x008009d6        0x0 ./src/behaviour.o
- .bss           0x008009d6        0x0 ./src/custom_timer.o
- .bss           0x008009d6        0x0 ./src/lcd.o
- .bss           0x008009d6        0x0 ./src/led.o
- .bss           0x008009d6        0x0 ./src/main.o
- .bss           0x008009d6        0x0 ./src/motion.o
- .bss           0x008009d6        0x0 ./src/ping.o
- .bss           0x008009d6        0x0 ./src/servo.o
- .bss           0x008009d6        0x0 ./src/tempsensor.o
- .bss           0x008009d6        0x0 ./src/timer.o
- .bss           0x008009d6        0x0 ./src/usart_serial.o
- .bss           0x008009d6        0x0 ./src/wireless_interface.o
- .bss           0x008009d6        0x0 C:/Users/Nick/workspace/FreeRTOS801/Release/libFreeRTOS801.a(port.o)
- .bss           0x008009d6        0x0 C:/Users/Nick/workspace/FreeRTOS801/Release/libFreeRTOS801.a(system_tick.o)
- .bss           0x008009d6        0x0 C:/Users/Nick/workspace/FreeRTOS801/Release/libFreeRTOS801.a(system_time.o)
- .bss           0x008009d6        0x0 C:/Users/Nick/workspace/FreeRTOS801/Release/libFreeRTOS801.a(i2cMultiMaster.o)
- .bss           0x008009d6        0x0 C:/Users/Nick/workspace/FreeRTOS801/Release/libFreeRTOS801.a(heap_4.o)
- .bss           0x008009d6        0x0 C:/Users/Nick/workspace/FreeRTOS801/Release/libFreeRTOS801.a(queue.o)
- .bss           0x008009d6        0x0 C:/Users/Nick/workspace/FreeRTOS801/Release/libFreeRTOS801.a(tasks.o)
- .bss           0x008009d6        0x0 C:/Users/Nick/workspace/FreeRTOS801/Release/libFreeRTOS801.a(list.o)
- .bss           0x008009d6        0x0 C:/Users/Nick/workspace/FreeRTOS801/Release/libFreeRTOS801.a(runtTimeStatsTimer.o)
- .bss           0x008009d6        0x0 c:/arduino/hardware/tools/avr/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr6\libm.a(addsf3.o)
- .bss           0x008009d6        0x0 c:/arduino/hardware/tools/avr/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr6\libm.a(addsf3x.o)
- .bss           0x008009d6        0x0 c:/arduino/hardware/tools/avr/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr6\libm.a(cmpsf2.o)
- .bss           0x008009d6        0x0 c:/arduino/hardware/tools/avr/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr6\libm.a(divsf3.o)
- .bss           0x008009d6        0x0 c:/arduino/hardware/tools/avr/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr6\libm.a(divsf3x.o)
- .bss           0x008009d6        0x0 c:/arduino/hardware/tools/avr/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr6\libm.a(fixsfsi.o)
- .bss           0x008009d6        0x0 c:/arduino/hardware/tools/avr/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr6\libm.a(fixunssfsi.o)
- .bss           0x008009d6        0x0 c:/arduino/hardware/tools/avr/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr6\libm.a(floatsisf.o)
- .bss           0x008009d6        0x0 c:/arduino/hardware/tools/avr/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr6\libm.a(fp_cmp.o)
- .bss           0x008009d6        0x0 c:/arduino/hardware/tools/avr/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr6\libm.a(fp_inf.o)
- .bss           0x008009d6        0x0 c:/arduino/hardware/tools/avr/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr6\libm.a(fp_nan.o)
- .bss           0x008009d6        0x0 c:/arduino/hardware/tools/avr/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr6\libm.a(fp_pscA.o)
- .bss           0x008009d6        0x0 c:/arduino/hardware/tools/avr/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr6\libm.a(fp_pscB.o)
- .bss           0x008009d6        0x0 c:/arduino/hardware/tools/avr/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr6\libm.a(fp_round.o)
- .bss           0x008009d6        0x0 c:/arduino/hardware/tools/avr/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr6\libm.a(fp_split3.o)
- .bss           0x008009d6        0x0 c:/arduino/hardware/tools/avr/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr6\libm.a(fp_zero.o)
- .bss           0x008009d6        0x0 c:/arduino/hardware/tools/avr/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr6\libm.a(gesf2.o)
- .bss           0x008009d6        0x0 c:/arduino/hardware/tools/avr/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr6\libm.a(mulsf3.o)
- .bss           0x008009d6        0x0 c:/arduino/hardware/tools/avr/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr6\libm.a(mulsf3x.o)
- .bss           0x008009d6        0x0 c:/arduino/hardware/tools/avr/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr6\libprintf_flt.a(vfprintf_flt.o)
- .bss           0x008009d6        0x0 c:/arduino/hardware/tools/avr/bin/../lib/gcc/avr/4.3.2/avr6\libgcc.a(_mulsi3.o)
- .bss           0x008009d6        0x0 c:/arduino/hardware/tools/avr/bin/../lib/gcc/avr/4.3.2/avr6\libgcc.a(_udivmodhi4.o)
- .bss           0x008009d6        0x0 c:/arduino/hardware/tools/avr/bin/../lib/gcc/avr/4.3.2/avr6\libgcc.a(_divmodhi4.o)
- .bss           0x008009d6        0x0 c:/arduino/hardware/tools/avr/bin/../lib/gcc/avr/4.3.2/avr6\libgcc.a(_udivmodsi4.o)
- .bss           0x008009d6        0x0 c:/arduino/hardware/tools/avr/bin/../lib/gcc/avr/4.3.2/avr6\libgcc.a(_prologue.o)
- .bss           0x008009d6        0x0 c:/arduino/hardware/tools/avr/bin/../lib/gcc/avr/4.3.2/avr6\libgcc.a(_epilogue.o)
- .bss           0x008009d6        0x0 c:/arduino/hardware/tools/avr/bin/../lib/gcc/avr/4.3.2/avr6\libgcc.a(_exit.o)
- .bss           0x008009d6        0x0 c:/arduino/hardware/tools/avr/bin/../lib/gcc/avr/4.3.2/avr6\libgcc.a(_tablejump.o)
- .bss           0x008009d6        0x0 c:/arduino/hardware/tools/avr/bin/../lib/gcc/avr/4.3.2/avr6\libgcc.a(_clear_bss.o)
- .bss           0x008009d6        0x0 c:/arduino/hardware/tools/avr/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr6\libc.a(ftoa_engine.o)
- .bss           0x008009d6        0x0 c:/arduino/hardware/tools/avr/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr6\libc.a(strnlen_P.o)
- .bss           0x008009d6        0x0 c:/arduino/hardware/tools/avr/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr6\libc.a(memcpy.o)
- .bss           0x008009d6        0x0 c:/arduino/hardware/tools/avr/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr6\libc.a(memset.o)
- .bss           0x008009d6        0x0 c:/arduino/hardware/tools/avr/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr6\libc.a(strcat.o)
- .bss           0x008009d6        0x0 c:/arduino/hardware/tools/avr/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr6\libc.a(strcpy.o)
- .bss           0x008009d6        0x0 c:/arduino/hardware/tools/avr/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr6\libc.a(strncat.o)
- .bss           0x008009d6        0x0 c:/arduino/hardware/tools/avr/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr6\libc.a(strncmp.o)
- .bss           0x008009d6        0x0 c:/arduino/hardware/tools/avr/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr6\libc.a(strncpy.o)
- .bss           0x008009d6        0x0 c:/arduino/hardware/tools/avr/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr6\libc.a(strnlen.o)
- .bss           0x008009d6        0x0 c:/arduino/hardware/tools/avr/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr6\libc.a(strstr.o)
- .bss           0x008009d6        0x0 c:/arduino/hardware/tools/avr/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr6\libc.a(fputc.o)
- .bss           0x008009d6        0x0 c:/arduino/hardware/tools/avr/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr6\libc.a(sprintf.o)
- .bss           0x008009d6        0x0 c:/arduino/hardware/tools/avr/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr6\libc.a(vsnprintf.o)
- .bss           0x008009d6        0x0 c:/arduino/hardware/tools/avr/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr6\libc.a(vsnprintf_p.o)
- .bss           0x008009d6        0x0 c:/arduino/hardware/tools/avr/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr6\libc.a(ultoa_invert.o)
+ .bss           0x00800a2c        0x0 c:/arduino/hardware/tools/avr/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr6/crtm2560.o
+ .bss           0x00800a2c        0x0 ./src/attached_mode.o
+ .bss           0x00800a2c        0x0 ./src/behaviour.o
+ .bss           0x00800a2c        0x0 ./src/custom_timer.o
+ .bss           0x00800a2c        0x0 ./src/lcd.o
+ .bss           0x00800a2c        0x0 ./src/led.o
+ .bss           0x00800a2c        0x0 ./src/main.o
+ .bss           0x00800a2c        0x0 ./src/motion.o
+ .bss           0x00800a2c        0x0 ./src/ping.o
+ .bss           0x00800a2c        0x0 ./src/servo.o
+ .bss           0x00800a2c        0x0 ./src/tempsensor.o
+ .bss           0x00800a2c        0x0 ./src/timer.o
+ .bss           0x00800a2c        0x0 ./src/usart_serial.o
+ .bss           0x00800a2c        0x0 ./src/wireless_interface.o
+ .bss           0x00800a2c        0x0 C:/Users/Nick/workspace/FreeRTOS801/Release/libFreeRTOS801.a(port.o)
+ .bss           0x00800a2c        0x0 C:/Users/Nick/workspace/FreeRTOS801/Release/libFreeRTOS801.a(system_tick.o)
+ .bss           0x00800a2c        0x0 C:/Users/Nick/workspace/FreeRTOS801/Release/libFreeRTOS801.a(system_time.o)
+ .bss           0x00800a2c        0x0 C:/Users/Nick/workspace/FreeRTOS801/Release/libFreeRTOS801.a(i2cMultiMaster.o)
+ .bss           0x00800a2c        0x0 C:/Users/Nick/workspace/FreeRTOS801/Release/libFreeRTOS801.a(heap_4.o)
+ .bss           0x00800a2c        0x0 C:/Users/Nick/workspace/FreeRTOS801/Release/libFreeRTOS801.a(queue.o)
+ .bss           0x00800a2c        0x0 C:/Users/Nick/workspace/FreeRTOS801/Release/libFreeRTOS801.a(tasks.o)
+ .bss           0x00800a2c        0x0 C:/Users/Nick/workspace/FreeRTOS801/Release/libFreeRTOS801.a(list.o)
+ .bss           0x00800a2c        0x0 C:/Users/Nick/workspace/FreeRTOS801/Release/libFreeRTOS801.a(runtTimeStatsTimer.o)
+ .bss           0x00800a2c        0x0 c:/arduino/hardware/tools/avr/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr6\libm.a(addsf3.o)
+ .bss           0x00800a2c        0x0 c:/arduino/hardware/tools/avr/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr6\libm.a(addsf3x.o)
+ .bss           0x00800a2c        0x0 c:/arduino/hardware/tools/avr/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr6\libm.a(cmpsf2.o)
+ .bss           0x00800a2c        0x0 c:/arduino/hardware/tools/avr/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr6\libm.a(divsf3.o)
+ .bss           0x00800a2c        0x0 c:/arduino/hardware/tools/avr/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr6\libm.a(divsf3x.o)
+ .bss           0x00800a2c        0x0 c:/arduino/hardware/tools/avr/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr6\libm.a(fixsfsi.o)
+ .bss           0x00800a2c        0x0 c:/arduino/hardware/tools/avr/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr6\libm.a(fixunssfsi.o)
+ .bss           0x00800a2c        0x0 c:/arduino/hardware/tools/avr/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr6\libm.a(floatsisf.o)
+ .bss           0x00800a2c        0x0 c:/arduino/hardware/tools/avr/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr6\libm.a(fp_cmp.o)
+ .bss           0x00800a2c        0x0 c:/arduino/hardware/tools/avr/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr6\libm.a(fp_inf.o)
+ .bss           0x00800a2c        0x0 c:/arduino/hardware/tools/avr/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr6\libm.a(fp_nan.o)
+ .bss           0x00800a2c        0x0 c:/arduino/hardware/tools/avr/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr6\libm.a(fp_pscA.o)
+ .bss           0x00800a2c        0x0 c:/arduino/hardware/tools/avr/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr6\libm.a(fp_pscB.o)
+ .bss           0x00800a2c        0x0 c:/arduino/hardware/tools/avr/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr6\libm.a(fp_round.o)
+ .bss           0x00800a2c        0x0 c:/arduino/hardware/tools/avr/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr6\libm.a(fp_split3.o)
+ .bss           0x00800a2c        0x0 c:/arduino/hardware/tools/avr/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr6\libm.a(fp_zero.o)
+ .bss           0x00800a2c        0x0 c:/arduino/hardware/tools/avr/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr6\libm.a(gesf2.o)
+ .bss           0x00800a2c        0x0 c:/arduino/hardware/tools/avr/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr6\libm.a(mulsf3.o)
+ .bss           0x00800a2c        0x0 c:/arduino/hardware/tools/avr/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr6\libm.a(mulsf3x.o)
+ .bss           0x00800a2c        0x0 c:/arduino/hardware/tools/avr/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr6\libprintf_flt.a(vfprintf_flt.o)
+ .bss           0x00800a2c        0x0 c:/arduino/hardware/tools/avr/bin/../lib/gcc/avr/4.3.2/avr6\libgcc.a(_mulsi3.o)
+ .bss           0x00800a2c        0x0 c:/arduino/hardware/tools/avr/bin/../lib/gcc/avr/4.3.2/avr6\libgcc.a(_udivmodhi4.o)
+ .bss           0x00800a2c        0x0 c:/arduino/hardware/tools/avr/bin/../lib/gcc/avr/4.3.2/avr6\libgcc.a(_divmodhi4.o)
+ .bss           0x00800a2c        0x0 c:/arduino/hardware/tools/avr/bin/../lib/gcc/avr/4.3.2/avr6\libgcc.a(_udivmodsi4.o)
+ .bss           0x00800a2c        0x0 c:/arduino/hardware/tools/avr/bin/../lib/gcc/avr/4.3.2/avr6\libgcc.a(_prologue.o)
+ .bss           0x00800a2c        0x0 c:/arduino/hardware/tools/avr/bin/../lib/gcc/avr/4.3.2/avr6\libgcc.a(_epilogue.o)
+ .bss           0x00800a2c        0x0 c:/arduino/hardware/tools/avr/bin/../lib/gcc/avr/4.3.2/avr6\libgcc.a(_exit.o)
+ .bss           0x00800a2c        0x0 c:/arduino/hardware/tools/avr/bin/../lib/gcc/avr/4.3.2/avr6\libgcc.a(_tablejump.o)
+ .bss           0x00800a2c        0x0 c:/arduino/hardware/tools/avr/bin/../lib/gcc/avr/4.3.2/avr6\libgcc.a(_clear_bss.o)
+ .bss           0x00800a2c        0x0 c:/arduino/hardware/tools/avr/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr6\libc.a(ftoa_engine.o)
+ .bss           0x00800a2c        0x0 c:/arduino/hardware/tools/avr/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr6\libc.a(strnlen_P.o)
+ .bss           0x00800a2c        0x0 c:/arduino/hardware/tools/avr/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr6\libc.a(memcpy.o)
+ .bss           0x00800a2c        0x0 c:/arduino/hardware/tools/avr/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr6\libc.a(memset.o)
+ .bss           0x00800a2c        0x0 c:/arduino/hardware/tools/avr/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr6\libc.a(strcat.o)
+ .bss           0x00800a2c        0x0 c:/arduino/hardware/tools/avr/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr6\libc.a(strcpy.o)
+ .bss           0x00800a2c        0x0 c:/arduino/hardware/tools/avr/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr6\libc.a(strncat.o)
+ .bss           0x00800a2c        0x0 c:/arduino/hardware/tools/avr/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr6\libc.a(strncmp.o)
+ .bss           0x00800a2c        0x0 c:/arduino/hardware/tools/avr/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr6\libc.a(strncpy.o)
+ .bss           0x00800a2c        0x0 c:/arduino/hardware/tools/avr/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr6\libc.a(strnlen.o)
+ .bss           0x00800a2c        0x0 c:/arduino/hardware/tools/avr/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr6\libc.a(strstr.o)
+ .bss           0x00800a2c        0x0 c:/arduino/hardware/tools/avr/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr6\libc.a(fputc.o)
+ .bss           0x00800a2c        0x0 c:/arduino/hardware/tools/avr/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr6\libc.a(sprintf.o)
+ .bss           0x00800a2c        0x0 c:/arduino/hardware/tools/avr/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr6\libc.a(vsnprintf.o)
+ .bss           0x00800a2c        0x0 c:/arduino/hardware/tools/avr/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr6\libc.a(vsnprintf_p.o)
+ .bss           0x00800a2c        0x0 c:/arduino/hardware/tools/avr/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr6\libc.a(ultoa_invert.o)
  *(.bss*)
  .bss.timer_counter_timer0
-                0x008009d6        0x9 ./src/custom_timer.o
- .bss.tov_cntr  0x008009df        0x8 ./src/motion.o
- .bss.last_icr  0x008009e7        0x4 ./src/motion.o
- .bss.new_data  0x008009eb        0x8 ./src/motion.o
+                0x00800a2c        0x9 ./src/custom_timer.o
+ .bss.tov_cntr  0x00800a35        0x8 ./src/motion.o
+ .bss.last_icr  0x00800a3d        0x4 ./src/motion.o
+ .bss.new_data  0x00800a41        0x8 ./src/motion.o
  .bss.new_data_available
-                0x008009f3        0x4 ./src/motion.o
+                0x00800a49        0x4 ./src/motion.o
  .bss.tempValues.1587
-                0x008009f7        0x8 ./src/tempsensor.o
+                0x00800a4d        0x8 ./src/tempsensor.o
  .bss.defaultUSART
-                0x008009ff        0x2 ./src/usart_serial.o
-                0x008009ff                defaultUSART
+                0x00800a55        0x2 ./src/usart_serial.o
+                0x00800a55                defaultUSART
  .bss.client_response_buffer_write_pointer
-                0x00800a01        0x1 ./src/wireless_interface.o
-                0x00800a01                client_response_buffer_write_pointer
+                0x00800a57        0x1 ./src/wireless_interface.o
+                0x00800a57                client_response_buffer_write_pointer
  .bss.client_response_buffer_read_pointer
-                0x00800a02        0x1 ./src/wireless_interface.o
-                0x00800a02                client_response_buffer_read_pointer
+                0x00800a58        0x1 ./src/wireless_interface.o
+                0x00800a58                client_response_buffer_read_pointer
  .bss.web_server_status
-                0x00800a03        0x2 ./src/wireless_interface.o
-                0x00800a03                web_server_status
+                0x00800a59        0x2 ./src/wireless_interface.o
+                0x00800a59                web_server_status
  .bss.portTickRateHz
-                0x00800a05        0x2 C:/Users/Nick/workspace/FreeRTOS801/Release/libFreeRTOS801.a(port.o)
+                0x00800a5b        0x2 C:/Users/Nick/workspace/FreeRTOS801/Release/libFreeRTOS801.a(port.o)
  .bss.ticksRemainingInSec
-                0x00800a07        0x2 C:/Users/Nick/workspace/FreeRTOS801/Release/libFreeRTOS801.a(port.o)
+                0x00800a5d        0x2 C:/Users/Nick/workspace/FreeRTOS801/Release/libFreeRTOS801.a(port.o)
  .bss.xI2CSemaphore
-                0x00800a09        0x2 C:/Users/Nick/workspace/FreeRTOS801/Release/libFreeRTOS801.a(i2cMultiMaster.o)
-                0x00800a09                xI2CSemaphore
+                0x00800a5f        0x2 C:/Users/Nick/workspace/FreeRTOS801/Release/libFreeRTOS801.a(i2cMultiMaster.o)
+                0x00800a5f                xI2CSemaphore
  .bss.I2C_statusReg
-                0x00800a0b        0x1 C:/Users/Nick/workspace/FreeRTOS801/Release/libFreeRTOS801.a(i2cMultiMaster.o)
-                0x00800a0b                I2C_statusReg
+                0x00800a61        0x1 C:/Users/Nick/workspace/FreeRTOS801/Release/libFreeRTOS801.a(i2cMultiMaster.o)
+                0x00800a61                I2C_statusReg
  .bss.I2C_checkBusyAfterStop
-                0x00800a0c        0x1 C:/Users/Nick/workspace/FreeRTOS801/Release/libFreeRTOS801.a(i2cMultiMaster.o)
+                0x00800a62        0x1 C:/Users/Nick/workspace/FreeRTOS801/Release/libFreeRTOS801.a(i2cMultiMaster.o)
  .bss.I2C_bufPtr.1873
-                0x00800a0d        0x1 C:/Users/Nick/workspace/FreeRTOS801/Release/libFreeRTOS801.a(i2cMultiMaster.o)
- .bss.I2C_buf   0x00800a0e       0x18 C:/Users/Nick/workspace/FreeRTOS801/Release/libFreeRTOS801.a(i2cMultiMaster.o)
+                0x00800a63        0x1 C:/Users/Nick/workspace/FreeRTOS801/Release/libFreeRTOS801.a(i2cMultiMaster.o)
+ .bss.I2C_buf   0x00800a64       0x18 C:/Users/Nick/workspace/FreeRTOS801/Release/libFreeRTOS801.a(i2cMultiMaster.o)
  .bss.I2C_msgSize
-                0x00800a26        0x1 C:/Users/Nick/workspace/FreeRTOS801/Release/libFreeRTOS801.a(i2cMultiMaster.o)
+                0x00800a7c        0x1 C:/Users/Nick/workspace/FreeRTOS801/Release/libFreeRTOS801.a(i2cMultiMaster.o)
  .bss.xBlockAllocatedBit
-                0x00800a27        0x2 C:/Users/Nick/workspace/FreeRTOS801/Release/libFreeRTOS801.a(heap_4.o)
- .bss.pxEnd     0x00800a29        0x2 C:/Users/Nick/workspace/FreeRTOS801/Release/libFreeRTOS801.a(heap_4.o)
- .bss.ucHeap    0x00800a2b     0x1200 C:/Users/Nick/workspace/FreeRTOS801/Release/libFreeRTOS801.a(heap_4.o)
- .bss.xStart    0x00801c2b        0x4 C:/Users/Nick/workspace/FreeRTOS801/Release/libFreeRTOS801.a(heap_4.o)
+                0x00800a7d        0x2 C:/Users/Nick/workspace/FreeRTOS801/Release/libFreeRTOS801.a(heap_4.o)
+ .bss.pxEnd     0x00800a7f        0x2 C:/Users/Nick/workspace/FreeRTOS801/Release/libFreeRTOS801.a(heap_4.o)
+ .bss.ucHeap    0x00800a81     0x1200 C:/Users/Nick/workspace/FreeRTOS801/Release/libFreeRTOS801.a(heap_4.o)
+ .bss.xStart    0x00801c81        0x4 C:/Users/Nick/workspace/FreeRTOS801/Release/libFreeRTOS801.a(heap_4.o)
  .bss.pxCurrentTCB
-                0x00801c2f        0x2 C:/Users/Nick/workspace/FreeRTOS801/Release/libFreeRTOS801.a(tasks.o)
-                0x00801c2f                pxCurrentTCB
+                0x00801c85        0x2 C:/Users/Nick/workspace/FreeRTOS801/Release/libFreeRTOS801.a(tasks.o)
+                0x00801c85                pxCurrentTCB
  .bss.uxCurrentNumberOfTasks
-                0x00801c31        0x1 C:/Users/Nick/workspace/FreeRTOS801/Release/libFreeRTOS801.a(tasks.o)
+                0x00801c87        0x1 C:/Users/Nick/workspace/FreeRTOS801/Release/libFreeRTOS801.a(tasks.o)
  .bss.uxTopReadyPriority
-                0x00801c32        0x1 C:/Users/Nick/workspace/FreeRTOS801/Release/libFreeRTOS801.a(tasks.o)
+                0x00801c88        0x1 C:/Users/Nick/workspace/FreeRTOS801/Release/libFreeRTOS801.a(tasks.o)
  .bss.xYieldPending
-                0x00801c33        0x1 C:/Users/Nick/workspace/FreeRTOS801/Release/libFreeRTOS801.a(tasks.o)
+                0x00801c89        0x1 C:/Users/Nick/workspace/FreeRTOS801/Release/libFreeRTOS801.a(tasks.o)
  .bss.xTickCount
-                0x00801c34        0x2 C:/Users/Nick/workspace/FreeRTOS801/Release/libFreeRTOS801.a(tasks.o)
+                0x00801c8a        0x2 C:/Users/Nick/workspace/FreeRTOS801/Release/libFreeRTOS801.a(tasks.o)
  .bss.xNumOfOverflows
-                0x00801c36        0x1 C:/Users/Nick/workspace/FreeRTOS801/Release/libFreeRTOS801.a(tasks.o)
+                0x00801c8c        0x1 C:/Users/Nick/workspace/FreeRTOS801/Release/libFreeRTOS801.a(tasks.o)
  .bss.uxSchedulerSuspended
-                0x00801c37        0x1 C:/Users/Nick/workspace/FreeRTOS801/Release/libFreeRTOS801.a(tasks.o)
+                0x00801c8d        0x1 C:/Users/Nick/workspace/FreeRTOS801/Release/libFreeRTOS801.a(tasks.o)
  .bss.ulTotalRunTime
-                0x00801c38        0x4 C:/Users/Nick/workspace/FreeRTOS801/Release/libFreeRTOS801.a(tasks.o)
+                0x00801c8e        0x4 C:/Users/Nick/workspace/FreeRTOS801/Release/libFreeRTOS801.a(tasks.o)
  .bss.ulTaskSwitchedInTime
-                0x00801c3c        0x4 C:/Users/Nick/workspace/FreeRTOS801/Release/libFreeRTOS801.a(tasks.o)
+                0x00801c92        0x4 C:/Users/Nick/workspace/FreeRTOS801/Release/libFreeRTOS801.a(tasks.o)
  .bss.uxPendedTicks
-                0x00801c40        0x1 C:/Users/Nick/workspace/FreeRTOS801/Release/libFreeRTOS801.a(tasks.o)
+                0x00801c96        0x1 C:/Users/Nick/workspace/FreeRTOS801/Release/libFreeRTOS801.a(tasks.o)
  .bss.xSchedulerRunning
-                0x00801c41        0x1 C:/Users/Nick/workspace/FreeRTOS801/Release/libFreeRTOS801.a(tasks.o)
+                0x00801c97        0x1 C:/Users/Nick/workspace/FreeRTOS801/Release/libFreeRTOS801.a(tasks.o)
  .bss.uxTasksDeleted
-                0x00801c42        0x1 C:/Users/Nick/workspace/FreeRTOS801/Release/libFreeRTOS801.a(tasks.o)
+                0x00801c98        0x1 C:/Users/Nick/workspace/FreeRTOS801/Release/libFreeRTOS801.a(tasks.o)
  .bss.uxTaskNumber
-                0x00801c43        0x1 C:/Users/Nick/workspace/FreeRTOS801/Release/libFreeRTOS801.a(tasks.o)
+                0x00801c99        0x1 C:/Users/Nick/workspace/FreeRTOS801/Release/libFreeRTOS801.a(tasks.o)
  .bss.pxReadyTasksLists
-                0x00801c44       0x24 C:/Users/Nick/workspace/FreeRTOS801/Release/libFreeRTOS801.a(tasks.o)
+                0x00801c9a       0x24 C:/Users/Nick/workspace/FreeRTOS801/Release/libFreeRTOS801.a(tasks.o)
  .bss.xDelayedTaskList1
-                0x00801c68        0x9 C:/Users/Nick/workspace/FreeRTOS801/Release/libFreeRTOS801.a(tasks.o)
+                0x00801cbe        0x9 C:/Users/Nick/workspace/FreeRTOS801/Release/libFreeRTOS801.a(tasks.o)
  .bss.xDelayedTaskList2
-                0x00801c71        0x9 C:/Users/Nick/workspace/FreeRTOS801/Release/libFreeRTOS801.a(tasks.o)
+                0x00801cc7        0x9 C:/Users/Nick/workspace/FreeRTOS801/Release/libFreeRTOS801.a(tasks.o)
  .bss.pxDelayedTaskList
-                0x00801c7a        0x2 C:/Users/Nick/workspace/FreeRTOS801/Release/libFreeRTOS801.a(tasks.o)
+                0x00801cd0        0x2 C:/Users/Nick/workspace/FreeRTOS801/Release/libFreeRTOS801.a(tasks.o)
  .bss.pxOverflowDelayedTaskList
-                0x00801c7c        0x2 C:/Users/Nick/workspace/FreeRTOS801/Release/libFreeRTOS801.a(tasks.o)
+                0x00801cd2        0x2 C:/Users/Nick/workspace/FreeRTOS801/Release/libFreeRTOS801.a(tasks.o)
  .bss.xPendingReadyList
-                0x00801c7e        0x9 C:/Users/Nick/workspace/FreeRTOS801/Release/libFreeRTOS801.a(tasks.o)
+                0x00801cd4        0x9 C:/Users/Nick/workspace/FreeRTOS801/Release/libFreeRTOS801.a(tasks.o)
  .bss.xTasksWaitingTermination
-                0x00801c87        0x9 C:/Users/Nick/workspace/FreeRTOS801/Release/libFreeRTOS801.a(tasks.o)
+                0x00801cdd        0x9 C:/Users/Nick/workspace/FreeRTOS801/Release/libFreeRTOS801.a(tasks.o)
  .bss.xSuspendedTaskList
-                0x00801c90        0x9 C:/Users/Nick/workspace/FreeRTOS801/Release/libFreeRTOS801.a(tasks.o)
+                0x00801ce6        0x9 C:/Users/Nick/workspace/FreeRTOS801/Release/libFreeRTOS801.a(tasks.o)
  *(COMMON)
- COMMON         0x00801c99        0x7 ./src/attached_mode.o
-                0x00801c99                lastTrackedDirection
-                0x00801c9b                currentCenterServoDirection
-                0x00801c9d                currentMode
-                0x00801c9f                targetFound
- COMMON         0x00801ca0        0x8 ./src/behaviour.o
-                0x00801ca0                state
-                0x00801ca2                wheelsUpdated
-                0x00801ca3                lcdUpdated
-                0x00801ca4                centerServoDirection
-                0x00801ca6                wheelSpeedUpdated
-                0x00801ca7                centerServoUpdated
- COMMON         0x00801ca8        0x4 ./src/ping.o
-                0x00801ca8                distance
- COMMON         0x00801cac       0x18 ./src/servo.o
-                0x00801cac                totalDistance
-                0x00801cb4                previousSpeedLeft
-                0x00801cb8                previousSpeedRight
-                0x00801cbc                wheelSpeedLeft
-                0x00801cc0                wheelSpeedRight
- COMMON         0x00801cc4       0x14 ./src/tempsensor.o
-                0x00801cc4                register_values
- COMMON         0x00801cd8        0x4 ./src/timer.o
-                0x00801cd8                timerTickCount
-                0x00801cda                isrCallback
- COMMON         0x00801cdc       0x78 ./src/usart_serial.o
-                0x00801cdc                usartComBuf
- COMMON         0x00801d54       0x82 ./src/wireless_interface.o
-                0x00801d54                client_web_page
-                0x00801d79                wifi_client
-                0x00801d7a                gainspan
-                0x00801dd1                client_response_buffer
-                0x00801dd3                wifi_server
- COMMON         0x00801dd6        0x4 C:/Users/Nick/workspace/FreeRTOS801/Release/libFreeRTOS801.a(system_time.o)
-                0x00801dd6                __system_time
-                0x00801dda                PROVIDE (__bss_end, .)
-                0x0000b04c                __data_load_start = LOADADDR (.data)
-                0x0000b822                __data_load_end = (__data_load_start + SIZEOF (.data))
+ COMMON         0x00801cef        0x7 ./src/attached_mode.o
+                0x00801cef                lastTrackedDirection
+                0x00801cf1                currentCenterServoDirection
+                0x00801cf3                currentMode
+                0x00801cf5                targetFound
+ COMMON         0x00801cf6        0x8 ./src/behaviour.o
+                0x00801cf6                state
+                0x00801cf8                wheelsUpdated
+                0x00801cf9                lcdUpdated
+                0x00801cfa                centerServoDirection
+                0x00801cfc                wheelSpeedUpdated
+                0x00801cfd                centerServoUpdated
+ COMMON         0x00801cfe        0x4 ./src/ping.o
+                0x00801cfe                distance
+ COMMON         0x00801d02       0x18 ./src/servo.o
+                0x00801d02                totalDistance
+                0x00801d0a                previousSpeedLeft
+                0x00801d0e                previousSpeedRight
+                0x00801d12                wheelSpeedLeft
+                0x00801d16                wheelSpeedRight
+ COMMON         0x00801d1a       0x14 ./src/tempsensor.o
+                0x00801d1a                register_values
+ COMMON         0x00801d2e        0x4 ./src/timer.o
+                0x00801d2e                timerTickCount
+                0x00801d30                isrCallback
+ COMMON         0x00801d32       0x78 ./src/usart_serial.o
+                0x00801d32                usartComBuf
+ COMMON         0x00801daa       0x82 ./src/wireless_interface.o
+                0x00801daa                client_web_page
+                0x00801dcf                wifi_client
+                0x00801dd0                gainspan
+                0x00801e27                client_response_buffer
+                0x00801e29                wifi_server
+ COMMON         0x00801e2c        0x4 C:/Users/Nick/workspace/FreeRTOS801/Release/libFreeRTOS801.a(system_time.o)
+                0x00801e2c                __system_time
+                0x00801e30                PROVIDE (__bss_end, .)
+                0x0000b11c                __data_load_start = LOADADDR (.data)
+                0x0000b948                __data_load_end = (__data_load_start + SIZEOF (.data))
 
-.noinit         0x00801dda        0x0
-                0x00801dda                PROVIDE (__noinit_start, .)
+.noinit         0x00801e30        0x0
+                0x00801e30                PROVIDE (__noinit_start, .)
  *(.noinit*)
-                0x00801dda                PROVIDE (__noinit_end, .)
-                0x00801dda                _end = .
-                0x00801dda                PROVIDE (__heap_start, .)
+                0x00801e30                PROVIDE (__noinit_end, .)
+                0x00801e30                _end = .
+                0x00801e30                PROVIDE (__heap_start, .)
 
 .eeprom         0x00810000        0x0
  *(.eeprom*)

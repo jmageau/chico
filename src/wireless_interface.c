@@ -1452,7 +1452,7 @@ void start_web_server(void){
  *
  *
  */
-void process_client_request(void){
+char process_client_request(void){
 
 	char data_string[128] = "\0";
 	char html_string[128] = "\0";
@@ -1547,7 +1547,9 @@ void process_client_request(void){
 			}
 		}
 	}
+	return client_response;
 }
+
 
 
 

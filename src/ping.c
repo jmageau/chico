@@ -9,7 +9,7 @@
 #include "led.h"
 
 #define CHIRP_TIME_MICROSECONDS		10
-#define LISTEN_TIME_MICROSECONDS	20000
+#define LISTEN_TIME_MICROSECONDS	1000000
 
 #define SPEED_OF_SOUND				0.03448  //room temperature, cm/microsecond
 
@@ -58,7 +58,7 @@ double pulse_in(unsigned long maxDelay) {
 
 	while (!bit_is_set(PINA, PA0)) {
 		//_delay_us(5);
-		if (time_in_microseconds - tStart > maxDelay) {
+		if (time_in_microseconds() - tStart > maxDelay) {
 			return -1;
 		}
 	}

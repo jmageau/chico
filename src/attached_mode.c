@@ -17,6 +17,7 @@
 #include "servo.h"
 #include "tempsensor.h"
 #include "behaviour.h"
+#include "led.h"
 
 #define TEMP_THRESHOLD 30 //In Celsius
 #define TRACK_SPEED    20
@@ -65,6 +66,7 @@ void updateCenterServoAttachedMode() {
 		trackHeat();
 		targetFound = true;
 	} else {
+		//setColor(false, true, false);
 		targetFound = false;
 		int currentPulseWidth = motion_servo_get_pulse_width(MOTION_SERVO_CENTER);
 
