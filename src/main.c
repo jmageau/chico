@@ -24,11 +24,17 @@
 #include "usart_serial.h"
 
 #include "behaviour.h"
+
+#include "led.h"
+#include "tempsensor.h"
+#include "lcd.h"
+#include "servo.h"
+
 #include "custom_timer.h"
 #include "attached_mode.h"
 #include "ping.h"
 
-int currentState = ATTACHED;
+
 
 char clientRequest = ' ';
 
@@ -57,18 +63,19 @@ int main(void) {
 	createTasks();
 	vTaskStartScheduler();
 
+	setColor(true, false, true);
 	usart_print_P(PSTR("\r\n\n\nGoodbye... no space for idle task!\r\n")); // Doh, so we're dead...
 }
 
 void createTasks() {
 	xTaskCreate(TaskCenterServo, (const portCHAR *)"", 100, NULL, 3, NULL);
-	//xTaskCreate(TaskThermoSensor, (const portCHAR *)"", 100, NULL, 3, NULL);
-	//xTaskCreate(TaskWheelSpeed, (const portCHAR *)"", 128, NULL, 3, NULL);
-	xTaskCreate(TaskLCD, (const portCHAR *)"", 220, NULL, 3, NULL);
-	xTaskCreate(TaskLED, (const portCHAR *)"", 100, NULL, 3, NULL);
+	//DEFUNCT xTaskCreate(TaskThermoSensor, (const portCHAR *)"", 100, NULL, 3, NULL);
+	//xTaskCreate(TaskWheelSpeed, (const portCHAR *)"", 100, NULL, 1, NULL);
+	xTaskCreate(TaskLCD, (const portCHAR *)"", 180, NULL, 3, NULL);
+	xTaskCreate(TaskLED, (const portCHAR *)"", 100, NULL, 2, NULL);
 	xTaskCreate(TaskWIFI, (const portCHAR *)"", 800, NULL, 3, NULL);
-	//xTaskCreate(TaskWheels, (const portCHAR *)"", 128, NULL, 1, NULL);
-	//xTaskCreate(TaskSonar, (const portCHAR *)"", 120, NULL, 3, NULL);
+	xTaskCreate(TaskWheels, (const portCHAR *)"", 128, NULL, 1, NULL);
+	//DEFUNCT xTaskCreate(TaskSonar, (const portCHAR *)"", 120, NULL, 3, NULL);
 
 }
 
@@ -118,8 +125,8 @@ void TaskCenterServo(void *pvParameters) {
 
 	while (1) {
 		readTemperatureValues();
-
-		if (currentState == ATTACHED) {
+		readDistance();
+		if (currentState == ATTACHED || currentState == SEARCHING || currentState == PANICKING) {
 			updateCenterServoAttachedMode();
 		} else {
 			moveCenterServo(SCAN, SCAN_SPEED);
@@ -141,6 +148,7 @@ void TaskThermoSensor(void *pvParameters) {
 	}
 }
 
+//DEFUNCT
 void TaskSonar(void *pvParameters) {
 	TickType_t xLastWakeTime;
 	xLastWakeTime = xTaskGetTickCount();
@@ -148,8 +156,7 @@ void TaskSonar(void *pvParameters) {
 	int period = 100;
 
 	while (1) {
-		//readDistance(331 + 0.6 * getAmbient());
-		readDistance(331);
+		readDistance();
 
 		vTaskDelay(period / portTICK_PERIOD_MS);
 	}
@@ -181,9 +188,12 @@ void TaskLCD(void *pvParameters) {
 
 		sprintf(display_top, "%d,%d,%d,%d,%d", tempValues[0], tempValues[1],
 				tempValues[2], tempValues[3], tempValues[4]);
-
+//
 		sprintf(display_bottom, "%d,%d,%d,%dD%3.0f", tempValues[5],
 				tempValues[6], tempValues[7], getAmbient(), getDistance());
+
+//		sprintf(display_bottom, "%d,%d,%d,%dD%d", tempValues[5],
+//						tempValues[6], tempValues[7], getAmbient(), currentState);
 
 
 		//sprintf(display_bottom, "%d", currentState);
@@ -202,7 +212,7 @@ void TaskLED(void *pvParameters) {
 	int period = 500;
 
 	while (1) {
-		if (currentState == ATTACHED) {
+		if (currentState == ATTACHED || currentState == SEARCHING || currentState == PANICKING) {
 			setColor(false, false, false); //off
 		} else if (currentState == MOVING_FORWARDS) {
 			setColor(false, true, false); // Green
@@ -243,9 +253,10 @@ void TaskWIFI(void *pvParameters) {
 			} else if (clientRequest == '3') {
 				currentState = MOVING_COUNTERCLOCKWISE;
 			} else if (clientRequest == '4') {
-				currentState = ATTACHED;
+				//currentState = ATTACHED;
+				initAttachedMode();
 			} else {
-				setColor(true,true,true);
+				setColor(true,true,true); //should not come here
 			}
 		}
 
@@ -260,8 +271,8 @@ void TaskWheels(void *pvParamaters) {
 	int period = 50;
 
 	while (1) {
-		if (currentState == ATTACHED) {
-			//updateWheelsAttachedMode();
+		if (currentState == ATTACHED || currentState == PANICKING || currentState == SEARCHING) {
+			updateWheelsAttachedMode();
 		} else if (currentState == MOVING_FORWARDS) {
 			moveWheels(FORWARDS, 1);
 		} else if (currentState == MOVING_BACKWARDS) {
