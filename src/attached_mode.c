@@ -14,17 +14,18 @@
 #include "tempsensor.h"
 #include "behaviour.h"
 #include "custom_timer.h"
+
 #define TEMP_THRESHOLD 50 //In Celsius
-#define TRACK_SPEED    20
+
 bool readHeat();
 void trackHeat();
+
 int currentCenterServoDirection;
 int lastTrackedDirection;
+
 unsigned long initialAttachTime;
 unsigned long currentTime;
-//moveWheels
-//lcd
-//led
+
 void initAttachedMode() {
 	currentState = SEARCHING;
 	currentCenterServoDirection = CLOCKWISE;
@@ -37,12 +38,14 @@ bool readHeat() {
 			|| getAverageRight() > TEMP_THRESHOLD);
 }
 void updateCenterServoAttachedMode() {
+	currentTime = time_in_milliseconds();
+
 	if (currentState == SEARCHING) {
 		moveCenterServo(SCAN, SCAN_SPEED);
 
 		if (readHeat()) {
 			currentState = ATTACHED;
-		} else if (currentTime - initialAttachTime >= 100000) { // change to if maybe
+		} else if (currentTime - initialAttachTime >= 10000) { // change to if maybe
 			currentState = PANICKING;
 		}
 	} else if (currentState == ATTACHED) {
@@ -50,18 +53,19 @@ void updateCenterServoAttachedMode() {
 	} else if (currentState == PANICKING) {
 		moveCenterServo(MIDDLE, SCAN_SPEED);
 	}
-	currentTime = time_in_milliseconds();
 }
 
 void updateWheelsAttachedMode() {
 	if (currentState == PANICKING) {
-		moveWheels(COUNTERCLOCKWISE, 0.1f);
+		moveWheels(COUNTERCLOCKWISE, 1);
 		if (currentTime - initialAttachTime >= 60000) {
 			initAttachedMode();
 		}
 	} else if (currentState == SEARCHING) {
 		//TODO:
+		moveWheels(STOP, 0);
 	} else if (currentState == ATTACHED) {
 		//TODO:
+		moveWheels(STOP, 0);
 	}
 }

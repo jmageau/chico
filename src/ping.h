@@ -4,6 +4,5 @@
 void initPing();
 void readDistance();
 double getDistance();
-int testgetDistance();
 
 #endif

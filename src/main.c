@@ -34,20 +34,14 @@
 #include "attached_mode.h"
 #include "ping.h"
 
-
-
 char clientRequest = ' ';
-
 
 void initModules();
 void TaskCenterServo(void *pvParameters);
-void TaskThermoSensor(void *pvParameters);
-void TaskWheelSpeed(void *pvParameters);
 void TaskLCD(void *pvParameters);
 void TaskLED(void *pvParameters);
 void TaskWIFI(void *pvParameters);
 void TaskWheels(void *pvParameters);
-void TaskSonar(void *pvParamaters);
 void createTasks();
 void initWifi();
 
@@ -69,14 +63,9 @@ int main(void) {
 
 void createTasks() {
 	xTaskCreate(TaskCenterServo, (const portCHAR *)"", 100, NULL, 3, NULL);
-	//DEFUNCT xTaskCreate(TaskThermoSensor, (const portCHAR *)"", 100, NULL, 3, NULL);
-	//xTaskCreate(TaskWheelSpeed, (const portCHAR *)"", 100, NULL, 1, NULL);
 	xTaskCreate(TaskLCD, (const portCHAR *)"", 180, NULL, 3, NULL);
-	xTaskCreate(TaskLED, (const portCHAR *)"", 100, NULL, 2, NULL);
 	xTaskCreate(TaskWIFI, (const portCHAR *)"", 800, NULL, 3, NULL);
-	xTaskCreate(TaskWheels, (const portCHAR *)"", 128, NULL, 1, NULL);
-	//DEFUNCT xTaskCreate(TaskSonar, (const portCHAR *)"", 120, NULL, 3, NULL);
-
+	xTaskCreate(TaskWheels, (const portCHAR *)"", 128, NULL, 4, NULL);
 }
 
 void initModules() {
@@ -111,8 +100,8 @@ void initWifi() {
 	add_element_choice('2', "CLOCKWISE");
 	add_element_choice('3', "COUNTERCLOCKWISE");
 	add_element_choice('4', "ATTACHED");
+	add_element_choice('5', "STOP");
 	start_web_server();
-	setColor(true, false, false);
 }
 
 void TaskCenterServo(void *pvParameters) {
@@ -126,50 +115,12 @@ void TaskCenterServo(void *pvParameters) {
 	while (1) {
 		readTemperatureValues();
 		readDistance();
-		if (currentState == ATTACHED || currentState == SEARCHING || currentState == PANICKING) {
+		if (currentState == ATTACHED || currentState == SEARCHING
+				|| currentState == PANICKING) {
 			updateCenterServoAttachedMode();
 		} else {
 			moveCenterServo(SCAN, SCAN_SPEED);
 		}
-		vTaskDelay(period / portTICK_PERIOD_MS);
-	}
-}
-
-//DEFUNCT
-void TaskThermoSensor(void *pvParameters) {
-	TickType_t xLastWakeTime;
-	xLastWakeTime = xTaskGetTickCount();
-
-	int period = 20;
-
-	while (1) {
-		readTemperatureValues();
-		vTaskDelay(period / portTICK_PERIOD_MS);
-	}
-}
-
-//DEFUNCT
-void TaskSonar(void *pvParameters) {
-	TickType_t xLastWakeTime;
-	xLastWakeTime = xTaskGetTickCount();
-
-	int period = 100;
-
-	while (1) {
-		readDistance();
-
-		vTaskDelay(period / portTICK_PERIOD_MS);
-	}
-}
-
-void TaskWheelSpeed(void *pvParameters) {
-	TickType_t xLastWakeTime;
-	xLastWakeTime = xTaskGetTickCount();
-
-	int period = 10;
-
-	while (1) {
-		getSpeed();
 		vTaskDelay(period / portTICK_PERIOD_MS);
 	}
 }
@@ -186,50 +137,24 @@ void TaskLCD(void *pvParameters) {
 
 		uint8_t *tempValues = getTemperatureValues();
 
-		sprintf(display_top, "%d,%d,%d,%d,%d", tempValues[0], tempValues[1],
-				tempValues[2], tempValues[3], tempValues[4]);
-//
-		sprintf(display_bottom, "%d,%d,%d,%dD%3.0f", tempValues[5],
-				tempValues[6], tempValues[7], getAmbient(), getDistance());
+		if (currentState == ATTACHED || currentState == SEARCHING
+				|| currentState == PANICKING || currentState == STOPPED) {
+			sprintf(display_top, "%d,%d,%d,%d,%d", tempValues[0], tempValues[1],
+					tempValues[2], tempValues[3], tempValues[4]);
 
-//		sprintf(display_bottom, "%d,%d,%d,%dD%d", tempValues[5],
-//						tempValues[6], tempValues[7], getAmbient(), currentState);
+			sprintf(display_bottom, "%d,%d,%d,%dD%3.0f", tempValues[5],
+					tempValues[6], tempValues[7], getAmbient(), getDistance());
+		} else {
+			sprintf(display_top, "State:%d", currentState);
 
-
-		//sprintf(display_bottom, "%d", currentState);
-
+			sprintf(display_bottom, "D:%2.2f,S:%2.2f", getTotalDistance(),
+					getAverageSpeed());
+		}
 		LCDPrint(display_top, display_bottom);
 
 		vTaskDelay(period / portTICK_PERIOD_MS);
 	}
 
-}
-
-void TaskLED(void *pvParameters) {
-	TickType_t xLastWakeTime;
-	xLastWakeTime = xTaskGetTickCount();
-
-	int period = 500;
-
-	while (1) {
-		if (currentState == ATTACHED || currentState == SEARCHING || currentState == PANICKING) {
-			setColor(false, false, false); //off
-		} else if (currentState == MOVING_FORWARDS) {
-			setColor(false, true, false); // Green
-		} else if (currentState == MOVING_BACKWARDS) {
-			setColor(true, false, false); // Red
-		} else if (currentState == MOVING_CLOCKWISE) {
-			setColor(false, false, true); // Blue
-		} else if (currentState == MOVING_COUNTERCLOCKWISE) {
-			setColor(false, false, true); // Blue
-		} else if (currentState == STOPPED) {
-			setColor(true, true, true);  //White
-		} else {
-			setColor(false, false, false);
-		}
-
-		vTaskDelay(period / portTICK_PERIOD_MS);
-	}
 }
 
 void TaskWIFI(void *pvParameters) {
@@ -239,24 +164,30 @@ void TaskWIFI(void *pvParameters) {
 	int period = 500;
 
 	vTaskDelay(6000 / portTICK_PERIOD_MS);
-	setColor(true, false, false);
+
 	while (1) {
 		clientRequest = process_client_request();
 
 		if (clientRequest != ' ' && clientRequest != '\0') {
 			if (clientRequest == '0') {
+				setColor(false, true, false); // Green
 				currentState = MOVING_FORWARDS;
 			} else if (clientRequest == '1') {
+				setColor(true, false, false); //red
 				currentState = MOVING_BACKWARDS;
 			} else if (clientRequest == '2') {
+				setColor(false, false, true); // Blue
 				currentState = MOVING_CLOCKWISE;
 			} else if (clientRequest == '3') {
+				setColor(false, false, true); // Blue
 				currentState = MOVING_COUNTERCLOCKWISE;
 			} else if (clientRequest == '4') {
 				//currentState = ATTACHED;
+				setColor(false, false, false);
 				initAttachedMode();
-			} else {
-				setColor(true,true,true); //should not come here
+			} else if (clientRequest == '5') {
+				setColor(true, true, true);  //White
+				currentState = STOPPED;
 			}
 		}
 
@@ -268,10 +199,13 @@ void TaskWheels(void *pvParamaters) {
 	TickType_t xLastWakeTime;
 	xLastWakeTime = xTaskGetTickCount();
 
-	int period = 50;
+	int period = 100;
 
 	while (1) {
-		if (currentState == ATTACHED || currentState == PANICKING || currentState == SEARCHING) {
+		getSpeed();
+
+		if (currentState == ATTACHED || currentState == PANICKING
+				|| currentState == SEARCHING) {
 			updateWheelsAttachedMode();
 		} else if (currentState == MOVING_FORWARDS) {
 			moveWheels(FORWARDS, 1);
@@ -281,13 +215,14 @@ void TaskWheels(void *pvParamaters) {
 			moveWheels(CLOCKWISE, 1);
 		} else if (currentState == MOVING_COUNTERCLOCKWISE) {
 			moveWheels(COUNTERCLOCKWISE, 1);
-		} else {
-			moveWheels(STOP, 0);
+		} else if (currentState == STOPPED) {
+			moveWheels(STOP, 1);
 		}
 
 		vTaskDelay(period / portTICK_PERIOD_MS);
 	}
 }
+
 /*! \brief Application Stack Overflow hook
  *
  *  \param xTask

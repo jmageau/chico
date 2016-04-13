@@ -206,8 +206,8 @@ double getSpeedById(int deviceID, double previousSpeed) {
 	} else {
 		wheelSpeed = previousSpeed;
 	}
-	//TODO: fix magic number 100
-	totalDistance[deviceID] = totalDistance[deviceID] + wheelSpeed * 1 / 100;
+	//TODO: fix magic number 200
+	totalDistance[deviceID] = totalDistance[deviceID] + wheelSpeed * 1 / 200;
 
 	return wheelSpeed;
 }
