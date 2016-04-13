@@ -3,23 +3,19 @@
 #include <stdbool.h>
 #include <string.h>
 #include <stdio.h>
-
 #include <avr/io.h>
-
 /* Scheduler include files. */
 #include "FreeRTOS.h"
 #include "task.h"
 #include "queue.h"
 #include "semphr.h"
-
 #include "BitDefinitions.h"
-
 #include "servo.h"
 #include "tempsensor.h"
 #include "behaviour.h"
+#include "custom_timer.h"
 
-#define TEMP_THRESHOLD 30 //In Celsius
-#define TRACK_SPEED    20
+#define TEMP_THRESHOLD 50 //In Celsius
 
 bool readHeat();
 void trackHeat();
@@ -27,68 +23,49 @@ void trackHeat();
 int currentCenterServoDirection;
 int lastTrackedDirection;
 
-bool targetFound;
+unsigned long initialAttachTime;
+unsigned long currentTime;
 
-//moveWheels
-//lcd
-//led
-void initAttachedMode(){
+void initAttachedMode() {
+	currentState = SEARCHING;
 	currentCenterServoDirection = CLOCKWISE;
-	lastTrackedDirection = CLOCKWISE;
-	targetFound = false;
+	lastTrackedDirection = currentCenterServoDirection;
+	initialAttachTime = time_in_milliseconds();
 }
 
 bool readHeat() {
-	return (getAverageLeft() > TEMP_THRESHOLD || getAverageRight() > TEMP_THRESHOLD);
+	return (getAverageLeft() > TEMP_THRESHOLD
+			|| getAverageRight() > TEMP_THRESHOLD);
 }
-
-void trackHeat() {
-	int leftTemp = getAverageLeft();
-	int rightTemp = getAverageRight();
-
-	if (leftTemp > rightTemp && (leftTemp - rightTemp) > 2) {
-		moveCenterServo(COUNTERCLOCKWISE, TRACK_SPEED * (leftTemp / rightTemp));
-		lastTrackedDirection = COUNTERCLOCKWISE;
-	} else if (rightTemp > leftTemp && (rightTemp - leftTemp) > 2) {
-		moveCenterServo(CLOCKWISE, TRACK_SPEED * (rightTemp / leftTemp));
-		lastTrackedDirection = CLOCKWISE;
-	} else {
-		moveCenterServo(STOP, 0);
-	}
-}
-
 void updateCenterServoAttachedMode() {
-	if (readHeat()) {
-		trackHeat();
-		targetFound = true;
-	} else {
-		targetFound = false;
-		int currentPulseWidth = motion_servo_get_pulse_width(
-				MOTION_SERVO_CENTER);
+	currentTime = time_in_milliseconds();
 
-		if (currentPulseWidth <= MIN_PULSE_WIDTH_TICKS + 100) {
-			currentCenterServoDirection = COUNTERCLOCKWISE;
-			lastTrackedDirection = COUNTERCLOCKWISE;
-		} else if (currentPulseWidth >= MAX_PULSE_WIDTH_TICKS - 100) {
-			currentCenterServoDirection = CLOCKWISE;
-			lastTrackedDirection = CLOCKWISE;
-		} else {
-			currentCenterServoDirection = lastTrackedDirection;
+	if (currentState == SEARCHING) {
+		moveCenterServo(SCAN, SCAN_SPEED);
+
+		if (readHeat()) {
+			currentState = ATTACHED;
+		} else if (currentTime - initialAttachTime >= 10000) { // change to if maybe
+			currentState = PANICKING;
 		}
-		moveCenterServo(currentCenterServoDirection, SCAN_SPEED);
+	} else if (currentState == ATTACHED) {
+		//TODO
+	} else if (currentState == PANICKING) {
+		moveCenterServo(MIDDLE, SCAN_SPEED);
 	}
 }
 
 void updateWheelsAttachedMode() {
-	if (targetFound){
-		int currentPulseWidth = motion_servo_get_pulse_width(MOTION_SERVO_CENTER);
-		if (abs(currentPulseWidth - INITIAL_PULSE_WIDTH_TICKS) <= 100 ) {
-			//TODO: forwards
-		} else {
-			moveWheels(currentCenterServoDirection, 0.1f);
+	if (currentState == PANICKING) {
+		moveWheels(COUNTERCLOCKWISE, 1);
+		if (currentTime - initialAttachTime >= 60000) {
+			initAttachedMode();
 		}
-	} else {
-		moveWheels(STOP, 1);
+	} else if (currentState == SEARCHING) {
+		//TODO:
+		moveWheels(STOP, 0);
+	} else if (currentState == ATTACHED) {
+		//TODO:
+		moveWheels(STOP, 0);
 	}
 }
-
