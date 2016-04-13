@@ -62,10 +62,10 @@ int main(void) {
 }
 
 void createTasks() {
-	xTaskCreate(TaskCenterServo, (const portCHAR *)"", 100, NULL, 3, NULL);
-	xTaskCreate(TaskLCD, (const portCHAR *)"", 180, NULL, 3, NULL);
-	xTaskCreate(TaskWIFI, (const portCHAR *)"", 800, NULL, 3, NULL);
-	xTaskCreate(TaskWheels, (const portCHAR *)"", 128, NULL, 4, NULL);
+	xTaskCreate(TaskCenterServo, (const portCHAR *)"", 100, NULL, 4, NULL);
+	xTaskCreate(TaskLCD, (const portCHAR *)"", 180, NULL, 2, NULL);
+	xTaskCreate(TaskWIFI, (const portCHAR *)"", 800, NULL, 1, NULL);
+	xTaskCreate(TaskWheels, (const portCHAR *)"", 128, NULL, 3, NULL);
 }
 
 void initModules() {
