@@ -50,6 +50,10 @@ double previousSpeedLeft;
  */
 double totalDistance[2];
 
+
+int currentCenterServoDirection;
+
+
 /*! \brief Initializes the motion module and sets all speeds/distances to zero.
  */
 void servoInit() {
@@ -60,6 +64,7 @@ void servoInit() {
 	previousSpeedLeft = 0;
 	totalDistance[0] = 0;
 	totalDistance[1] = 0;
+	currentCenterServoDirection = CLOCKWISE;
 }
 
 /*! \brief Calculates the pulse width necessary to move a servo at a certain power level.
@@ -69,11 +74,13 @@ void servoInit() {
  * 	\param power
  * 		Percentage of the power the wheel should be turning at. If power is 50%, then the wheel should turn 50% slower
  */
-int getPulseWidth(bool direction, double power){
-	if(direction){
-		return (int)(INITIAL_PULSE_WIDTH_TICKS + (MAX_PULSE_WIDTH_TICKS - INITIAL_PULSE_WIDTH_TICKS) * power);
+int getPulseWidth(bool direction, double power) {
+	if (direction) {
+		return (int) (INITIAL_PULSE_WIDTH_TICKS
+				+ (MAX_PULSE_WIDTH_TICKS - INITIAL_PULSE_WIDTH_TICKS) * power);
 	}
-	return (int)(INITIAL_PULSE_WIDTH_TICKS - (INITIAL_PULSE_WIDTH_TICKS - MIN_PULSE_WIDTH_TICKS) * power);
+	return (int) (INITIAL_PULSE_WIDTH_TICKS
+			- (INITIAL_PULSE_WIDTH_TICKS - MIN_PULSE_WIDTH_TICKS) * power);
 }
 
 /*! \brief Sends move commands to the wheels depending on the direction.
@@ -89,52 +96,60 @@ void moveWheels(int direction, float powerFactor) {
 	if (previousSpeedRight > previousSpeedLeft && previousSpeedRight != 0) {
 		leftPowerRatio = 1;
 		rightPowerRatio = previousSpeedLeft / previousSpeedRight;
-	} else if (previousSpeedLeft > previousSpeedRight && previousSpeedLeft != 0) {
+	} else if (previousSpeedLeft > previousSpeedRight
+			&& previousSpeedLeft != 0) {
 		leftPowerRatio = previousSpeedRight / previousSpeedLeft;
 		rightPowerRatio = 1;
-	}
-	else {
+	} else {
 		leftPowerRatio = 1;
 		rightPowerRatio = 1;
 	}
 
 	if (direction == FORWARDS) {
 
-		motion_servo_set_pulse_width(MOTION_WHEEL_LEFT, getPulseWidth(1, leftPowerRatio*powerFactor));
+		motion_servo_set_pulse_width(MOTION_WHEEL_LEFT,
+				getPulseWidth(1, leftPowerRatio * powerFactor));
 		motion_servo_start(MOTION_WHEEL_LEFT);
 
-		motion_servo_set_pulse_width(MOTION_WHEEL_RIGHT, getPulseWidth(0, rightPowerRatio*powerFactor));
+		motion_servo_set_pulse_width(MOTION_WHEEL_RIGHT,
+				getPulseWidth(0, rightPowerRatio * powerFactor));
 		motion_servo_start(MOTION_WHEEL_RIGHT);
 
 	} else if (direction == BACKWARDS) {
 
-		motion_servo_set_pulse_width(MOTION_WHEEL_LEFT, getPulseWidth(0, leftPowerRatio*powerFactor));
+		motion_servo_set_pulse_width(MOTION_WHEEL_LEFT,
+				getPulseWidth(0, leftPowerRatio * powerFactor));
 		motion_servo_start(MOTION_WHEEL_LEFT);
 
-		motion_servo_set_pulse_width(MOTION_WHEEL_RIGHT, getPulseWidth(1, rightPowerRatio*powerFactor));
+		motion_servo_set_pulse_width(MOTION_WHEEL_RIGHT,
+				getPulseWidth(1, rightPowerRatio * powerFactor));
 		motion_servo_start(MOTION_WHEEL_RIGHT);
 
 	} else if (direction == CLOCKWISE) {
 
-		motion_servo_set_pulse_width(MOTION_WHEEL_LEFT, getPulseWidth(1, leftPowerRatio*powerFactor));
+		motion_servo_set_pulse_width(MOTION_WHEEL_LEFT,
+				getPulseWidth(1, leftPowerRatio * powerFactor));
 		motion_servo_start(MOTION_WHEEL_LEFT);
 
-		motion_servo_set_pulse_width(MOTION_WHEEL_RIGHT, getPulseWidth(1, rightPowerRatio*powerFactor));
-	    motion_servo_start(MOTION_WHEEL_RIGHT);
+		motion_servo_set_pulse_width(MOTION_WHEEL_RIGHT,
+				getPulseWidth(1, rightPowerRatio * powerFactor));
+		motion_servo_start(MOTION_WHEEL_RIGHT);
 
-	}else if (direction == COUNTERCLOCKWISE) {
+	} else if (direction == COUNTERCLOCKWISE) {
 
-		motion_servo_set_pulse_width(MOTION_WHEEL_LEFT, getPulseWidth(0, leftPowerRatio*powerFactor));
+		motion_servo_set_pulse_width(MOTION_WHEEL_LEFT,
+				getPulseWidth(0, leftPowerRatio * powerFactor));
 		motion_servo_start(MOTION_WHEEL_LEFT);
 
-		motion_servo_set_pulse_width(MOTION_WHEEL_RIGHT, getPulseWidth(0, rightPowerRatio*powerFactor));
-	    motion_servo_start(MOTION_WHEEL_RIGHT);
+		motion_servo_set_pulse_width(MOTION_WHEEL_RIGHT,
+				getPulseWidth(0, rightPowerRatio * powerFactor));
+		motion_servo_start(MOTION_WHEEL_RIGHT);
 
 	} else if (direction == STOP) {
 		motion_servo_stop(MOTION_WHEEL_RIGHT);
 		motion_servo_stop(MOTION_WHEEL_LEFT);
 		previousSpeedRight = 0;
-		previousSpeedLeft  = 0;
+		previousSpeedLeft = 0;
 	}
 
 }
@@ -148,18 +163,26 @@ void moveCenterServo(int direction, int speed) {
 	int currentPulseWidth = motion_servo_get_pulse_width(MOTION_SERVO_CENTER);
 	if (direction == CLOCKWISE) {
 		motion_servo_set_pulse_width(MOTION_SERVO_CENTER,
-		currentPulseWidth - speed);
+				currentPulseWidth - speed);
 		motion_servo_start(MOTION_SERVO_CENTER);
 	} else if (direction == COUNTERCLOCKWISE) {
 		motion_servo_set_pulse_width(MOTION_SERVO_CENTER,
-		currentPulseWidth + speed);
+				currentPulseWidth + speed);
 		motion_servo_start(MOTION_SERVO_CENTER);
 	} else if (direction == MIDDLE) {
 		motion_servo_set_pulse_width(MOTION_SERVO_CENTER,
-		((MAX_PULSE_WIDTH_TICKS - MIN_PULSE_WIDTH_TICKS) / 2) + MIN_PULSE_WIDTH_TICKS);
+				((MAX_PULSE_WIDTH_TICKS - MIN_PULSE_WIDTH_TICKS) / 2)
+						+ MIN_PULSE_WIDTH_TICKS);
 		motion_servo_start(MOTION_SERVO_CENTER);
 	} else if (direction == STOP) {
 		motion_servo_stop(MOTION_SERVO_CENTER);
+	} else if (direction == SCAN) {
+		if (currentPulseWidth <= MIN_PULSE_WIDTH_TICKS + 100) {
+			currentCenterServoDirection = COUNTERCLOCKWISE;
+		} else if (currentPulseWidth >= MAX_PULSE_WIDTH_TICKS - 100) {
+			currentCenterServoDirection = CLOCKWISE;
+		}
+		moveCenterServo(currentCenterServoDirection, speed);
 	}
 }
 
@@ -171,27 +194,28 @@ void moveCenterServo(int direction, int speed) {
  * 		The previous speed of the wheel
  *
  */
-double getSpeedById(int deviceID, double previousSpeed){
+double getSpeedById(int deviceID, double previousSpeed) {
 	uint32_t* wheelTickDelta;
 	double wheelSpeed;
 
-	if (motion_enc_read(deviceID, wheelTickDelta) == 1){
+	if (motion_enc_read(deviceID, wheelTickDelta) == 1) {
 		//There was a new speed and we need to do something about it
 		//0.0054 = distance of 1 capture event, 500ns = period of servos
-		wheelSpeed = CAPTURE_EVENT_DISTANCE / ((*wheelTickDelta) * SERVO_PERIOD); //distance over time
+		wheelSpeed = CAPTURE_EVENT_DISTANCE
+				/ ((*wheelTickDelta) * SERVO_PERIOD); //distance over time
 	} else {
 		wheelSpeed = previousSpeed;
 	}
-	totalDistance[deviceID] = totalDistance[deviceID] + wheelSpeed * 1/TIMER_FREQUENCY;
+	//TODO: fix magic number 200
+	totalDistance[deviceID] = totalDistance[deviceID] + wheelSpeed * 1 / 200;
 
 	return wheelSpeed;
 }
 
-
 /*! \brief Calculates the speeds of the wheels
  */
-void getSpeed(){
-	wheelSpeedLeft  = getSpeedById(MOTION_WHEEL_LEFT, previousSpeedLeft);
+void getSpeed() {
+	wheelSpeedLeft = getSpeedById(MOTION_WHEEL_LEFT, previousSpeedLeft);
 	wheelSpeedRight = getSpeedById(MOTION_WHEEL_RIGHT, previousSpeedRight);
 	previousSpeedLeft = wheelSpeedLeft;
 	previousSpeedRight = wheelSpeedRight;
@@ -199,14 +223,14 @@ void getSpeed(){
 
 /*! \brief Returns the average speed of the wheels
  */
-double getAverageSpeed(){
-	return (wheelSpeedLeft + wheelSpeedRight)/2;
+double getAverageSpeed() {
+	return (wheelSpeedLeft + wheelSpeedRight) / 2;
 }
 
 /*! \brief Returns the total distance traveled by the wheels
  */
-double getTotalDistance(){
-	return (totalDistance[0] + totalDistance[1])/2;
+double getTotalDistance() {
+	return (totalDistance[0] + totalDistance[1]) / 2;
 }
 
 #endif
