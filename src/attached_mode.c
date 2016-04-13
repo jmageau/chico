@@ -44,7 +44,18 @@ void updateCenterServoAttachedMode() {
 			setColor(true,false,false);
 		}
 	} else if (currentState == ATTACHED) {
-		if (!readHeat()){
+		if (readHeat()) {
+			int leftTemperature = getAverageLeft();
+			int rightTemperature = getAverageRight();
+			int middleTemperature = getAverageMiddle();
+			if(leftTemperature > rightTemperature && leftTemperature > middleTemperature + 2) {
+				moveCenterServo(COUNTERCLOCKWISE, SCAN_SPEED);
+			} else if(rightTemperature > leftTemperature && rightTemperature > middleTemperature + 2) {
+				moveCenterServo(COUNTERCLOCKWISE, SCAN_SPEED);
+			} else {
+				// nothing
+			}
+		} else {
 			currentState = SEARCHING;
 		}
 	} else if (currentState == PANICKING) {
@@ -72,9 +83,9 @@ void updateWheelsAttachedMode() {
 			}
 		} else {
 			if (centerServoAngle > 0) {
-				moveWheels(CLOCKWISE, 1);
-			} else {
 				moveWheels(COUNTERCLOCKWISE, 1);
+			} else {
+				moveWheels(CLOCKWISE, 1);
 			}
 		}
 	}
