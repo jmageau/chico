@@ -1,7 +1,0 @@
-#############################
-# Chico Ignores! - 07/04/16 #
-#############################
-
-### Chico Release ###
-Release/*
-!Release/makefile
